@@ -52,7 +52,7 @@ const Navbar: React.FC<NavbarProps> = ({
     };
 
     return (
-        <nav className="bg-gray-900 dark:bg-gray-800 shadow-lg sticky w-99/100 top-0 mt-2 z-50 rounded-4xl">
+        <nav className="bg-gray-900 dark:bg-gray-800 shadow-lg sticky w-99/100 m-auto top-3 z-50 rounded-4xl">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
                     {/* Logo */}
