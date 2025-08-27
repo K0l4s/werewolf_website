@@ -1,8 +1,9 @@
-const FeatureCard: React.FC<{ title: string; text: string; align?: "left" | "right" }> = ({ title, text, align = "left" }) => (
+const FeatureCard: React.FC<{ title: string; text: string; align?: "left" | "right" ,imgSrc?:string}> = ({ title, text, align = "left" ,imgSrc}) => (
     <div className={`flex items-center gap-8 py-8 ${align === "right" ? "flex-row-reverse" : ""}`}>
         <div className="w-1/2">
             <div className="rounded-xl bg-gradient-to-br from-zinc-900 to-zinc-800 p-6 shadow-lg">
-                <div className="h-48 rounded-md bg-zinc-900/50 border border-zinc-700 flex items-center justify-center text-zinc-400">Mock preview</div>
+                {/* <div className="h-48 rounded-md bg-zinc-900/50 border border-zinc-700 flex items-center justify-center text-zinc-400">Mock preview</div> */}
+                <img src={imgSrc} alt="" className="rounded-md w-full h-full bg-zinc-900/50 border border-zinc-700 flex items-center justify-center" />
             </div>
         </div>
         <div className="w-1/2">

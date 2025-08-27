@@ -52,7 +52,7 @@ const Navbar: React.FC<NavbarProps> = ({
     };
 
     return (
-        <nav className="bg-gray-900 dark:bg-gray-800 shadow-lg sticky w-99/100 m-auto top-3 z-50 rounded-4xl">
+        <nav className="bg-gray-900/30 backdrop-blur-xs shadow-lg sticky w-99/100 m-auto top-3 z-50 rounded-4xl">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
                     {/* Logo */}
@@ -103,7 +103,7 @@ const Navbar: React.FC<NavbarProps> = ({
                 {/* Mobile Navigation */}
                 {isOpen && (
                     <div className="md:hidden">
-                        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-800 dark:bg-gray-700 rounded-lg mt-2">
+                        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 rounded-lg mt-2">
                             {items.map((item) => (
                                 <a
                                     key={item.label}
