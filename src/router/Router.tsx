@@ -4,6 +4,7 @@ import PolicyPage from '../pages/policy/PolicyPage'
 import Layout from './layout/Layout'
 import TermPage from '../pages/term/TermPage'
 import DocumentationPage from '../pages/documentation/DocumentationPage'
+import NotFoundPage from '../pages/notfound/NotFoundPage'
 
 const Router = () => {
     return (
@@ -14,6 +15,7 @@ const Router = () => {
                 <Route path='term' element={<TermPage />} />
                 <Route path='doc' element={<DocumentationPage/>}/>
             </Route>
+            <Route path='*' element={<NotFoundPage/>}/>
         </Routes>
     )
 }
