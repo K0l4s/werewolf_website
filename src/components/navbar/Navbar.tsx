@@ -1,7 +1,7 @@
 
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon } from 'lucide-react';
-import logo from '../../assets/images/logo.png'
+import React, { useState } from 'react';
+import { Menu, X } from 'lucide-react';
+import logo from '../../assets/images/mascot.png'
 interface NavItem {
     label: string;
     href: string;
@@ -23,43 +23,43 @@ const Navbar: React.FC<NavbarProps> = ({
     ]
 }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [isDarkMode, setIsDarkMode] = useState(false);
+    // const [isDarkMode, setIsDarkMode] = useState(false);
 
-    useEffect(() => {
-        // Check if dark mode is enabled in localStorage or system preference
-        const savedTheme = localStorage.getItem('theme');
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // useEffect(() => {
+    //     // Check if dark mode is enabled in localStorage or system preference
+    //     const savedTheme = localStorage.getItem('theme');
+    //     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-            setIsDarkMode(true);
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    }, []);
+    //     if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+    //         setIsDarkMode(true);
+    //         document.documentElement.classList.add('dark');
+    //     } else {
+    //         document.documentElement.classList.remove('dark');
+    //     }
+    // }, []);
 
-    const toggleDarkMode = () => {
-        const newDarkMode = !isDarkMode;
-        setIsDarkMode(newDarkMode);
+    // const toggleDarkMode = () => {
+    //     const newDarkMode = !isDarkMode;
+    //     setIsDarkMode(newDarkMode);
 
-        if (newDarkMode) {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-        }
-    };
+    //     if (newDarkMode) {
+    //         document.documentElement.classList.add('dark');
+    //         localStorage.setItem('theme', 'dark');
+    //     } else {
+    //         document.documentElement.classList.remove('dark');
+    //         localStorage.setItem('theme', 'light');
+    //     }
+    // };
 
     return (
-        <nav className="bg-gray-900/30 backdrop-blur-xs shadow-lg sticky w-99/100 m-auto top-3 z-50 rounded-4xl">
+        <nav className="bg-gray-900/30 backdrop-blur-xs shadow-lg sticky w-99/100 m-auto top-3 z-50 rounded-4xl border-3 border-yellow-500">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
                     {/* Logo */}
                     <div className="flex items-center">
                         <a href="/" className="flex-shrink-0 flex items-center w-full h-full">
-                            <img src={logo} alt="logo" className='w-full h-full' />
-                            <span className="text-yellow-400 text-2xl font-bold">Werewolf</span>
+                            <img src={logo} alt="logo" className='w-full h-full rounded-b-full shadow-lg' />
+                            <span className="text-yellow-500 text-2xl font-bold">Werewolf</span>
                         </a>
                     </div>
 
@@ -79,13 +79,13 @@ const Navbar: React.FC<NavbarProps> = ({
                     {/* Right side buttons */}
                     <div className="flex items-center space-x-4">
                         {/* Dark/Light mode toggle */}
-                        <button
+                        {/* <button
                             onClick={toggleDarkMode}
                             className="p-2 rounded-md text-gray-300 hover:text-yellow-400 hover:bg-gray-800 dark:hover:bg-gray-700 transition-colors duration-200"
                             aria-label="Toggle dark mode"
                         >
                             {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-                        </button>
+                        </button> */}
 
                         {/* Mobile menu button */}
                         <div className="md:hidden flex items-center">
