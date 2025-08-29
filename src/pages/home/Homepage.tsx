@@ -5,6 +5,7 @@ import ww3 from "../../assets/images/ww3.jpg"
 import ww4 from "../../assets/images/ww4.jpg"
 // import mascot from "../../assets/images/mascot.png"
 import herobanner from "../../assets/images/herobanner.png"
+import { Link } from "react-router-dom";
 const Homepage = () => {
     return (
         <div className="">
@@ -17,8 +18,8 @@ const Homepage = () => {
                         <p className="text-zinc-400 max-w-xl mb-6">The Werewolf game, also known as Mafia, is a social deduction game where players are divided into two teams: a minority of werewolves (or the "mafia") and a majority of villagers.</p>
                         <div className="flex gap-4">
                             <button className="px-5 py-3 rounded-md bg-violet-600 font-semibold cursor-pointer" onClick={() => window.open("https://discord.com/oauth2/authorize?client_id=1383209480560443392&scope=bot&permissions=8", "_blank")}>Add To Discord</button>
-                            <a href="mailto:trungkienhuynh.contact@gmail.com?subject=Contact%20letter%20">
-                                <button className="px-5 py-3 rounded-md bg-zinc-800 text-zinc-200 cursor-pointer" >Do you want Custom Discord Bot?</button></a>
+                            <Link to="mailto:trungkienhuynh.contact@gmail.com?subject=Contact%20letter%20">
+                                <button className="px-5 py-3 rounded-md bg-zinc-800 text-zinc-200 cursor-pointer" >Do you want Custom Discord Bot?</button></Link>
                         </div>
 
                         {/* trusted */}

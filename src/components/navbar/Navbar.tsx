@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import logo from '../../assets/images/mascot.png'
+import { Link } from 'react-router-dom';
 interface NavItem {
     label: string;
     href: string;
@@ -16,6 +17,7 @@ const Navbar: React.FC<NavbarProps> = ({
         { label: 'Home', href: '/' },
         { label: 'Policy', href: '/policy' },
         { label: 'Terms', href: '/term' },
+        { label: 'Document', href: '/doc' },
         // { label: 'About', href: '/about' },
         // { label: 'Services', href: '/services' },
         // { label: 'Portfolio', href: '/portfolio' },
@@ -23,6 +25,7 @@ const Navbar: React.FC<NavbarProps> = ({
     ]
 }) => {
     const [isOpen, setIsOpen] = useState(false);
+    
     // const [isDarkMode, setIsDarkMode] = useState(false);
 
     // useEffect(() => {
@@ -57,22 +60,22 @@ const Navbar: React.FC<NavbarProps> = ({
                 <div className="flex justify-between h-16">
                     {/* Logo */}
                     <div className="flex items-center">
-                        <a href="/" className="flex-shrink-0 flex items-center w-full h-full">
+                        <Link to="/" className="flex-shrink-0 flex items-center w-full h-full">
                             <img src={logo} alt="logo" className='w-full h-full rounded-b-full shadow-lg' />
                             <span className="text-yellow-500 text-2xl font-bold">Werewolf</span>
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center space-x-8">
                         {items.map((item) => (
-                            <a
+                            <Link
                                 key={item.label}
-                                href={item.href}
+                                to={item.href}
                                 className="text-gray-300 hover:text-yellow-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
                             >
                                 {item.label}
-                            </a>
+                            </Link>
                         ))}
                     </div>
 
@@ -105,14 +108,14 @@ const Navbar: React.FC<NavbarProps> = ({
                     <div className="md:hidden">
                         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 rounded-lg mt-2">
                             {items.map((item) => (
-                                <a
+                                <Link
                                     key={item.label}
-                                    href={item.href}
+                                    to={item.href}
                                     className="text-gray-300 hover:text-yellow-400 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
                                     onClick={() => setIsOpen(false)}
                                 >
                                     {item.label}
-                                </a>
+                                </Link>
                             ))}
                         </div>
                     </div>

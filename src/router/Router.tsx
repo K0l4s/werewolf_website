@@ -3,6 +3,7 @@ import Homepage from '../pages/home/Homepage'
 import PolicyPage from '../pages/policy/PolicyPage'
 import Layout from './layout/Layout'
 import TermPage from '../pages/term/TermPage'
+import DocumentationPage from '../pages/documentation/DocumentationPage'
 
 const Router = () => {
     return (
@@ -11,6 +12,7 @@ const Router = () => {
                 <Route path='' element={<Homepage />} />
                 <Route path='policy' element={<PolicyPage />} />
                 <Route path='term' element={<TermPage />} />
+                <Route path='doc' element={<DocumentationPage/>}/>
             </Route>
         </Routes>
     )
