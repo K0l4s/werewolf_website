@@ -16,8 +16,9 @@ const Homepage = () => {
                         <h1 className="text-5xl font-extrabold tracking-tight mb-6">Play Werewolf <br />Easier!</h1>
                         <p className="text-zinc-400 max-w-xl mb-6">The Werewolf game, also known as Mafia, is a social deduction game where players are divided into two teams: a minority of werewolves (or the "mafia") and a majority of villagers.</p>
                         <div className="flex gap-4">
-                            <button className="px-5 py-3 rounded-md bg-violet-600 font-semibold" onClick={() => window.open("https://discord.com/oauth2/authorize?client_id=1383209480560443392&scope=bot&permissions=8", "_blank")}>Add To Discord</button>
-                            <button className="px-5 py-3 rounded-md bg-zinc-800 text-zinc-200">Browse Features</button>
+                            <button className="px-5 py-3 rounded-md bg-violet-600 font-semibold cursor-pointer" onClick={() => window.open("https://discord.com/oauth2/authorize?client_id=1383209480560443392&scope=bot&permissions=8", "_blank")}>Add To Discord</button>
+                            <a href="mailto:trungkienhuynh.contact@gmail.com?subject=Contact%20letter%20">
+                                <button className="px-5 py-3 rounded-md bg-zinc-800 text-zinc-200 cursor-pointer" >Do you want Custom Discord Bot?</button></a>
                         </div>
 
                         {/* trusted */}
@@ -80,7 +81,7 @@ const Homepage = () => {
                         <div>
                             <h2 className="text-3xl font-bold">Let play Werewolf with our bot!</h2>
                             <p className="text-zinc-100/90 mt-2">Join over 15 servers using Werewolf</p>
-                            <button className="mt-6 px-4 py-2 bg-white text-black rounded-md" onClick={() => window.open("https://discord.com/oauth2/authorize?client_id=1383209480560443392&scope=bot&permissions=8", "_blank")}>Add To Discord</button>
+                            <button className="mt-6 px-4 py-2 bg-white text-black rounded-md cursor-pointer" onClick={() => window.open("https://discord.com/oauth2/authorize?client_id=1383209480560443392&scope=bot&permissions=8", "_blank")}>Add To Discord</button>
                         </div>
                         <div className="w-1/4 h-1/4 bg-white/10 rounded-full flex items-center justify-center">
 
@@ -112,15 +113,18 @@ const Homepage = () => {
                             <div>
                                 <h4 className="text-white font-semibold mb-3">Other Links</h4>
                                 <ul className="text-sm space-y-2">
-                                    <li>Twitter</li>
-                                    <li>Discord</li>
-                                    <li>Top.gg</li>
+                                    <li><a href="https://github.com/K0l4s" className="text-blue-200 hover:text-blue-500 hover:underline">Github</a></li>
+                                    <li> <a href="https://discord.gg/kDkydXrtua" className="text-blue-200 hover:text-blue-500 hover:underline">Discord</a></li>
+                                    <li><a href="https://top.gg/discord/servers/747894754633043968?s=0eaec2fe15c42" className="text-blue-200 hover:text-blue-500 hover:underline">Top.gg</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
                     <div className="pt-6 text-sm text-zinc-600">© 2025 All rights reserved.</div>
+                    <div className="text-sm text-zinc-600">Develop by Huỳnh Trung Kiên - Kiên Học Code - Kolas</div>
+                    <div className="text-sm text-zinc-600">Contact for work:  <a href="mailto:trungkienhuynh.contact@gmail.com?subject=Contact%20letter%20" className="text-blue-200 hover:text-blue-500 hover:underline">trungkienhuynh.contact@gmail.com</a></div>
+
                 </footer>
             </main>
         </div>
