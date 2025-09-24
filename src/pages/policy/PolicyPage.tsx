@@ -38,7 +38,7 @@ const PolicyPage = () => {
   const [activePolicy, setActivePolicy] = useState(0);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-zinc-900 to-zinc-950 text-white">
+    <div className="min-h-screen text-white">
       {/* HERO SECTION */}
       <section className="max-w-6xl mx-auto px-6 py-16">
         <div className="flex flex-col md:flex-row items-center gap-10">

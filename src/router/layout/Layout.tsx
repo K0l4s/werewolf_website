@@ -6,11 +6,11 @@ import CtaSection from "../../components/cta/CtaSection"
 
 const Layout = () => {
     return (
-        <div className="min-h-screen bg-[#0b0b0f] text-white ">
+        <div className="min-h-screen bg-gradient-to-b from-zinc-900 to-zinc-950 text-white ">
 
             <Navbar />
             <Outlet />
-            <CtaSection/>
+            <CtaSection />
             <Footer />
         </div>
     )
