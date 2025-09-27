@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosNoAuth } from "../../utils/axiosIntance";
 import { useDispatch } from "react-redux";
-import { login } from "../../redux/reducer/authReducer";
+import { login, setIsLoadingFalse, setIsLoadingTrue } from "../../redux/reducer/authReducer";
 
 export default function CallbackPage() {
     const navigate = useNavigate();
@@ -15,17 +15,20 @@ export default function CallbackPage() {
         const code = urlParams.get("code");
 
         if (code) {
-            axiosNoAuth
-                .post("auth/discord/callback", { code })
-                .then((res) => {
-                    // console.log("User:", res.data.user);
-                    // console.log("Guilds:", res.data.guilds);
+            dispatch(setIsLoadingTrue());
+            (async () => {
+                try {
+                    // Gửi code tới backend để lấy token và thông tin user
+                    const res = await axiosNoAuth.post("auth/discord/callback", { code });
                     dispatch(login(res.data.user));
-                    
-                    localStorage.setItem("token", res.data.token); // hoặc JWT
+                    localStorage.setItem("token", res.data.token);
                     navigate("/dashboard");
-                })
-                .catch((err) => console.error(err));
+                } catch (error) {
+                    console.error("Error during Discord callback:", error);
+                } finally {
+                    dispatch(setIsLoadingFalse());
+                }
+            })();
         }
     }, [navigate]);
 

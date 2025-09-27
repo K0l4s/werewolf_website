@@ -11,7 +11,7 @@ import Dashboard from '../pages/dashboard/Dashboard'
 import { useEffect } from 'react'
 import { axiosNoAuth } from '../utils/axiosIntance'
 import { useDispatch } from 'react-redux'
-import { login } from '../redux/reducer/authReducer'
+import { login, setIsLoadingFalse, setIsLoadingTrue } from '../redux/reducer/authReducer'
 // import type { RootState } from '../redux/store'
 
 const Router = () => {
@@ -21,6 +21,8 @@ const Router = () => {
             const token = localStorage.getItem("token")
 
             try {
+                dispatch(setIsLoadingTrue())
+
                 const response = await axiosNoAuth.post("auth/infor",
                     { token: token }
                 );
@@ -28,6 +30,8 @@ const Router = () => {
                 dispatch(login(response.data));
             } catch (error) {
                 console.error("Error fetching health details:", error);
+            } finally {
+                dispatch(setIsLoadingFalse())
             }
         };
         getUsers()
