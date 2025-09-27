@@ -10,9 +10,9 @@ import DashboardLayout from './layout/DashboardLayout'
 import Dashboard from '../pages/dashboard/Dashboard'
 import { useEffect } from 'react'
 import { axiosNoAuth } from '../utils/axiosIntance'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { login } from '../redux/reducer/authReducer'
-import type { RootState } from '../redux/store'
+// import type { RootState } from '../redux/store'
 
 const Router = () => {
     const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const Router = () => {
         };
         getUsers()
     }, []);
-    const user = useSelector((state: RootState) => state.auth.user);
+    // const user = useSelector((state: RootState) => state.auth.user);
     // console.log(user)
     return (
         <Routes >
