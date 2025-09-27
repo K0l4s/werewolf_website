@@ -4,6 +4,8 @@ import { Menu, X } from 'lucide-react';
 import logo from '../../assets/images/mascot.png'
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../../redux/store';
 interface NavItem {
     label: string;
     href: string;
@@ -28,7 +30,7 @@ const Navbar: React.FC<NavbarProps> = ({
     const [isOpen, setIsOpen] = useState(false);
     const location = useLocation();
     const currentHref = location.pathname;
-    console.log("Current Href:", currentHref);
+    // console.log("Current Href:", currentHref);
     // const [isDarkMode, setIsDarkMode] = useState(false);
 
     // useEffect(() => {
@@ -55,8 +57,15 @@ const Navbar: React.FC<NavbarProps> = ({
     //         document.documentElement.classList.remove('dark');
     //         localStorage.setItem('theme', 'light');
     //     }
-    // };
+    // }
+    // Lấy client_id từ biến môi trường và mã hóa URL redirect_uri, lấy url hiện tại
+    const clientId = import.meta.env.VITE_CLIENT_ID;
+    const redirectUri = encodeURIComponent(`${window.location.origin}/callback`);
+    const url = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=identify%20guilds`;
 
+    const user = useSelector((state: RootState) => state.auth.user);
+    const isLogin = useSelector((state: RootState) => state.auth.isAuthenticated);
+    // console.log(user)
     return (
         <nav className="bg-gray-900/80 backdrop-blur-xl shadow-2xl sticky w-11/12 max-w-6xl mx-auto top-4 z-50 rounded-2xl border border-yellow-500/50 hover:border-yellow-400/70 transition-all duration-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -90,8 +99,8 @@ const Navbar: React.FC<NavbarProps> = ({
                                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/10 to-amber-500/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                 <div
                                     className={`absolute bottom-0 left-1/2 h-0.5 bg-gradient-to-r from-yellow-500 to-amber-500 transform -translate-x-1/2 transition-all duration-300 ${currentHref === item.href
-                                            ? 'w-3/4 opacity-100'
-                                            : 'w-0 opacity-0 group-hover:w-3/4 group-hover:opacity-100'
+                                        ? 'w-3/4 opacity-100'
+                                        : 'w-0 opacity-0 group-hover:w-3/4 group-hover:opacity-100'
                                         }`}
                                     style={{
                                         transitionProperty: 'width, opacity',
@@ -103,12 +112,28 @@ const Navbar: React.FC<NavbarProps> = ({
 
                     {/* Right side buttons with better layout */}
                     <div className="flex items-center space-x-3">
+                        {isLogin ? (
+                            <div>
+                                {/* avatar */}
+                                <Link to="/dashboard">
+                                    <img
+                                        src={user?.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` : 'https://cdn.discordapp.com/embed/avatars/0.png'}
+                                        alt="User Avatar"
+                                        className="w-10 h-10 rounded-full border-2 border-yellow-500/50 hover:border-yellow-400/70 transition-all duration-300"
+                                    />
+                                </Link>
+                            </div>
+                        ) :
 
-                        {/* Login button with enhanced styling and hover animation */}
-                        <button className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-yellow-500 to-amber-600 text-gray-900 font-semibold hover:from-yellow-400 hover:to-amber-500 transform transition-all duration-200 shadow-lg hover:shadow-yellow-500/25 relative overflow-hidden group">
-                            <span className="relative z-10 ">Login</span>
-                            <div className="absolute inset-0 bg-white/20 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
-                        </button>
+                            (<a
+                                href={url}
+                                className=""
+                            >
+                                <button className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-yellow-500 to-amber-600 text-gray-900 font-semibold hover:from-yellow-400 hover:to-amber-500 transform transition-all duration-200 shadow-lg hover:shadow-yellow-500/25 relative overflow-hidden group">
+                                    <span className="relative z-10 ">Login</span>
+                                    <div className="absolute inset-0 bg-white/20 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                                </button>
+                            </a>)}
 
                         {/* Mobile menu button with hover animation */}
                         <div className="md:hidden flex items-center">
@@ -146,7 +171,7 @@ const Navbar: React.FC<NavbarProps> = ({
                     </div>
                 )}
             </div>
-        </nav>
+        </nav >
     );
 };
 

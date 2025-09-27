@@ -8,6 +8,7 @@ import herobanner from "../../assets/images/herobanner.png"
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { axiosNoAuth } from "../../utils/axiosIntance";
+
 const Homepage = () => {
     const [health, setHealth] = useState<{
         guildsCount: number;
@@ -30,6 +31,7 @@ const Homepage = () => {
     return (
         <div className="">
             {/* HERO */}
+            
             <section className="max-w-6xl mx-auto mt-2 px-6 py-12">
                 <div className="grid xl:grid-cols-12 lg:grid-cols-12 gap-6 items-center">
                     <div className="col-span-12 lg:col-span-7">

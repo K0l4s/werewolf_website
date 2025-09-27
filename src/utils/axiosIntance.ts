@@ -20,7 +20,9 @@ export const axiosAuth = axios.create({
         "Content-Type": "application/json",
         // cors block issue
         "Access-Control-Allow-Origin": "*",
+        Authorization: "Bearer " + localStorage.getItem("token"),
     },
+    
 });
 
 // Add token interceptor only for axiosAuth
