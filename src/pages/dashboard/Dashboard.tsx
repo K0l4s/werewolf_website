@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { axiosAuth } from "../../utils/axiosIntance";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../redux/store";
-import type { Guild } from "../../models/guild";
 import { PawPrint, Settings, UserRoundPlus } from "lucide-react";
 import Tooltip from "../../components/custom/Tooltip";
 import { Link } from "react-router-dom";
+import type { Guild } from "../../models/Guild";
 
 interface User {
     id: string;

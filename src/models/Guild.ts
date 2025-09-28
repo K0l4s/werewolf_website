@@ -6,5 +6,5 @@ export interface Guild {
     owner: boolean,
     hasBot: boolean,
     admin:boolean,
-    manager:boolean
+    manager:boolean,
 }

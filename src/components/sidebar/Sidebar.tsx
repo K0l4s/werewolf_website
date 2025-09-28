@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { MenuItem, SidebarProps } from '../../models/sidebar';
+import type { MenuItem, SidebarProps } from '../../models/Sidebar';
 import { Bell, House, MessageCirclePlus, Mic, MoonStar, PawPrint, User } from 'lucide-react';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../redux/store';

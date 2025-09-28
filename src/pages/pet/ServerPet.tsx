@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { useParams, Link } from "react-router-dom"
 import { axiosAuth, axiosNoAuth } from "../../utils/axiosIntance"
-import type { GuildPet } from "../../models/pet"
-import type { Guild } from "../../models/guild"
+import type { GuildPet } from "../../models/Pet"
+import type { Guild } from "../../models/Guild"
 import Tooltip from "../../components/custom/Tooltip"
 import { Pencil } from "lucide-react"
 
