@@ -12,6 +12,9 @@ import { useEffect } from 'react'
 import { axiosNoAuth } from '../utils/axiosIntance'
 import { useDispatch } from 'react-redux'
 import { login, setIsLoadingFalse, setIsLoadingTrue } from '../redux/reducer/authReducer'
+import ServerPet from '../pages/pet/ServerPet'
+
+
 // import type { RootState } from '../redux/store'
 
 const Router = () => {
@@ -36,7 +39,7 @@ const Router = () => {
         };
         getUsers()
     }, []);
-    // const user = useSelector((state: RootState) => state.auth.user);
+
     // console.log(user)
     return (
         <Routes >
@@ -52,6 +55,9 @@ const Router = () => {
             </Route>
             <Route element={<DashboardLayout />}>
                 <Route path='dashboard' element={<Dashboard />} />
+                <Route path='guild'>
+                    <Route path='pet/:id' element={<ServerPet />} />
+                </Route>
             </Route>
             <Route path='*' element={<NotFoundPage />} />
         </Routes>
