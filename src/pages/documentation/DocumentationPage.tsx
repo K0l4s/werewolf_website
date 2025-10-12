@@ -94,6 +94,25 @@ const commandGroups = [
         ]
     },
     {
+        name: "Streak",
+        icon: "🔥",
+        commands: [
+            {
+                name: "/wset streak",
+                description: "Set your streak",
+                usage: "/wset streak [streak:number]",
+                arguments: [
+                    {
+                        name: "streak value",
+                        type: "String (required)",
+                        description: "The value of streak to set"
+                    }
+                ],
+                example: "/wset streak on"
+            },
+        ]
+    },
+    {
         name: "Mini Games",
         icon: "🎮",
         commands: [
@@ -280,6 +299,45 @@ const commandGroups = [
                 ],
                 example: "/set lang en"
             },
+            {
+                name: "/set voice",
+                description: "[Admin - Manager] Set default voice channel of the server!",
+                usage: "/set voice true|false",
+                arguments: [
+                    {
+                        name: "enabled",
+                        type: "Boolean (required)",
+                        description: "Whether to enable or disable join voice notifications for the voice channel. Default is false"
+                    }
+                ],
+                example: "/set voice true"
+            },
+            {
+                name: "/set embed",
+                description: "[Admin - Manager] Set default embed messages of the server!",
+                usage: "/set embed true|false",
+                arguments: [
+                    {
+                        name: "enabled",
+                        type: "Boolean (required)",
+                        description: "Whether to enable or disable embed (for voice join notification) messages for the server. Default is false"
+                    }
+                ],
+                example: "/set embed true"
+            },
+            {
+                name: "/set streak",
+                description: "[Admin - Manager] Set default streak messages of the server!",
+                usage: "/set streak on|off",
+                arguments: [
+                    {
+                        name: "on|off",
+                        type: "String (required)",
+                        description: "Whether to enable or disable streak messages for the server. Default is off"
+                    }
+                ],
+                example: "/set streak on"
+            },
         ]
     },
 ];
@@ -315,7 +373,9 @@ const DocumentationPage = () => {
                         <p className="text-zinc-300 text-lg max-w-xl mb-8">
                             Learn how to use all of Werewolf Bot's commands and features to enhance your Discord experience.
                         </p>
-
+                        <p className="text-zinc-300 text-lg max-w-xl mb-8">
+                            Noitice: You can use prefix command instead of splash command. Default: w[command]
+                        </p>
                         {/* SEARCH BAR */}
                         <div className="relative max-w-md mb-8">
                             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
