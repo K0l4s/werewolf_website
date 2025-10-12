@@ -12,3 +12,58 @@
   border-radius: 30px;
 }
 
+@keyframes fall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(-100px) translateX(0px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) translateX(50px) rotate(180deg);
+        opacity: 0;
+    }
+}
+
+.animate-fall {
+    animation: fall linear infinite;
+}
+
+.animate-float {
+    animation: float ease-in-out infinite;
+}
+@keyframes fall-fade {
+    0% {
+        transform: translateY(-100px) rotate(0deg) translateX(0px);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg) translateX(50px);
+        opacity: 0;
+    }
+}
+
+.animate-fall-fade {
+    animation: fall-fade linear infinite;
+}
