@@ -39,7 +39,7 @@ const NotFoundPage = () => {
 
                 <p className="text-zinc-400 mb-10 max-w-md mx-auto">
                     The page you're looking for seems to have been lost in the wilderness.
-                    Perhaps a werewolf dragged it away?
+                    Perhaps a Keldo Bot dragged it away?
                 </p>
 
                 {/* Navigation Options */}
@@ -76,16 +76,16 @@ const NotFoundPage = () => {
                     <div className="absolute -inset-4 bg-violet-500/20 rounded-full blur-xl"></div>
                     <img
                         src={mascot}
-                        alt="Werewolf Bot Mascot"
+                        alt="Keldo Bot Mascot"
                         className="relative w-40 h-40 rounded-full bg-zinc-800 border-4 border-violet-500 mx-auto object-cover"
                     />
                 </div>
 
                 {/* Footer */}
                 <footer className="mt-12 pt-8 border-t border-zinc-800 text-sm text-zinc-500">
-                    <p>© 2025 Werewolf Bot. All rights reserved.</p>
+                    <p>© 2025 Keldo Bot. All rights reserved.</p>
                     <p className="mt-2">
-                        Developed by Huỳnh Trung Kiên (Kiên Học Code / Kolas)  <a href="mailto:trungkienhuynh.contact@gmail.com?subject=Werewolf Bot Inquiry" className="text-blue-400 hover:text-blue-600 hover:underline">
+                        Developed by Huỳnh Trung Kiên (Kiên Học Code / Kolas)  <a href="mailto:trungkienhuynh.contact@gmail.com?subject=Keldo Bot Inquiry" className="text-blue-400 hover:text-blue-600 hover:underline">
                         Contact here
                     </a>
                     </p>

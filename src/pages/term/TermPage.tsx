@@ -6,13 +6,13 @@ const terms = [
     title: "Privacy",
     icon: "🔒",
     content:
-      "We respect your privacy. Werewolf Bot does not collect personal information beyond what is necessary for gameplay. No messages or server data are stored outside of Discord.",
+      "We respect your privacy. Keldo Bot does not collect personal information beyond what is necessary for gameplay. No messages or server data are stored outside of Discord.",
   },
   {
     title: "Data Usage",
     icon: "📊",
     content:
-      "All data is used solely to provide and improve the Werewolf game experience. We do not sell or share your data with third parties.",
+      "All data is used solely to provide and improve the Keldo game experience. We do not sell or share your data with third parties.",
   },
   {
     title: "Security",
@@ -48,7 +48,7 @@ const TermPage = () => {
               Terms & Conditions
             </div>
             <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-violet-300 to-violet-200 bg-clip-text text-transparent">
-              Werewolf Bot <br />
+              Keldo Bot <br />
               <span className="text-white">Terms & Conditions</span>
             </h1>
             <p className="text-zinc-300 text-lg max-w-xl mb-8">
@@ -74,7 +74,7 @@ const TermPage = () => {
               <div className="absolute -inset-6 bg-violet-600/20 rounded-full blur-xl"></div>
               <img
                 src={mascot}
-                alt="Werewolf Bot Mascot"
+                alt="Keldo Bot Mascot"
                 className="relative w-64 h-64 rounded-full bg-zinc-800 border-4 border-violet-500 shadow-2xl object-cover"
               />
             </div>

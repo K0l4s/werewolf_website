@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="md:col-span-2">
           <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
             <img src={mascot} className="w-8 h-8 rounded-full" alt="Mascot" />
-            Werewolf Bot
+            Keldo Bot
           </h3>
           <p className="text-zinc-400 max-w-md">
             Play werewolf with your friends, become Spirit Master and experience thrilling social deduction games in your Discord server.
@@ -81,7 +81,7 @@ const Footer = () => {
           {/* Text Information */}
           <div className="flex-1 space-y-3">
             <p className="text-sm text-zinc-400">
-              © 2025 Werewolf Bot. All rights reserved.
+              © 2025 Keldo Bot. All rights reserved.
             </p>
             <p className="text-sm text-zinc-500">
               Developed by Huỳnh Trung Kiên (Kiên Học Code / Kolas)

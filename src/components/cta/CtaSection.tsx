@@ -8,7 +8,7 @@ const CtaSection = () => {
           <div className="flex-1">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to play Werewolf?</h2>
             <p className="text-violet-100 mb-6">
-              Add Werewolf Bot to your Discord server and enjoy safe, fun games with your community!
+              Add Keldo Bot to your Discord server and enjoy safe, fun games with your community!
             </p>
             <button
               className="px-6 py-3 bg-white text-violet-700 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2 cursor-pointer"

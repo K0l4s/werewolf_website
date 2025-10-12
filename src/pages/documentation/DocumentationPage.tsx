@@ -367,11 +367,11 @@ const DocumentationPage = () => {
                             Command Documentation
                         </div>
                         <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-violet-300 to-violet-200 bg-clip-text text-transparent">
-                            Werewolf Bot <br />
+                            Keldo Bot <br />
                             <span className="text-white">Commands Guide</span>
                         </h1>
                         <p className="text-zinc-300 text-lg max-w-xl mb-8">
-                            Learn how to use all of Werewolf Bot's commands and features to enhance your Discord experience.
+                            Learn how to use all of Keldo Bot's commands and features to enhance your Discord experience.
                         </p>
                         <p className="text-zinc-300 text-lg max-w-xl mb-8">
                             Noitice: You can use prefix command instead of splash command. Default: w[command]

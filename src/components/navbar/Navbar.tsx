@@ -101,7 +101,7 @@ const Navbar: React.FC<NavbarProps> = ({
                                 <div className="absolute inset-0 rounded-full border-2 border-yellow-400/30 group-hover:border-yellow-400/50 transition-colors duration-300"></div>
                             </div>
                             <span className="text-transparent bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-2xl font-bold tracking-tight">
-                                Werewolf
+                                Keldo
                             </span>
                         </Link>
                     </div>
