@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { axiosNoAuth } from "../../utils/axiosIntance";
 import CustomSlideShow from "../../components/custom/CustomSlideShow";
+import ScrollDownButton from "../../components/custom/ScrollDownButton";
 
 const Homepage = () => {
     const [health, setHealth] = useState<{
@@ -138,15 +139,17 @@ const Homepage = () => {
 
         <div>
             {/* HERO SECTION */}
-           
-            <section className="max-w-7xl mx-auto px-6 py-16">
-                 <CustomSlideShow
-                slides={slidesWithCustomActions}
-                autoPlay={true}
-                interval={5000}
-                showIndicators={true}
-                showNavigation={true}
-            />
+
+            <section className="max-w-7xl mx-auto px-6 py-6">
+                <CustomSlideShow
+                    slides={slidesWithCustomActions}
+                    autoPlay={true}
+                    interval={5000}
+                    showIndicators={true}
+                    showNavigation={true}
+                />
+                {/* scroll button */}
+               <ScrollDownButton />
                 <div className="grid xl:grid-cols-12 lg:grid-cols-12 gap-10 items-center">
                     {/* Content Section */}
                     <div className="col-span-12 lg:col-span-7">
