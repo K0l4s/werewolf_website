@@ -27,6 +27,7 @@ const Homepage = () => {
             try {
                 const response = await axiosNoAuth.get("health");
                 setHealth(response.data);
+                console.log(response.data);
             } catch (error) {
                 console.error("Error fetching health details:", error);
             }
@@ -118,7 +119,7 @@ const Homepage = () => {
             actionButton: {
                 text: 'Learn More',
                 onClick: () => {
-                //     console.log('Learn more about server management tools');
+                    //     console.log('Learn more about server management tools');
                 }
             }
         }
@@ -129,33 +130,65 @@ const Homepage = () => {
     ];
 
     return (
+
         <div>
             {/* HERO SECTION */}
-
-            <section className="max-w-6xl mx-auto mt-2 px-6 py-12">
-                <CustomSlideShow
-                    slides={slidesWithCustomActions}
-                    autoPlay={true}
-                    interval={5000}
-                    showIndicators={true}
-                    showNavigation={true}
-                />
-                <div className="grid xl:grid-cols-12 lg:grid-cols-12 gap-6 items-center">
+           
+            <section className="max-w-7xl mx-auto px-6 py-16">
+                 <CustomSlideShow
+                slides={slidesWithCustomActions}
+                autoPlay={true}
+                interval={5000}
+                showIndicators={true}
+                showNavigation={true}
+            />
+                <div className="grid xl:grid-cols-12 lg:grid-cols-12 gap-10 items-center">
+                    {/* Content Section */}
                     <div className="col-span-12 lg:col-span-7">
-                        <div className="inline-block mb-4 px-3 py-1 rounded-full bg-zinc-800 text-zinc-300 text-sm">
-                            Multi-purpose Discord Bot
+                        <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-gradient-to-r from-violet-900/40 to-purple-900/40 border border-violet-700/30 text-violet-300 text-sm font-medium">
+                            <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                            Bot Online • {health?.guildsCount?.toLocaleString() || "9,000+"} Servers
                         </div>
-                        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">
-                            Make Your Discord Server <br /> More Alive with <span className="text-violet-500">Keldo</span>!
+
+                        <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6 leading-tight">
+                            Elevate Your Discord <br />
+                            <span className="bg-gradient-to-r from-violet-400 to-purple-500 bg-clip-text text-transparent">
+                                Experience
+                            </span>
                         </h1>
-                        <p className="text-zinc-400 max-w-xl mb-6">
-                            Keldo is a multi-purpose Discord bot designed to make your community more engaging and interactive.
-                            From game integrations like Werewolf and Soul Land to server management tools, Keldo brings everything your community needs in one place.
+
+                        <p className="text-zinc-300 text-lg max-w-2xl mb-8 leading-relaxed">
+                            Keldo is the ultimate multi-purpose Discord bot that transforms ordinary servers
+                            into vibrant communities. With powerful features and seamless integrations,
+                            we're redefining what a Discord bot can do.
                         </p>
 
-                        <div className="flex flex-col sm:flex-row gap-4">
+                        {/* Stats Highlight */}
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+                            <div className="text-center p-4 rounded-xl bg-zinc-900/50 border border-zinc-800">
+                                <div className="text-2xl font-bold text-white">
+                                    {health?.guildsCount ? health.guildsCount > 1000 ? Math.floor(health.guildsCount / 1000) + "k+" : health.guildsCount : "9k+"}
+                                </div>
+                                <div className="text-xs text-zinc-400 mt-1">Servers</div>
+                            </div>
+                            <div className="text-center p-4 rounded-xl bg-zinc-900/50 border border-zinc-800">
+                                <div className="text-2xl font-bold text-white">24/7</div>
+                                <div className="text-xs text-zinc-400 mt-1">Uptime</div>
+                            </div>
+                            <div className="text-center p-4 rounded-xl bg-zinc-900/50 border border-zinc-800">
+                                <div className="text-2xl font-bold text-white">20+</div>
+                                <div className="text-xs text-zinc-400 mt-1">Features</div>
+                            </div>
+                            <div className="text-center p-4 rounded-xl bg-zinc-900/50 border border-zinc-800">
+                                <div className="text-2xl font-bold text-white">{health?.usersCount ? health.usersCount > 1000000 ? Math.floor(health.usersCount / 1000000) + "M+" : health.usersCount : "2M+"}</div>
+                                <div className="text-xs text-zinc-400 mt-1">Users</div>
+                            </div>
+                        </div>
+
+                        {/* CTA Buttons */}
+                        <div className="flex flex-col sm:flex-row gap-4 mb-12">
                             <button
-                                className="px-5 py-3 rounded-md bg-violet-600 font-semibold cursor-pointer"
+                                className="group px-8 py-4 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 font-semibold cursor-pointer transition-all duration-300 hover:from-violet-500 hover:to-purple-500 hover:shadow-2xl hover:shadow-violet-500/20 flex items-center justify-center gap-2"
                                 onClick={() =>
                                     window.open(
                                         "https://discord.com/oauth2/authorize?client_id=1383209480560443392&scope=bot&permissions=8",
@@ -163,36 +196,45 @@ const Homepage = () => {
                                     )
                                 }
                             >
-                                Add To Discord
+                                <span>Add To Discord</span>
+                                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                </svg>
                             </button>
-                            <Link to="mailto:trungkienhuynh.contact@gmail.com?subject=Contact%20letter%20">
-                                <button className="px-5 py-3 rounded-md bg-zinc-800 text-zinc-200 cursor-pointer">
-                                    Want a Custom Discord Bot?
+                            <Link to="mailto:trungkienhuynh.contact@gmail.com?subject=Custom%20Discord%20Bot%20Inquiry">
+                                <button className="px-8 py-4 rounded-xl bg-zinc-800 text-zinc-200 cursor-pointer transition-all duration-300 hover:bg-zinc-700 hover:shadow-lg border border-zinc-700 hover:border-zinc-600">
+                                    Custom Bot Request
                                 </button>
                             </Link>
                         </div>
 
-                        {/* TRUSTED SERVERS */}
-                        <div className="mt-10 text-zinc-400">
-                            <div className="text-xs uppercase mb-4 font-bold text-zinc-300">
-                                Trusted by over {health?.guildsCount?.toLocaleString() || "9,000+"} Discord servers, including
+                        {/* Trusted Communities */}
+                        <div className="border-t border-zinc-800 pt-10">
+                            <div className="text-sm uppercase mb-6 font-bold text-zinc-300 tracking-wider">
+                                Trusted by Top Communities
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                                 {(health?.topGuilds ?? Array.from({ length: 6 })).map((guild, i) => (
                                     <div
                                         key={guild?.id ?? i}
-                                        className="flex items-center gap-3 bg-zinc-900/30 px-3 py-2 rounded-md"
+                                        className="group flex items-center gap-4 bg-zinc-900/40 px-4 py-3 rounded-xl border border-zinc-800 hover:border-violet-500/30 transition-all duration-300"
                                     >
-                                        <img
-                                            src={guild?.guildIcon ?? ""}
-                                            alt=""
-                                            className="w-15 h-15 rounded-md bg-zinc-800 object-cover object-center"
-                                        />
-                                        <div className="text-sm">
-                                            <div className="text-white font-medium">
+                                        <div className="relative">
+                                            <img
+                                                src={guild?.guildIcon ?? ""}
+                                                alt=""
+                                                className="w-12 h-12 rounded-lg bg-zinc-800 object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                                            />
+                                            <div className="absolute -bottom-1 -right-1 w-3 h-3 rounded-full bg-green-500 border-2 border-zinc-900"></div>
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                            <div className="text-white font-medium truncate">
                                                 {guild?.name ?? `Community ${i + 1}`}
                                             </div>
-                                            <div className="text-zinc-400 text-xs">
+                                            <div className="text-zinc-400 text-xs flex items-center gap-1">
+                                                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                                                </svg>
                                                 {guild?.memberCount
                                                     ? `${guild.memberCount.toLocaleString()} Members`
                                                     : `${(i + 1) * 50}k Members`}
@@ -204,19 +246,33 @@ const Homepage = () => {
                         </div>
                     </div>
 
-                    {/* HERO IMAGE */}
+                    {/* Hero Image Section */}
                     <div className="col-span-12 lg:col-span-5 mt-8 lg:mt-0">
-                        <div className="rounded-2xl bg-gradient-to-b from-zinc-900 to-zinc-800 p-6 shadow-2xl">
-                            <img
-                                src={herobanner}
-                                alt="banner"
-                                className="h-64 md:h-96 w-full rounded-xl bg-zinc-900/60 border border-zinc-700 object-cover"
-                            />
+                        <div className="relative">
+                            <div className="absolute -inset-4 bg-gradient-to-r from-violet-600/20 to-purple-600/20 rounded-3xl blur-xl"></div>
+                            <div className="relative rounded-2xl bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 p-8 shadow-2xl border border-zinc-800 overflow-hidden">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-violet-500/10 rounded-full -translate-y-16 translate-x-16"></div>
+                                <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-500/10 rounded-full translate-y-12 -translate-x-12"></div>
+
+                                <img
+                                    src={herobanner}
+                                    alt="Keldo Discord Bot Dashboard Preview"
+                                    className="relative w-full rounded-xl bg-zinc-900/60 border border-zinc-700 object-cover shadow-lg z-10"
+                                />
+
+                                {/* Floating Elements */}
+                                <div className="absolute bottom-6 left-6 bg-zinc-900/90 backdrop-blur-sm px-4 py-2 rounded-lg border border-zinc-700 shadow-lg z-20">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                                        <span className="text-xs font-medium text-white">Live Activity</span>
+                                    </div>
+                                    <div className="text-xs text-zinc-400 mt-1">Active in 9k+ servers</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
-
             {/* FEATURES SECTION */}
             <main className="max-w-6xl mx-auto px-6">
                 <FeatureCard

@@ -12,7 +12,7 @@ const FeatureCard: React.FC<{
     `}>
       {/* Image Section */}
       <div className="w-full md:w-1/2 relative">
-        <div className="relative rounded-2xl overflow-hidden transform transition-all duration-500 group-hover:scale-[1.02]">
+        <div className="relative rounded-2xl overflow-hidden transform transition-all duration-500 ">
           {/* Gradient Border Effect */}
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-cyan-500/20 rounded-2xl blur-sm group-hover:blur-md transition-all duration-500"></div>
           
@@ -23,7 +23,7 @@ const FeatureCard: React.FC<{
                 <img 
                   src={imgSrc} 
                   alt={title}
-                  className="w-full h-64 md:h-80 object-cover transform transition-transform duration-700 group-hover:scale-105" 
+                  className="w-full h-64 md:h-80 object-cover transform transition-transform duration-700 " 
                 />
               ) : (
                 <div className="w-full h-64 md:h-80 bg-gradient-to-br from-zinc-800 to-zinc-700 flex items-center justify-center">
@@ -65,7 +65,7 @@ const FeatureCard: React.FC<{
             hover:from-zinc-700 hover:to-zinc-600
             text-zinc-200 font-medium rounded-xl
             transform transition-all duration-300 
-            hover:scale-105 hover:shadow-2xl
+             hover:shadow-2xl
             border border-zinc-700 hover:border-zinc-600
             group/btn overflow-hidden
           ">
