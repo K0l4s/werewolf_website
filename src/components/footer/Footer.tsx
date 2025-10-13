@@ -25,6 +25,10 @@ const Footer = () => {
               <li className="hover:text-violet-300 transition-colors cursor-pointer">Membership</li>
             </Tooltip>
             <li className="hover:text-violet-300 transition-colors cursor-pointer"><Link to="/doc">Documentation</Link></li>
+            <li className="hover:text-violet-300 transition-colors cursor-pointer"><Link to="/policy">Privacy Policy</Link></li>
+            <li className="hover:text-violet-300 transition-colors cursor-pointer"><Link to="/term">Terms of Service</Link></li>
+            {/* guide */}
+            <li className="hover:text-violet-300 transition-colors cursor-pointer"><Link to="/guide">Guide</Link></li>
             <Tooltip text="Coming Soon" delay={0}>
               <li className="hover:text-violet-300 transition-colors cursor-pointer">Premium</li>
             </Tooltip>

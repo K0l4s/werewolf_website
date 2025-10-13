@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux'
 import { login, setIsLoadingFalse, setIsLoadingTrue } from '../redux/reducer/authReducer'
 import ServerPet from '../pages/pet/ServerPet'
 import WerewolfGuide from '../pages/guide/werewolf/WerewolfGuide'
+import ServerSettingsGuide from '../pages/guide/server/ServerSettingGuide'
 
 
 // import type { RootState } from '../redux/store'
@@ -55,6 +56,7 @@ const Router = () => {
                 <Route path="guide">
                     <Route path="" element={<WerewolfGuide />} />
                     <Route path="werewolf" element={<WerewolfGuide />} />
+                    <Route path="server" element={<ServerSettingsGuide />} />
                 </Route>
             </Route>
             <Route element={<DashboardLayout />}>

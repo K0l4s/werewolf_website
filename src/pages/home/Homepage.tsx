@@ -46,6 +46,7 @@ const Homepage = () => {
                 onClick: () => {
                     // console.log('Navigate to nature tours');
                     // window.open('/tours', '_blank');
+                    window.open('/guide/server', '_blank');
                 },
                 variant: 'secondary' as const
             }
@@ -61,6 +62,7 @@ const Homepage = () => {
                 onClick: () => {
                     // console.log('Show adventure details');
                     // alert('Chi tiết phiêu lưu sẽ được hiển thị!');
+                    window.open('/guide/werewolf', '_blank');
                 },
                 variant: 'secondary' as const
             }
@@ -76,6 +78,7 @@ const Homepage = () => {
                 onClick: () => {
                     // console.log('Show adventure details');
                     // alert('Chi tiết phiêu lưu sẽ được hiển thị!');
+                    window.open('/guide/server', '_blank');
                 },
                 variant: 'secondary' as const
             }
@@ -91,6 +94,7 @@ const Homepage = () => {
                 onClick: () => {
                     // console.log('Show adventure details');
                     // alert('Chi tiết phiêu lưu sẽ được hiển thị!');
+                    window.open('/guide/server', '_blank');
                 },
                 variant: 'secondary' as const
             }
@@ -120,6 +124,7 @@ const Homepage = () => {
                 text: 'Learn More',
                 onClick: () => {
                     //     console.log('Learn more about server management tools');
+                    window.open('/guide/server', '_blank');
                 }
             }
         }
@@ -279,6 +284,7 @@ const Homepage = () => {
                     title="Voice Channel & Activity System"
                     text="Keldo notifies when members join or leave voice channels, and keeps daily activity streaks alive across your server."
                     imgSrc={voice}
+                    linkTo="/guide/server"
                 />
 
                 <FeatureCard
