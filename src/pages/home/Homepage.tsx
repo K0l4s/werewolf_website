@@ -8,6 +8,7 @@ import herobanner from "../../assets/images/herobanner.png";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { axiosNoAuth } from "../../utils/axiosIntance";
+import CustomSlideShow from "../../components/custom/CustomSlideShow";
 
 const Homepage = () => {
     const [health, setHealth] = useState<{
@@ -32,11 +33,113 @@ const Homepage = () => {
         };
         getDetails();
     }, []);
+    const slides = [
+        {
+            image: 'https://cdn2.tuoitre.vn/thumb_w/730/471584752817336320/2024/1/17/build-a-learning-habit-17054833388601968706382.png',
+            title: 'Server Streaks',
+            description: 'Encourage daily activity with voice channel streaks and keep your community engaged.',
+            label: 'New Feature',
+            labelColor: 'bg-orange-500',
+            actionButton: {
+                text: 'Learn More',
+                onClick: () => {
+                    // console.log('Navigate to nature tours');
+                    // window.open('/tours', '_blank');
+                },
+                variant: 'secondary' as const
+            }
+        },
+        {
+            image: 'https://rare-gallery.com/mocahbig/420072-Zsolt-Kosa-werewolves-digital-art-open-mouth-creature.jpg',
+            title: 'Werewolf Game Integration',
+            description: 'Host exciting Werewolf games directly in your Discord server with automated management.',
+            label: 'Popular',
+            labelColor: 'bg-blue-500',
+            actionButton: {
+                text: 'Explore Now',
+                onClick: () => {
+                    // console.log('Show adventure details');
+                    // alert('Chi tiết phiêu lưu sẽ được hiển thị!');
+                },
+                variant: 'secondary' as const
+            }
+        },
+        {
+            image: 'https://images.squarespace-cdn.com/content/v1/5c355789a2772c751fadfdd1/1547028490366-4QJEWJSLI379A13CTO4B/hello+goodbye+banner.png?format=2500w',
+            title: 'Welcome/ Farewell Messages',
+            description: 'Automate welcome and farewell messages for your Discord server members.',
+            label: 'Popular',
+            labelColor: 'bg-blue-500',
+            actionButton: {
+                text: 'Explore Now',
+                onClick: () => {
+                    // console.log('Show adventure details');
+                    // alert('Chi tiết phiêu lưu sẽ được hiển thị!');
+                },
+                variant: 'secondary' as const
+            }
+        },
+        {
+            image: 'https://www.vip-polymers.com/wp-content/uploads/2015/04/Global-Banner.jpg',
+            title: 'Join/ Leave Voice Channel Notifications',
+            description: 'Automate join and leave voice channel notifications for your Discord server members.',
+            label: 'Popular',
+            labelColor: 'bg-blue-500',
+            actionButton: {
+                text: 'Explore Now',
+                onClick: () => {
+                    // console.log('Show adventure details');
+                    // alert('Chi tiết phiêu lưu sẽ được hiển thị!');
+                },
+                variant: 'secondary' as const
+            }
+        },
+        {
+            image: 'https://t4.ftcdn.net/jpg/05/13/87/33/360_F_513873331_RKPiIG9gVUmVGzyeWj0nn9bHLvJHQNUf.jpg',
+            title: 'Minigames & Soul Land',
+            label: 'Fun',
+            labelColor: 'bg-purple-500',
+            description: 'Engage your community with fun minigames and immerse them in the world of Soul Land.',
+            actionButton: {
+                text: 'Explore Now',
+                onClick: () => {
+                    // console.log('Book tour');
+                    // Thực hiện đặt tour
+                },
+                variant: 'secondary' as const
+            }
+        },
+        {
+            image: 'https://dbppl.com/wp-content/uploads/2020/09/banner-web-content-management-system.jpg',
+            title: 'Server Management Tools',
+            label: 'Admin',
+            labelColor: 'bg-green-500',
+            description: 'Powerful tools to help you manage and grow your Discord community effectively.',
+            actionButton: {
+                text: 'Learn More',
+                onClick: () => {
+                //     console.log('Learn more about server management tools');
+                }
+            }
+        }
+    ];
+
+    const slidesWithCustomActions = [
+        ...slides,
+    ];
 
     return (
         <div>
             {/* HERO SECTION */}
+
             <section className="max-w-6xl mx-auto mt-2 px-6 py-12">
+                <CustomSlideShow
+                    slides={slidesWithCustomActions}
+                    autoPlay={true}
+                    interval={5000}
+                    showIndicators={true}
+                    showNavigation={true}
+                />
                 <div className="grid xl:grid-cols-12 lg:grid-cols-12 gap-6 items-center">
                     <div className="col-span-12 lg:col-span-7">
                         <div className="inline-block mb-4 px-3 py-1 rounded-full bg-zinc-800 text-zinc-300 text-sm">
