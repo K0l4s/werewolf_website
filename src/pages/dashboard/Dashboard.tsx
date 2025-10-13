@@ -71,7 +71,7 @@ const Dashboard = () => {
     };
 
     return (
-        <div className="min-h-screen p-6">
+        <div className="min-h-screen p-6 overflow-x-hidden">
             {/* Header Section với User Info */}
             <div className="mb-8">
                 <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import mascot from "../../assets/images/mascot.png";
+import Tooltip from "../custom/Tooltip";
 
 
 const Footer = () => {
@@ -19,11 +20,14 @@ const Footer = () => {
         <div>
           <h4 className="text-white font-semibold mb-4">Website Pages</h4>
           <ul className="space-y-2 text-zinc-400">
-            <li className="hover:text-violet-300 transition-colors cursor-pointer">Membership</li>
-            <li className="hover:text-violet-300 transition-colors cursor-pointer">Dashboard</li>
-            <li className="hover:text-violet-300 transition-colors cursor-pointer">Documentation</li>
-            <li className="hover:text-violet-300 transition-colors cursor-pointer">Premium</li>
-            <li className="hover:text-violet-300 transition-colors cursor-pointer">Commands</li>
+            <li className="hover:text-violet-300 transition-colors cursor-pointer"><Link to="/">Home</Link></li>
+            <Tooltip text="Coming Soon" delay={0}>
+              <li className="hover:text-violet-300 transition-colors cursor-pointer">Membership</li>
+            </Tooltip>
+            <li className="hover:text-violet-300 transition-colors cursor-pointer"><Link to="/doc">Documentation</Link></li>
+            <Tooltip text="Coming Soon" delay={0}>
+              <li className="hover:text-violet-300 transition-colors cursor-pointer">Premium</li>
+            </Tooltip>
           </ul>
         </div>
 

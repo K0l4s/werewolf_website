@@ -78,7 +78,7 @@ const Navbar: React.FC<NavbarProps> = ({
         return (
             <a href={url} className="flex-shrink-0">
                 <button className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-yellow-500 to-amber-600 text-gray-900 font-semibold hover:from-yellow-400 hover:to-amber-500 transform transition-all duration-200 shadow-lg hover:shadow-yellow-500/25 relative overflow-hidden group">
-                    <span className="relative z-10">Login with Discord</span>
+                    <span className="relative z-10">Login</span>
                     <div className="absolute inset-0 bg-white/20 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
                 </button>
             </a>
