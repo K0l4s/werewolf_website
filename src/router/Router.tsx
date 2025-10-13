@@ -13,6 +13,7 @@ import { axiosNoAuth } from '../utils/axiosIntance'
 import { useDispatch } from 'react-redux'
 import { login, setIsLoadingFalse, setIsLoadingTrue } from '../redux/reducer/authReducer'
 import ServerPet from '../pages/pet/ServerPet'
+import WerewolfGuide from '../pages/guide/werewolf/WerewolfGuide'
 
 
 // import type { RootState } from '../redux/store'
@@ -51,7 +52,10 @@ const Router = () => {
                 {/* const urlParams = new URLSearchParams(window.location.search);
         const code = urlParams.get("code"); */}
                 <Route path="callback" element={<CallbackPage />} />
-
+                <Route path="guide">
+                    <Route path="" element={<WerewolfGuide />} />
+                    <Route path="werewolf" element={<WerewolfGuide />} />
+                </Route>
             </Route>
             <Route element={<DashboardLayout />}>
                 <Route path='dashboard' element={<Dashboard />} />

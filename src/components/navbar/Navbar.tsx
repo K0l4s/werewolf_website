@@ -21,6 +21,7 @@ const Navbar: React.FC<NavbarProps> = ({
         { label: 'Policy', href: '/policy' },
         { label: 'Terms', href: '/term' },
         { label: 'Document', href: '/doc' },
+        { label: 'Guide', href: '/guide' },
     ]
 }) => {
     const [isOpen, setIsOpen] = useState(false);

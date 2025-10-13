@@ -286,6 +286,7 @@ const Homepage = () => {
                     title="Play Werewolf Right in Discord"
                     text="Enjoy the classic Werewolf (Mafia) game with automated logic and smooth UI — no moderator needed!"
                     imgSrc={werewolf}
+                    linkTo="/guide/werewolf"
                 />
 
                 <FeatureCard
