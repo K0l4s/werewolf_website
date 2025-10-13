@@ -266,7 +266,7 @@ const Homepage = () => {
                                         <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
                                         <span className="text-xs font-medium text-white">Live Activity</span>
                                     </div>
-                                    <div className="text-xs text-zinc-400 mt-1">Active in 9k+ servers</div>
+                                    <div className="text-xs text-zinc-400 mt-1">Active in {health?.guildsCount?.toLocaleString() || "9,000+"} servers</div>
                                 </div>
                             </div>
                         </div>
