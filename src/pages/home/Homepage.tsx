@@ -140,16 +140,19 @@ const Homepage = () => {
         <div>
             {/* HERO SECTION */}
 
-            <section className="max-w-7xl mx-auto px-6 py-6">
-                <CustomSlideShow
-                    slides={slidesWithCustomActions}
-                    autoPlay={true}
-                    interval={5000}
-                    showIndicators={true}
-                    showNavigation={true}
-                />
-                {/* scroll button */}
-               <ScrollDownButton />
+            <section className="max-w-7xl mx-auto px-6 py-6 overflow-x-hidden">
+                <div className="overflow-x-visible">
+                    <CustomSlideShow
+                        slides={slidesWithCustomActions}
+                        autoPlay
+                        interval={5000}
+                        showIndicators
+                        showNavigation
+                    />
+                </div>
+
+                <ScrollDownButton />
+
                 <div className="grid xl:grid-cols-12 lg:grid-cols-12 gap-10 items-center">
                     {/* Content Section */}
                     <div className="col-span-12 lg:col-span-7">
@@ -257,7 +260,7 @@ const Homepage = () => {
                     {/* Hero Image Section */}
                     <div className="col-span-12 lg:col-span-5 mt-8 lg:mt-0">
                         <div className="relative">
-                            <div className="absolute -inset-4 bg-gradient-to-r from-violet-600/20 to-purple-600/20 rounded-3xl blur-xl"></div>
+                            <div className="absolute inset-0 sm:-inset-4 bg-gradient-to-r from-violet-600/20 to-purple-600/20 rounded-3xl blur-xl"></div>
                             <div className="relative rounded-2xl bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 p-8 shadow-2xl border border-zinc-800 overflow-hidden">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-violet-500/10 rounded-full -translate-y-16 translate-x-16"></div>
                                 <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-500/10 rounded-full translate-y-12 -translate-x-12"></div>
