@@ -1,33 +1,47 @@
 import React, { useState } from 'react';
 import type { MenuItem, SidebarProps } from '../../models/Sidebar';
-import { Bell, House, MessageCirclePlus, Mic, MoonStar, PawPrint, User } from 'lucide-react';
+import { 
+    Bell, 
+    House, 
+    MessageCirclePlus, 
+    Mic, 
+    MoonStar, 
+    PawPrint, 
+    User, 
+    X, 
+    ChevronDown, 
+    Bot,
+    ChevronLeft,
+    ChevronRight
+} from 'lucide-react';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../redux/store';
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
     const user = useSelector((state: RootState) => state.auth.user);
+    const [isCollapsed, setIsCollapsed] = useState(false);
     const [menuItems, setMenuItems] = useState<MenuItem[]>([
         {
             id: 'user',
             label: 'User',
-            icon: <User />,
+            icon: <User size={18} />,
             isOpen: true,
             children: [
-                { id: 'profile', label: 'Profile', icon: <User /> },
-                { id: 'pets', label: 'Pets', icon: <PawPrint /> },
-                { id: 'spirits', label: 'Spirits', icon: <MoonStar /> },
+                { id: 'profile', label: 'Profile', icon: <User size={16} /> },
+                { id: 'pets', label: 'Pets', icon: <PawPrint size={16} /> },
+                { id: 'spirits', label: 'Spirits', icon: <MoonStar size={16} /> },
             ]
         },
         {
             id: 'server',
             label: 'Server',
-            icon: <House />,
+            icon: <House size={18} />,
             isOpen: false,
             children: [
-                { id: 'notification', label: 'Notification', icon: <Bell /> },
-                { id: 'voice', label: 'Voice', icon: <Mic /> },
-                { id: 'message', label: 'Message', icon: <MessageCirclePlus /> },
-                { id: 'pets', label: 'Pets', icon: <PawPrint /> },
+                { id: 'notification', label: 'Notification', icon: <Bell size={16} /> },
+                { id: 'voice', label: 'Voice', icon: <Mic size={16} /> },
+                { id: 'message', label: 'Message', icon: <MessageCirclePlus size={16} /> },
+                { id: 'pets', label: 'Pets', icon: <PawPrint size={16} /> },
             ]
         }
     ]);
@@ -38,41 +52,71 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
         ));
     };
 
+    const toggleSidebar = () => {
+        setIsCollapsed(!isCollapsed);
+    };
+
     const renderMenuItem = (item: MenuItem, level = 0) => {
         const hasChildren = item.children && item.children.length > 0;
+
+        if (isCollapsed && level === 0) {
+            // Collapsed state - chỉ hiển thị icon
+            return (
+                <div key={item.id} className="select-none relative">
+                    <div
+                        className="relative group bg-white border-2 border-black rounded-lg p-3 shadow-brutal-sm transition-all duration-300 hover:scale-110 hover:shadow-brutal cursor-pointer mb-2"
+                        onClick={() => hasChildren && toggleMenuItem(item.id)}
+                        title={item.label}
+                    >
+                        {item.icon}
+                        {hasChildren && item.isOpen && (
+                            <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-cyan-400 border border-black rounded-full"></div>
+                        )}
+                    </div>
+                </div>
+            );
+        }
 
         return (
             <div key={item.id} className="select-none">
                 {/* Parent Item */}
                 <div
                     className={`
-            flex items-center justify-between px-4 py-3 rounded-lg cursor-pointer
-            transition-all duration-200 hover:bg-gray-700
-            ${level > 0 ? 'ml-4' : ''}
-          `}
+                        relative group bg-white border-2 border-black rounded-xl p-4 transition-all duration-300
+                        ${level > 0 ? 'ml-4' : ''}
+                        ${hasChildren ? 'cursor-pointer hover:-translate-y-1 hover:shadow-brutal' : 'cursor-default'}
+                        ${isCollapsed ? 'justify-center' : ''}
+                        ${hasChildren ? '' : 'shadow-brutal-sm'}
+                    `}
                     onClick={() => hasChildren && toggleMenuItem(item.id)}
                 >
-                    <div className="flex items-center space-x-3">
-                        {item.icon && <span className="text-lg">{item.icon}</span>}
-                        <span className="font-medium">{item.label}</span>
+                    <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'}`}>
+                        <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'space-x-3'}`}>
+                            <div className="bg-gray-100 border-2 border-black rounded-lg p-2">
+                                {item.icon}
+                            </div>
+                            {!isCollapsed && (
+                                <span className="font-black text-black">{item.label}</span>
+                            )}
+                        </div>
+
+                        {hasChildren && !isCollapsed && (
+                            <ChevronDown
+                                size={16}
+                                className={`transition-transform duration-200 ${item.isOpen ? 'rotate-180' : ''}`}
+                            />
+                        )}
                     </div>
 
-                    {hasChildren && (
-                        <svg
-                            className={`w-4 h-4 transition-transform duration-200 ${item.isOpen ? 'rotate-180' : ''
-                                }`}
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
+                    {/* Hover dot */}
+                    {!isCollapsed && (
+                        <div className="absolute -top-1 -right-1 w-2 h-2 bg-cyan-400 border border-black rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     )}
                 </div>
 
-                {/* Children Items */}
-                {hasChildren && item.isOpen && (
-                    <div className="mt-1 space-y-1">
+                {/* Children Items - chỉ hiển thị khi không collapsed */}
+                {hasChildren && item.isOpen && !isCollapsed && (
+                    <div className="mt-2 space-y-2 ml-4">
                         {item.children!.map(child => renderMenuItem(child, level + 1))}
                     </div>
                 )}
@@ -85,7 +129,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
             {/* Mobile Overlay */}
             {isOpen && (
                 <div
-                    className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+                    className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 md:hidden"
                     onClick={onToggle}
                 />
             )}
@@ -93,50 +137,113 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
             {/* Sidebar */}
             <div
                 className={`
-          fixed md:static inset-y-0 left-0 z-50
-          w-64 bg-gradient-to-b from-gray-800 to-gray-900 text-white
-          transform transition-transform duration-300 ease-in-out
-          ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
-        `}
+                    fixed md:static inset-y-0 left-0 z-50
+                    transform transition-all duration-300 ease-in-out
+                    ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+                    ${isCollapsed ? 'w-20' : 'w-80'}
+                `}
             >
-                {/* Header */}
-                <div className="flex items-center justify-between p-6 border-b border-gray-700">
-                    <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
-                            <span className="text-white font-bold">M</span>
+                <div className="relative bg-white border-3 border-black rounded-r-2xl shadow-brutal-xl h-full flex flex-col">
+                    {/* Background gradient */}
+                    <div className="absolute top-2 left-2 right-2 bottom-2 bg-gradient-to-br from-cyan-400/10 to-purple-500/10 rounded-r-xl -z-10"></div>
+                    
+                    {/* Header */}
+                    <div className={`bg-white border-b-3 border-black p-6 ${isCollapsed ? 'flex flex-col space-y-4 items-center' : 'flex items-center justify-between'}`}>
+                        <div className={`flex items-center ${isCollapsed ? 'flex-col space-y-3' : 'space-x-3'}`}>
+                            <div className="relative bg-gradient-to-r from-cyan-400 to-purple-500 border-2 border-black rounded-xl p-2 shadow-brutal">
+                                <Bot size={24} className="text-black" />
+                                <div className="absolute -top-1 -right-1 w-2 h-2 bg-cyan-400 border border-black rounded-full"></div>
+                            </div>
+                            {!isCollapsed && (
+                                <h1 className="text-xl font-black text-black">Keldo Menu</h1>
+                            )}
                         </div>
-                        <h1 className="text-xl font-bold">Menu System</h1>
-                    </div>
 
-                    {/* Close button for mobile */}
-                    <button
-                        onClick={onToggle}
-                        className="md:hidden p-2 rounded-lg hover:bg-gray-700"
-                    >
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
+                        <div className={`flex items-center ${isCollapsed ? 'flex-col space-y-2' : 'space-x-2'}`}>
+                            {/* Toggle collapse button */}
+                            <button
+                                onClick={toggleSidebar}
+                                className="bg-white border-2 border-black rounded-lg p-2 shadow-brutal-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-brutal-xs transition-all duration-300"
+                                title={isCollapsed ? "Mở rộng" : "Thu gọn"}
+                            >
+                                {isCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+                            </button>
 
-                {/* Navigation */}
-                <nav className="p-4 space-y-2">
-                    {menuItems.map(item => renderMenuItem(item))}
-                </nav>
-
-                {/* Footer */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-700">
-                    <div className="flex items-center space-x-3">
-                        <img
-                            src={user?.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` : 'https://cdn.discordapp.com/embed/avatars/0.png'}
-                            alt="User Avatar"
-                            className="w-8 h-8 rounded-full border-2 border-yellow-500/50"
-                        />
-                        <div>
-                            <p className="text-sm font-medium">{user?.global_name}</p>
-                            <p className="text-xs text-gray-400">{user?.username}</p>
+                            {/* Close button for mobile */}
+                            <button
+                                onClick={onToggle}
+                                className="bg-white border-2 border-black rounded-lg p-2 shadow-brutal-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-brutal-xs transition-all duration-300 md:hidden"
+                            >
+                                <X size={20} />
+                            </button>
                         </div>
                     </div>
+
+                    {/* Navigation */}
+                    <nav className={`flex-1 p-6 space-y-3 overflow-y-auto ${isCollapsed ? 'flex flex-col items-center' : ''}`}>
+                        {menuItems.map(item => renderMenuItem(item))}
+                        
+                        {/* Collapsed state hint */}
+                        {isCollapsed && (
+                            <div className="text-center mt-4">
+                                <div className="w-6 h-1 bg-gray-400 border border-black rounded-full mx-auto mb-1"></div>
+                                <div className="w-6 h-1 bg-gray-400 border border-black rounded-full mx-auto mb-1"></div>
+                                <div className="w-6 h-1 bg-gray-400 border border-black rounded-full mx-auto"></div>
+                            </div>
+                        )}
+                    </nav>
+
+                    {/* User Footer - Ẩn khi collapsed */}
+                    {!isCollapsed ? (
+                        <div className="bg-white border-t-3 border-black p-6">
+                            <div className="flex items-center space-x-3 mb-3">
+                                <div className="relative bg-white border-2 border-black rounded-xl p-1 shadow-brutal-sm">
+                                    <img
+                                        src={user?.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` : 'https://cdn.discordapp.com/embed/avatars/0.png'}
+                                        alt="User Avatar"
+                                        className="w-10 h-10 rounded-full object-cover"
+                                    />
+                                    {/* Online indicator */}
+                                    <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></div>
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                    <p className="text-sm font-black text-black truncate">
+                                        {user?.global_name || user?.username}
+                                    </p>
+                                    <p className="text-xs text-gray-600 font-bold truncate">
+                                        @{user?.username}
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            {/* Status indicator */}
+                            <div className="flex items-center gap-2 p-2 bg-cyan-50 border-2 border-cyan-200 rounded-lg">
+                                <div className="w-2 h-2 bg-green-500 border border-black rounded-full animate-pulse"></div>
+                                <span className="text-xs font-black text-cyan-800">Online</span>
+                            </div>
+                        </div>
+                    ) : (
+                        // Mini user info khi collapsed
+                        <div className="bg-white border-t-3 border-black p-4 flex flex-col items-center">
+                            <div className="relative bg-white border-2 border-black rounded-lg p-1 shadow-brutal-sm mb-2">
+                                <img
+                                    src={user?.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` : 'https://cdn.discordapp.com/embed/avatars/0.png'}
+                                    alt="User Avatar"
+                                    className="w-8 h-8 rounded-full object-cover"
+                                />
+                                <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-green-500 border border-white rounded-full"></div>
+                            </div>
+                            <div className="text-center">
+                                <div className="w-2 h-2 bg-green-500 border border-black rounded-full animate-pulse mx-auto"></div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Sidebar corner decorations */}
+                    <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-cyan-400"></div>
+                    <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-purple-400"></div>
+                    <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-yellow-400"></div>
+                    <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-green-400"></div>
                 </div>
             </div>
         </>

@@ -15,6 +15,8 @@ import { login, setIsLoadingFalse, setIsLoadingTrue } from '../redux/reducer/aut
 import ServerPet from '../pages/pet/ServerPet'
 import WerewolfGuide from '../pages/guide/werewolf/WerewolfGuide'
 import ServerSettingsGuide from '../pages/guide/server/ServerSettingGuide'
+import PaymentSuccess from '../pages/payment/PaymentSuccess'
+import PaymentFailed from '../pages/payment/PaymentFailed'
 
 
 // import type { RootState } from '../redux/store'
@@ -58,12 +60,17 @@ const Router = () => {
                     <Route path="werewolf" element={<WerewolfGuide />} />
                     <Route path="server" element={<ServerSettingsGuide />} />
                 </Route>
+
             </Route>
             <Route element={<DashboardLayout />}>
                 <Route path='dashboard' element={<Dashboard />} />
                 <Route path='guild'>
                     <Route path='pet/:id' element={<ServerPet />} />
                 </Route>
+            </Route>
+            <Route path="payment">
+                <Route path="success" element={<PaymentSuccess />} />
+                <Route path="fail" element={<PaymentFailed />} />
             </Route>
             <Route path='*' element={<NotFoundPage />} />
         </Routes>

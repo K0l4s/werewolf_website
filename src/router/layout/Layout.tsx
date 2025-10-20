@@ -14,9 +14,12 @@ const Layout = () => {
     //     console.log('Submitted value:', value);
     //     alert(`You entered: ${value}`);
     // };
-    
+//     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+// background: linear-gradient(45deg, #fefefe 0%, #f1f5f9 100%);
     return (
-        <div className="min-h-screen bg-gradient-to-b from-zinc-900 to-zinc-950 text-white ">
+        <div className="min-h-screen
+        bg-gradient-to-br from-[#f8fafc] to-[#e2e8f0]
+        ">
             
             <Navbar />
             <Outlet />

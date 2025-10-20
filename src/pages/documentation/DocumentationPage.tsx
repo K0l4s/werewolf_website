@@ -1,5 +1,6 @@
 import { useState } from "react";
 import mascot from "../../assets/images/mascot.png";
+import { Search, Copy, CheckCircle } from "lucide-react";
 
 const commandGroups = [
     {
@@ -17,8 +18,7 @@ const commandGroups = [
                 name: "/wallet",
                 description: "Check your current coin balance",
                 usage: "/wallet",
-                arguments: [
-                ],
+                arguments: [],
                 example: "/wallet"
             },
             {
@@ -50,8 +50,7 @@ const commandGroups = [
                 name: "/shop",
                 description: "See information in shop!",
                 usage: "/shop",
-                arguments: [
-                ],
+                arguments: [],
                 example: "/shop"
             },
             {
@@ -90,7 +89,6 @@ const commandGroups = [
                 ],
                 example: "/sell SPI1 5"
             },
-
         ]
     },
     {
@@ -98,9 +96,9 @@ const commandGroups = [
         icon: "🔥",
         commands: [
             {
-                name: "/wset streak",
+                name: "wset streak",
                 description: "Set your streak",
-                usage: "/wset streak [streak:number]",
+                usage: "wset streak [streak:number]",
                 arguments: [
                     {
                         name: "streak value",
@@ -108,7 +106,7 @@ const commandGroups = [
                         description: "The value of streak to set"
                     }
                 ],
-                example: "/wset streak on"
+                example: "wset streak on"
             },
         ]
     },
@@ -168,7 +166,6 @@ const commandGroups = [
                 ],
                 example: "/keobuabao 30"
             },
-            ,
             {
                 name: "/baicao",
                 description: "The card games",
@@ -199,16 +196,14 @@ const commandGroups = [
                 name: "/spirit information",
                 description: "See your Spirit!",
                 usage: "/spirit information",
-                arguments: [
-                ],
+                arguments: [],
                 example: "/spirit information"
             },
             {
                 name: "/hunt",
                 description: "Hunt spirit soul from random spirit beast (1->99.999.999 years)!",
                 usage: "/hunt",
-                arguments: [
-                ],
+                arguments: [],
                 example: "/hunt"
             },
             {
@@ -346,6 +341,7 @@ const DocumentationPage = () => {
     const [activeGroup, setActiveGroup] = useState(0);
     const [activeCommand, setActiveCommand] = useState(0);
     const [searchQuery, setSearchQuery] = useState("");
+    const [copiedCommand, setCopiedCommand] = useState("");
 
     // Filter commands based on search query
     const filteredGroups = commandGroups.map(group => ({
@@ -356,50 +352,60 @@ const DocumentationPage = () => {
         )
     })).filter(group => group.commands.length > 0);
 
+    const handleCopy = (text: string) => {
+        navigator.clipboard.writeText(text);
+        setCopiedCommand(text);
+        setTimeout(() => setCopiedCommand(""), 2000);
+    };
+
     return (
-        <div className="min-h-screen text-white">
+        <div className="min-h-screen overflow-x-hidden">
             {/* HERO SECTION */}
             <section className="max-w-6xl mx-auto px-6 py-16">
                 <div className="flex flex-col md:flex-row items-center gap-10">
                     <div className="flex-1">
-                        <div className="inline-flex items-center mb-4 px-4 py-2 rounded-full bg-violet-900/30 text-violet-300 text-sm border border-violet-700/50">
-                            <span className="w-2 h-2 bg-violet-400 rounded-full mr-2 animate-pulse"></span>
+                        <div className="inline-flex items-center mb-4 px-4 py-2 rounded-full bg-cyan-100 border-2 border-black text-black text-sm font-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                            <span className="w-2 h-2 bg-cyan-400 border border-black rounded-full mr-2 animate-pulse"></span>
                             Command Documentation
                         </div>
-                        <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-violet-300 to-violet-200 bg-clip-text text-transparent">
+                        <h1 className="text-5xl md:text-6xl font-black mb-6 text-black">
                             Keldo Bot <br />
-                            <span className="text-white">Commands Guide</span>
+                            <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Commands Guide</span>
                         </h1>
-                        <p className="text-zinc-300 text-lg max-w-xl mb-8">
+                        <p className="text-gray-700 text-lg max-w-xl mb-8 font-medium">
                             Learn how to use all of Keldo Bot's commands and features to enhance your Discord experience.
                         </p>
-                        <p className="text-zinc-300 text-lg max-w-xl mb-8">
-                            Noitice: You can use prefix command instead of splash command. Default: w[command]
-                        </p>
+
                         {/* SEARCH BAR */}
                         <div className="relative max-w-md mb-8">
                             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <svg className="w-5 h-5 text-zinc-400" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                </svg>
+                                <Search size={20} className="text-gray-600" />
                             </div>
                             <input
                                 type="text"
                                 placeholder="Search commands..."
-                                className="w-full pl-10 pr-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500"
+                                className="w-full pl-12 pr-4 py-4 bg-white border-2 border-black rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-medium shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                             />
                         </div>
                     </div>
+
                     <div className="flex-1 flex justify-center relative">
                         <div className="relative">
-                            <div className="absolute -inset-6 bg-violet-600/20 rounded-full blur-xl"></div>
-                            <img
-                                src={mascot}
-                                alt="Werewolf Bot Mascot"
-                                className="relative w-64 h-64 rounded-full bg-zinc-800 border-4 border-violet-500 shadow-2xl object-cover"
-                            />
+                            <div className="absolute -inset-4 bg-gradient-to-r from-cyan-400/20 to-purple-500/20 rounded-full blur-xl"></div>
+                            <div className="relative bg-white border-2 border-black rounded-full p-4 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+                                <img
+                                    src={mascot}
+                                    alt="Werewolf Bot Mascot"
+                                    className="w-64 h-64 rounded-full object-cover"
+                                />
+                                {/* Decorative elements */}
+                                <div className="absolute -top-1 -left-1 w-4 h-4 bg-cyan-400 border border-black rounded-full"></div>
+                                <div className="absolute -top-1 -right-1 w-3 h-3 bg-purple-400 border border-black rotate-45"></div>
+                                <div className="absolute -bottom-1 -left-1 w-3 h-3 bg-yellow-400 border border-black rounded-sm"></div>
+                                <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-green-400 border border-black rounded-full"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -410,24 +416,24 @@ const DocumentationPage = () => {
                 <div className="flex flex-col lg:flex-row gap-8">
                     {/* SIDEBAR - COMMAND GROUPS */}
                     <div className="lg:w-1/4">
-                        <div className="sticky top-24 bg-zinc-800/50 backdrop-blur-sm rounded-xl p-4 border border-zinc-700">
-                            <h3 className="text-lg font-semibold mb-4 text-violet-300">Command Categories</h3>
+                        <div className="sticky top-24 bg-white border-2 border-black rounded-2xl p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                            <h3 className="text-xl font-black mb-6 text-black border-b-2 border-black pb-3">Command Categories</h3>
                             <ul className="space-y-2">
                                 {filteredGroups.map((group, index) => (
                                     <li key={group.name}>
                                         <button
-                                            className={`w-full text-left px-4 py-3 rounded-lg transition-colors flex items-center gap-2 ${activeGroup === index
-                                                ? "bg-violet-600 text-white"
-                                                : "bg-zinc-700/50 hover:bg-zinc-700"
+                                            className={`w-full text-left px-4 py-4 rounded-xl transition-all duration-300 flex items-center gap-3 group border-2 font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] relative ${activeGroup === index
+                                                ? "bg-gradient-to-r from-cyan-400 to-purple-500 text-black border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+                                                : "bg-white text-black border-black hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
                                                 }`}
                                             onClick={() => {
                                                 setActiveGroup(index);
                                                 setActiveCommand(0);
                                             }}
                                         >
-                                            <span className="text-xl">{group.icon}</span>
-                                            <span>{group.name}</span>
-                                            <span className="ml-auto text-zinc-400 text-sm bg-zinc-800 px-2 py-1 rounded">
+                                            <span className="text-2xl">{group.icon}</span>
+                                            <span className="flex-1">{group.name}</span>
+                                            <span className="bg-black text-white px-2 py-1 rounded-lg text-sm font-black border border-black">
                                                 {group.commands.length}
                                             </span>
                                         </button>
@@ -439,76 +445,87 @@ const DocumentationPage = () => {
 
                     {/* MAIN CONTENT - COMMANDS */}
                     <div className="lg:w-3/4">
+                        <div className="bg-white border-2 border-black rounded-2xl p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                            {/* Note */}
+                            <div className="bg-yellow-50 border-2 border-black rounded-xl p-4 mb-8 text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                                <p className="text-black font-black">
+                                    💡 Note: You can use prefix command instead of slash command. Default: w[command]
+                                </p>
+                            </div>
 
-                        <div className="bg-zinc-800/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-700">
-                            <p className="text-gray-400 font-bold mb-6 text-center">Note:  You can use prefix command instead of splash command. Default: w[command]</p>
-
-                            <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                                <span className="text-2xl">{filteredGroups[activeGroup]?.icon}</span>
+                            <h2 className="text-3xl font-black mb-8 flex items-center gap-4 text-black border-b-2 border-black pb-4">
+                                <span className="text-3xl">{filteredGroups[activeGroup]?.icon}</span>
                                 {filteredGroups[activeGroup]?.name} Commands
                             </h2>
 
                             {filteredGroups[activeGroup]?.commands.length > 0 ? (
-                                <div className="space-y-6">
+                                <div className="space-y-8">
                                     {/* COMMAND LIST */}
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                                         {filteredGroups[activeGroup]?.commands.map((command, index) => (
                                             <button
                                                 key={command?.name}
-                                                className={`text-left p-4 rounded-lg transition-colors ${activeCommand === index
-                                                    ? "bg-violet-600/30 border border-violet-500"
-                                                    : "bg-zinc-700/30 hover:bg-zinc-700 border border-zinc-700"
+                                                className={`text-left p-5 rounded-xl transition-all duration-300 group border-2 font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] relative ${activeCommand === index
+                                                    ? "bg-gradient-to-r from-cyan-400 to-purple-500 text-black border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+                                                    : "bg-white text-black border-black hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
                                                     }`}
                                                 onClick={() => setActiveCommand(index)}
                                             >
-                                                <h3 className="font-semibold text-violet-300">{command?.name}</h3>
-                                                <p className="text-sm text-zinc-400 mt-1">{command?.description}</p>
+                                                <h3 className="font-black text-lg mb-2">{command?.name}</h3>
+                                                <p className="text-gray-700 text-sm font-medium">{command?.description}</p>
+                                                {/* Hover dot */}
+                                                <div className="absolute -top-1 -right-1 w-2 h-2 bg-yellow-400 border border-black rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                             </button>
                                         ))}
                                     </div>
 
                                     {/* COMMAND DETAIL */}
                                     {filteredGroups[activeGroup]?.commands[activeCommand] && (
-                                        <div className="bg-zinc-900/80 rounded-xl p-6 border border-zinc-700">
-                                            <div className="flex items-center justify-between mb-4">
-                                                <h3 className="text-xl font-bold text-violet-300">
+                                        <div className="bg-white border-2 border-black rounded-2xl p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+                                            <div className="flex items-center justify-between mb-6">
+                                                <h3 className="text-2xl font-black text-black">
                                                     {filteredGroups[activeGroup]?.commands[activeCommand].name}
                                                 </h3>
                                                 <button
-                                                    className="px-3 py-1 bg-violet-600 hover:bg-violet-700 rounded text-sm"
-                                                    onClick={() => {
-                                                        navigator.clipboard.writeText(
-                                                            (filteredGroups as any)?.[activeGroup]?.commands[activeCommand].example ?? ""
-                                                        );
-                                                    }}
+                                                    className={`flex items-center gap-2 px-4 py-3 rounded-xl font-black border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 ${copiedCommand === filteredGroups[activeGroup]?.commands[activeCommand].example
+                                                        ? "bg-green-400 text-black hover:bg-green-500"
+                                                        : "bg-cyan-400 text-black hover:bg-cyan-500"
+                                                        } hover:translate-x-1 hover:translate-y-1 hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]`}
+                                                    onClick={() => handleCopy(filteredGroups[activeGroup]?.commands[activeCommand].example || "")}
                                                 >
-                                                    Copy Example
+                                                    {copiedCommand === filteredGroups[activeGroup]?.commands[activeCommand].example ? (
+                                                        <CheckCircle size={18} />
+                                                    ) : (
+                                                        <Copy size={18} />
+                                                    )}
+                                                    {copiedCommand === filteredGroups[activeGroup]?.commands[activeCommand].example ? "Copied!" : "Copy Example"}
                                                 </button>
-
                                             </div>
 
-                                            <p className="text-zinc-300 mb-6">
+                                            <p className="text-gray-700 mb-8 text-lg font-medium leading-relaxed">
                                                 {filteredGroups[activeGroup]?.commands[activeCommand].description}
                                             </p>
 
-                                            <div className="mb-6">
-                                                <h4 className="font-semibold text-zinc-200 mb-2">Usage</h4>
-                                                <div className="bg-zinc-800 p-4 rounded-lg font-mono text-sm">
+                                            <div className="mb-8">
+                                                <h4 className="font-black text-black mb-4 text-xl">Usage</h4>
+                                                <div className="bg-black text-white p-4 rounded-xl font-mono text-lg border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] overflow-x-auto">
                                                     {filteredGroups[activeGroup]?.commands[activeCommand].usage}
                                                 </div>
                                             </div>
 
                                             {filteredGroups[activeGroup]?.commands[activeCommand].arguments.length > 0 && (
-                                                <div className="mb-6">
-                                                    <h4 className="font-semibold text-zinc-200 mb-2">Arguments</h4>
-                                                    <div className="space-y-3">
+                                                <div className="mb-8">
+                                                    <h4 className="font-black text-black mb-4 text-xl">Arguments</h4>
+                                                    <div className="grid gap-4">
                                                         {filteredGroups[activeGroup]?.commands[activeCommand].arguments.map((arg, index) => (
-                                                            <div key={index} className="bg-zinc-800/50 p-3 rounded-lg">
-                                                                <div className="flex items-center gap-2 mb-1">
-                                                                    <span className="font-semibold text-violet-300">{arg.name}</span>
-                                                                    <span className="text-xs bg-zinc-700 px-2 py-1 rounded">{arg.type}</span>
+                                                            <div key={index} className="bg-gray-50 border-2 border-black p-4 rounded-xl shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
+                                                                <div className="flex items-center gap-3 mb-2">
+                                                                    <span className="font-black text-black text-lg">{arg.name}</span>
+                                                                    <span className="bg-black text-white px-3 py-1 rounded-lg text-sm font-black border border-black">
+                                                                        {arg.type}
+                                                                    </span>
                                                                 </div>
-                                                                <p className="text-sm text-zinc-400">{arg.description}</p>
+                                                                <p className="text-gray-700 font-medium">{arg.description}</p>
                                                             </div>
                                                         ))}
                                                     </div>
@@ -516,8 +533,8 @@ const DocumentationPage = () => {
                                             )}
 
                                             <div>
-                                                <h4 className="font-semibold text-zinc-200 mb-2">Example</h4>
-                                                <div className="bg-zinc-800 p-4 rounded-lg font-mono text-sm">
+                                                <h4 className="font-black text-black mb-4 text-xl">Example</h4>
+                                                <div className="bg-gray-100 border-2 border-black p-4 rounded-xl font-mono text-lg font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] overflow-x-auto">
                                                     {filteredGroups[activeGroup]?.commands[activeCommand].example}
                                                 </div>
                                             </div>
@@ -525,10 +542,10 @@ const DocumentationPage = () => {
                                     )}
                                 </div>
                             ) : (
-                                <div className="text-center py-10">
-                                    <div className="text-5xl mb-4">🔍</div>
-                                    <h3 className="text-xl font-semibold mb-2">No commands found</h3>
-                                    <p className="text-zinc-400">
+                                <div className="text-center py-16">
+                                    <div className="text-6xl mb-6">🔍</div>
+                                    <h3 className="text-2xl font-black mb-4 text-black">No commands found</h3>
+                                    <p className="text-gray-700 font-medium text-lg">
                                         Try a different search term or browse through other categories.
                                     </p>
                                 </div>

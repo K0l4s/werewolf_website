@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { axiosAuth } from "../../utils/axiosIntance";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../redux/store";
-import { PawPrint, Settings, UserRoundPlus } from "lucide-react";
+import { PawPrint, Settings, UserRoundPlus, Crown, Users, Loader, Bot, Shield } from "lucide-react";
 import Tooltip from "../../components/custom/Tooltip";
 import { Link } from "react-router-dom";
 import type { Guild } from "../../models/Guild";
@@ -70,43 +70,59 @@ const Dashboard = () => {
         return null;
     };
 
+    const getRoleBadge = (guild: Guild) => {
+        if (guild.owner) return { label: "Owner", icon: <Crown size={12} />, color: "bg-yellow-400" };
+        if (guild.admin) return { label: "Admin", icon: <Shield size={12} />, color: "bg-red-400" };
+        if (guild.manager) return { label: "Manager", icon: <Users size={12} />, color: "bg-blue-400" };
+        return { label: "Member", icon: <Users size={12} />, color: "bg-gray-400" };
+    };
+
     return (
-        <div className="min-h-screen p-6 overflow-x-hidden">
+        <div className="min-h-screen p-6 bg-white overflow-x-hidden text-black">
             {/* Header Section với User Info */}
             <div className="mb-8">
-                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                     <div>
-                        <h1 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                            Welcome back{user ? `, ${user.global_name || user.username}` : ''}!
+                        <h1 className="text-4xl font-black text-black mb-2">
+                            Welcome back{user ? `, ${user.global_name || user.username}` : ''}! 👋
                         </h1>
-                        <p className="text-gray-300 mt-2">Manage your Discord servers and bot settings</p>
+                        <p className="text-gray-700 text-lg font-medium">Manage your Discord servers and bot settings</p>
                     </div>
 
                     {/* User Info Card */}
                     {user && (
-                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                            <div className="flex items-center space-x-3">
-                                {getUserAvatarUrl(user) ? (
-                                    <img
-                                        src={getUserAvatarUrl(user) || 'https://cdn.discordapp.com/embed/avatars/0.png'}
-                                        alt={user.username}
-                                        className="w-12 h-12 rounded-full border-2 border-white/30"
-                                    />
-                                ) : (
-                                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center border-2 border-white/30">
-                                        <span className="text-lg font-bold text-white">
-                                            {user.username.charAt(0).toUpperCase()}
-                                        </span>
-                                    </div>
-                                )}
+                        <div className="bg-white border-2 border-black rounded-xl p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-0.5 hover:-translate-y-0.5">
+                            <div className="flex items-center space-x-4">
+                                <div className="relative">
+                                    {getUserAvatarUrl(user) ? (
+                                        <img
+                                            src={getUserAvatarUrl(user) || 'https://cdn.discordapp.com/embed/avatars/0.png'}
+                                            alt={user.username}
+                                            className="w-12 h-12 rounded-full object-cover border-2 border-black"
+                                        />
+                                    ) : (
+                                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-400 to-purple-500 flex items-center justify-center border-2 border-black">
+                                            <span className="text-lg font-black text-white">
+                                                {user.username.charAt(0).toUpperCase()}
+                                            </span>
+                                        </div>
+                                    )}
+                                    {/* Online indicator */}
+                                    <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></div>
+                                </div>
                                 <div>
-                                    <h3 className="font-semibold text-white">
+                                    <h3 className="font-black text-black text-lg">
                                         {user.global_name || user.username}
                                     </h3>
-                                    <p className="text-gray-300 text-sm">
+                                    <p className="text-gray-600 text-sm font-bold">
                                         {formatUsername(user)}
                                     </p>
                                 </div>
+                            </div>
+                            {/* Status indicator */}
+                            <div className="flex items-center gap-2 mt-3 p-2 bg-cyan-50 border-2 border-cyan-200 rounded-lg">
+                                <div className="w-2 h-2 bg-green-500 border border-black rounded-full animate-pulse"></div>
+                                <span className="text-xs font-black text-cyan-800">Connected</span>
                             </div>
                         </div>
                     )}
@@ -115,112 +131,136 @@ const Dashboard = () => {
 
             {/* Loading State */}
             {isLoading && (
-                <div className="flex flex-col items-center justify-center py-20">
-                    <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-                    <p className="text-gray-300 text-lg">Loading your servers...</p>
+                <div className="flex flex-col items-center justify-center py-16 bg-white border-2 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                    <div className="flex items-center justify-center">
+                        <Loader size={32} className="animate-spin text-cyan-500" />
+                    </div>
+                    <p className="text-gray-700 text-lg font-bold mt-4">Loading your servers...</p>
+                    <div className="w-48 h-2 bg-gray-200 border border-black rounded-full mt-2 overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-cyan-400 to-purple-500 animate-pulse"></div>
+                    </div>
                 </div>
             )}
 
             {/* Guilds Grid */}
             {!isLoading && (
                 <>
-                    <div className="flex items-center justify-between mb-6">
-                        <h2 className="text-2xl font-bold text-white">Your Servers</h2>
-                        <span className="bg-white/10 px-3 py-1 rounded-full text-sm">
-                            {guilds.length} server{guilds.length !== 1 ? 's' : ''}
-                        </span>
+                    <div className="flex items-center justify-between mb-8">
+                        <h2 className="text-3xl font-black text-black">Your Servers</h2>
+                        <div className="flex items-center gap-2 bg-white border-2 border-black rounded-full px-3 py-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                            <Users size={16} />
+                            <span className="font-black">{guilds.length} server{guilds.length !== 1 ? 's' : ''}</span>
+                        </div>
                     </div>
 
                     {guilds.length > 0 ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                            {guilds.map((guild) => (
-                                <div
-                                    key={guild.id.toString()}
-                                    className={`rounded-xl p-5 shadow-lg transition-all duration-300 hover:shadow-xl backdrop-blur-sm border ${guild.hasBot
-                                        ? "bg-gradient-to-br from-green-500/10 to-emerald-600/10 border-green-500/30"
-                                        : "bg-gradient-to-br from-gray-500/10 to-slate-600/10 border-gray-500/30"
+                            {guilds.map((guild) => {
+                                const roleBadge = getRoleBadge(guild);
+                                
+                                return (
+                                    <div
+                                        key={guild.id.toString()}
+                                        className={`group relative bg-white border-2 border-black rounded-xl p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-0.5 hover:-translate-y-0.5 ${
+                                            guild.hasBot 
+                                                ? 'hover:border-cyan-400' 
+                                                : 'hover:border-purple-400'
                                         }`}
-                                >
-                                    {/* Server Icon and Name */}
-                                    <div className="flex items-center space-x-4 mb-4">
-                                        {guild.icon ? (
-                                            <img
-                                                src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`}
-                                                alt={guild.name.toString()}
-                                                className="w-14 h-14 rounded-full border-2 border-white/30 shadow-md"
-                                            />
-                                        ) : (
-
-                                            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-purple-400 to-blue-500 flex items-center justify-center border-2 border-white/30 shadow-md">
-
-                                                <span className="text-xl font-bold text-white">
-                                                    {guild.name.toString().charAt(0)}
-                                                </span>
-
-                                            </div>
-                                        )}
-
-                                        <div className="flex-1 min-w-0">
-                                            <h3 className="font-bold text-white truncate text-lg">{guild.name}</h3>
-                                            {/* Status Badges */}
-                                            <div className="flex flex-wrap gap-2 mb-3">
-                                                <span className={`px-3 py-1 rounded-full text-xs font-semibold ${guild.owner || guild.admin
-                                                    ? "bg-blue-500/20 text-blue-300 border border-blue-500/30"
-                                                    : "bg-gray-500/20 text-gray-300 border border-gray-500/30"
-                                                    }`}>
-                                                    {guild.owner ? "👑 Owner" : guild.admin ? "👑 Admin" : guild.manager ? "👑 Manager" : "👤 Member"}
-                                                </span>
+                                    >
+                                        {/* Server Header */}
+                                        <div className="flex items-start justify-between mb-4">
+                                            <div className="flex items-center space-x-3 flex-1 min-w-0">
+                                                {guild.icon ? (
+                                                    <div className="flex-shrink-0">
+                                                        <img
+                                                            src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`}
+                                                            alt={guild.name.toString()}
+                                                            className="w-12 h-12 rounded-full object-cover border-2 border-black"
+                                                        />
+                                                    </div>
+                                                ) : (
+                                                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center border-2 border-black flex-shrink-0">
+                                                        <span className="text-xl font-black text-white">
+                                                            {guild.name.toString().charAt(0)}
+                                                        </span>
+                                                    </div>
+                                                )}
+                                                <div className="flex-1 min-w-0">
+                                                    <h3 className="font-black text-black text-lg truncate">{guild.name}</h3>
+                                                    {/* Role Badge */}
+                                                    <div className="flex items-center gap-2 mt-1">
+                                                        <div className={`flex items-center gap-1 ${roleBadge.color} border border-black rounded-full px-2 py-1`}>
+                                                            {roleBadge.icon}
+                                                            <span className="text-xs font-black">{roleBadge.label}</span>
+                                                        </div>
+                                                        {guild.hasBot && (
+                                                            <div className="flex items-center gap-1 bg-green-400 border border-black rounded-full px-2 py-1">
+                                                                <Bot size={10} />
+                                                                <span className="text-xs font-black">Bot</span>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
-                                    </div>
-
-
-
-                                    {/* Invite Button */}
-
-                                    <div className="mt-4 flex justify-end">
-                                        <Tooltip text="Pets" delay={0}>
-                                            <Link
-                                                to={"/guild/pet/" + guild.id}
-                                            >
-
-                                                <PawPrint className="hover:bg-green-500 w-9 h-9 rounded-full p-2" />
-                                            </Link>
-                                        </Tooltip>
-
-                                        {(guild.owner || guild.admin || guild.manager) && (
-                                            <Tooltip text="Settings" delay={0}>
+                                        {/* Action Buttons */}
+                                        <div className="flex items-center justify-end gap-2 pt-4 border-t-2 border-black">
+                                            <Tooltip text="Pets" delay={0}>
                                                 <Link
-                                                    to={"/guild/setting/" + guild.id}
+                                                    to={"/guild/pet/" + guild.id}
+                                                    className="w-10 h-10 bg-cyan-400 border-2 border-black rounded-lg flex items-center justify-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-cyan-300"
                                                 >
-
-                                                    <Settings className="hover:bg-green-500 w-9 h-9 rounded-full p-2" />
+                                                    <PawPrint size={18} color="black"/>
                                                 </Link>
                                             </Tooltip>
-                                        )}
-                                        {(guild.owner || guild.admin || guild.manager) && !guild.hasBot && (
-                                            <Tooltip text="Invite bot to your server" delay={0}>
-                                                <a
-                                                    href={inviteBotUrl}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                >
 
-                                                    <UserRoundPlus className="hover:bg-green-500 w-9 h-9 rounded-full p-2 bg-blue-500" />
-                                                </a>
-                                            </Tooltip>
-                                        )}
+                                            {(guild.owner || guild.admin || guild.manager) && (
+                                                <Tooltip text="Settings" delay={0}>
+                                                    <Link
+                                                        to={"/guild/setting/" + guild.id}
+                                                        className="w-10 h-10 bg-yellow-400 border-2 border-black rounded-lg flex items-center justify-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-yellow-300"
+                                                    >
+                                                        <Settings size={18} color="black"/>
+                                                    </Link>
+                                                </Tooltip>
+                                            )}
+                                            
+                                            {(guild.owner || guild.admin || guild.manager) && !guild.hasBot && (
+                                                <Tooltip text="Invite bot to your server" delay={0}>
+                                                    <a
+                                                        href={inviteBotUrl}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="w-10 h-10 bg-green-400 border-2 border-black rounded-lg flex items-center justify-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-green-300"
+                                                    >
+                                                        <UserRoundPlus size={18} color="black"/>
+                                                    </a>
+                                                </Tooltip>
+                                            )}
+                                        </div>
+
+                                        {/* Hover decoration */}
+                                        <div className="absolute -top-2 -right-2 w-4 h-4 bg-cyan-400 border-2 border-black rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                     </div>
-
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     ) : (
                         /* Empty State */
-                        <div className="text-center py-12">
-                            <h2 className="text-2xl font-bold text-gray-300 mb-2">No servers found</h2>
-                            <p className="text-gray-400">You need to be an admin of at least one server to see them here.</p>
+                        <div className="flex flex-col items-center justify-center py-16 bg-white border-2 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center">
+                            <div className="text-6xl mb-4">🏰</div>
+                            <h2 className="text-2xl font-black text-black mb-2">No servers found</h2>
+                            <p className="text-gray-700 font-medium mb-6 max-w-md">
+                                You need to be an admin of at least one server to see them here.
+                            </p>
+                            <button 
+                                onClick={() => window.open(inviteBotUrl, '_blank')}
+                                className="flex items-center bg-cyan-400 border-2 border-black rounded-xl px-6 py-3 font-black text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-cyan-300"
+                            >
+                                <Bot size={18} className="mr-2" />
+                                Add Bot to Your Server
+                            </button>
                         </div>
                     )}
                 </>

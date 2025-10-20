@@ -16,9 +16,8 @@ export default function ScrollDownButton() {
 
   return (
     <div
-      className={`flex justify-center items-center flex-col mt-6 fixed bottom-4 right-4 transform -translate-x-1/2 z-50 transition-opacity duration-500 ${
-        isAtBottom ? "opacity-0 pointer-events-none" : "opacity-100"
-      }`}
+      className={`flex justify-center items-center  flex-col mt-6 fixed bottom-4 right-4 transform -translate-x-1/2 z-50 transition-opacity  duration-500 ${isAtBottom ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
     >
       <span className="text-sm text-zinc-400">Scroll Down</span>
       <button

@@ -15,7 +15,7 @@ const DashboardLayout = () => {
         <>
             {
                 isAuth ? (
-                    <div className="min-h-screen bg-gradient-to-b from-zinc-900 to-zinc-950 text-white ">
+                    <div className="min-h-screen bg-gradient-to-br from-[#f8fafc] to-[#e2e8f0] ">
                         {/* <Navbar /> */}
                         <div className="flex h-screen">
                             <Sidebar isOpen={isOpen} onToggle={toggleSidebar} />
