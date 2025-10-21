@@ -336,7 +336,7 @@ const Homepage = () => {
             </main>
 
             {/* EXTRA FEATURES SECTION */}
-            <section className="max-w-6xl mx-auto px-6 py-16 bg-white border-t-2 border-b-2 border-black">
+            <section className="max-w-6xl mx-auto px-6 py-16  border-t-2 border-b-2 border-black">
                 <h2 className="text-4xl font-black text-center mb-12 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
                     🌟 Explore All Keldo Features
                 </h2>
