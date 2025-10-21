@@ -129,7 +129,6 @@ const Homepage = () => {
 
     return (
         <div className="min-h-screen overflow-hidden">
-            <a className="fixed z-0 top-0 w-0 xl:w-full opacity-30" href="https://beta.publishers.adsterra.com/referral/dKru8iSHJJ" rel="nofollow"><img alt="banner" src="https://landings-cdn.adsterratech.com/referralBanners/png/120%20x%20600%20px.png" /></a>
             {/* HERO SECTION */}
             <section className="max-w-7xl mx-auto px-6 py-12">
                 <div className="mb-12">
