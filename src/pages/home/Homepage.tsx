@@ -128,7 +128,7 @@ const Homepage = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-white overflow-hidden">
+        <div className="min-h-screen overflow-hidden">
             {/* HERO SECTION */}
             <section className="max-w-7xl mx-auto px-6 py-12">
                 <div className="mb-12">
