@@ -17,6 +17,7 @@ import WerewolfGuide from '../pages/guide/werewolf/WerewolfGuide'
 import ServerSettingsGuide from '../pages/guide/server/ServerSettingGuide'
 import PaymentSuccess from '../pages/payment/PaymentSuccess'
 import PaymentFailed from '../pages/payment/PaymentFailed'
+import { GuildSettingsPage } from '../pages/dashboard/guild/GuildSettingsPage'
 
 
 // import type { RootState } from '../redux/store'
@@ -59,6 +60,7 @@ const Router = () => {
                     <Route path="" element={<WerewolfGuide />} />
                     <Route path="werewolf" element={<WerewolfGuide />} />
                     <Route path="server" element={<ServerSettingsGuide />} />
+                    
                 </Route>
 
             </Route>
@@ -66,6 +68,7 @@ const Router = () => {
                 <Route path='dashboard' element={<Dashboard />} />
                 <Route path='guild'>
                     <Route path='pet/:id' element={<ServerPet />} />
+                    <Route path="setting/:guildId" element={<GuildSettingsPage />} />
                 </Route>
             </Route>
             <Route path="payment">

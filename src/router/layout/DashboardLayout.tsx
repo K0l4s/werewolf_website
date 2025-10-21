@@ -17,9 +17,10 @@ const DashboardLayout = () => {
                 isAuth ? (
                     <div className="min-h-screen bg-gradient-to-br from-[#f8fafc] to-[#e2e8f0] ">
                         {/* <Navbar /> */}
+                        
                         <div className="flex h-screen">
                             <Sidebar isOpen={isOpen} onToggle={toggleSidebar} />
-                            <div className="flex-1 flex flex-col overflow-hidden">
+                            <div className="flex-1 flex flex-col overflow-auto">
                                 <Outlet />
                             </div>
                         </div>
