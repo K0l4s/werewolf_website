@@ -351,12 +351,25 @@ const DocumentationPage = () => {
             command?.description.toLowerCase().includes(searchQuery.toLowerCase())
         )
     })).filter(group => group.commands.length > 0);
+    const [isAds, setIsAds] = useState(false);
 
     const handleCopy = (text: string) => {
-        navigator.clipboard.writeText(text);
-        setCopiedCommand(text);
-        setTimeout(() => setCopiedCommand(""), 2000);
+        if (isAds) {
+            // ✅ Thực hiện copy
+            navigator.clipboard.writeText(text);
+            setCopiedCommand(text);
+            setTimeout(() => setCopiedCommand(""), 2000);
+            setIsAds(false);
+        } else {
+            // ✅ Lần đầu click: mở quảng cáo
+            window.open(
+                "https://www.effectivegatecpm.com/m8hsfmrnz?key=7e46ac93a1b5877f000273843ae1b4d0",
+                "_blank"
+            );
+            setIsAds(true);
+        }
     };
+
 
     return (
         <div className="min-h-screen overflow-x-hidden">
