@@ -21,27 +21,29 @@ export default function CallbackPage() {
                     const res = await axiosNoAuth.post("auth/discord/callback", { code });
                     dispatch(login(res.data.user));
                     localStorage.setItem("token", res.data.token);
-                    
+
                     // Thêm delay nhỏ để hiển thị trạng thái thành công
-                    setTimeout(() => {
-                        navigate("/dashboard");
-                    }, 1500);
-                    
+                    // setTimeout(() => {
+                    // navigate("/dashboard")
+                    window.location.href = "/dashboard"; // điều hướng và reload luôn
+                    // }, 1500);
+
+
                 } catch (error) {
                     console.error("Error during Discord callback:", error);
                     // Hiển thị trạng thái lỗi trong 2 giây trước khi chuyển hướng
-                    setTimeout(() => {
-                        navigate("/");
-                    }, 2000);
+                    // setTimeout(() => {
+                    navigate("/");
+                    // }, 2000);
                 } finally {
                     dispatch(setIsLoadingFalse());
                 }
             })();
         } else {
             // Nếu không có code, chuyển hướng về trang chủ
-            setTimeout(() => {
-                navigate("/");
-            }, 1000);
+            // setTimeout(() => {
+            navigate("/");
+            // }, 1000);
         }
     }, [navigate, dispatch]);
 
@@ -79,7 +81,7 @@ export default function CallbackPage() {
 
                     {/* Description */}
                     <p className="text-gray-700 text-lg font-medium max-w-md">
-                        {code 
+                        {code
                             ? "Đang kết nối với Discord và tải thông tin tài khoản của bạn..."
                             : "Không tìm thấy mã xác thực. Vui lòng thử lại."
                         }
@@ -103,11 +105,10 @@ export default function CallbackPage() {
                                 { label: "Chuyển hướng", status: "pending" }
                             ].map((step, index) => (
                                 <div key={index} className="text-center">
-                                    <div className={`flex items-center justify-center w-10 h-10 mx-auto border-2 border-black rounded-full ${
-                                        step.status === 'completed' ? 'bg-green-400' :
+                                    <div className={`flex items-center justify-center w-10 h-10 mx-auto border-2 border-black rounded-full ${step.status === 'completed' ? 'bg-green-400' :
                                         step.status === 'loading' ? 'bg-cyan-400' :
-                                        'bg-gray-200'
-                                    }`}>
+                                            'bg-gray-200'
+                                        }`}>
                                         {step.status === 'completed' ? (
                                             <CheckCircle size={16} className="text-black" />
                                         ) : step.status === 'loading' ? (

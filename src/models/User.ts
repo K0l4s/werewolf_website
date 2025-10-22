@@ -2,6 +2,10 @@
 export interface User {
     id: string;
     username: string;
+    premium: boolean;
+    coin: number;
+    level: number;
+    token: number;
     discriminator: string;
     avatar: string | null;
     bot?: boolean;
@@ -31,6 +35,10 @@ export const defaultUser: User = {
     avatar: null,
     bot: false,
     system: false,
+    premium: false,
+    coin: 0,
+    level: 0,
+    token: 0,
     mfa_enabled: false,
     banner: null,
     accent_color: null,
