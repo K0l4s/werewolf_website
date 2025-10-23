@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import mascot from "../../assets/images/mascot.png";
 import Tooltip from "../custom/Tooltip";
-
+import Momo from "../../assets/images/momo.png"
 const Footer = () => {
   return (
     <footer className="max-w-6xl mx-auto px-6 pt-12 pb-16">
@@ -18,10 +18,10 @@ const Footer = () => {
               </h3>
             </div>
             <p className="text-gray-700 max-w-md font-medium leading-relaxed">
-              Play werewolf with your friends, become Spirit Master and experience 
+              Play werewolf with your friends, become Spirit Master and experience
               thrilling social deduction games in your Discord server.
             </p>
-            
+
             {/* Decorative Elements */}
             <div className="flex gap-2 mt-4">
               <div className="w-2 h-2 bg-cyan-400 border border-black rounded-full"></div>
@@ -35,8 +35,8 @@ const Footer = () => {
             <h4 className="text-lg font-black text-black mb-4 border-b-2 border-black pb-2">Website Pages</h4>
             <ul className="space-y-3">
               <li>
-                <Link 
-                  to="/" 
+                <Link
+                  to="/"
                   className="text-gray-700 font-medium hover:text-black transition-colors duration-200 hover:underline"
                 >
                   Home
@@ -48,32 +48,32 @@ const Footer = () => {
                 </li>
               </Tooltip>
               <li>
-                <Link 
-                  to="/doc" 
+                <Link
+                  to="/doc"
                   className="text-gray-700 font-medium hover:text-black transition-colors duration-200 hover:underline"
                 >
                   Documentation
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/policy" 
+                <Link
+                  to="/policy"
                   className="text-gray-700 font-medium hover:text-black transition-colors duration-200 hover:underline"
                 >
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/term" 
+                <Link
+                  to="/term"
                   className="text-gray-700 font-medium hover:text-black transition-colors duration-200 hover:underline"
                 >
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/guide" 
+                <Link
+                  to="/guide"
                   className="text-gray-700 font-medium hover:text-black transition-colors duration-200 hover:underline"
                 >
                   Guide
@@ -163,6 +163,9 @@ const Footer = () => {
                   trungkienhuynh.contact@gmail.com
                 </a>
               </p>
+              <p className="text-sm text-gray-700 font-medium flex items-center">
+                Thanh toán với: <Tooltip text="Ví điện tử Momo" delay={0}><img src={Momo} alt="momo logo"  className="w-8 h-8 ml-2"/> </Tooltip>
+              </p>
             </div>
 
             {/* QR Code - Neo Brutalism Style */}
@@ -180,7 +183,7 @@ const Footer = () => {
                   <p className="text-xs font-bold text-black">HUYNH TRUNG KIEN</p>
                   <p className="text-xs font-bold text-gray-700">STK: 8888827626203</p>
                 </div>
-                
+
                 {/* QR Code Decoration */}
                 <div className="absolute -top-1 -right-1 w-2 h-2 bg-yellow-400 border border-black rounded-full"></div>
                 <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-cyan-400 border border-black rounded-full"></div>

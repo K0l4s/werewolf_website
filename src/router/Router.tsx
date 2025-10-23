@@ -18,6 +18,8 @@ import ServerSettingsGuide from '../pages/guide/server/ServerSettingGuide'
 import PaymentSuccess from '../pages/payment/PaymentSuccess'
 import PaymentFailed from '../pages/payment/PaymentFailed'
 import { GuildSettingsPage } from '../pages/dashboard/guild/GuildSettingsPage'
+import ProfilePage from '../pages/profile/ProfilePage'
+import PaymentPage from '../pages/payment/PaymentPage'
 
 
 // import type { RootState } from '../redux/store'
@@ -60,9 +62,13 @@ const Router = () => {
                     <Route path="" element={<WerewolfGuide />} />
                     <Route path="werewolf" element={<WerewolfGuide />} />
                     <Route path="server" element={<ServerSettingsGuide />} />
-                    
-                </Route>
 
+                </Route>
+                <Route path="payment">
+                    <Route path='' element={<PaymentPage/>}/>
+                    <Route path="success" element={<PaymentSuccess />} />
+                    <Route path="fail" element={<PaymentFailed />} />
+                </Route>
             </Route>
             <Route element={<DashboardLayout />}>
                 <Route path='dashboard' element={<Dashboard />} />
@@ -70,11 +76,9 @@ const Router = () => {
                     <Route path='pet/:id' element={<ServerPet />} />
                     <Route path="setting/:guildId" element={<GuildSettingsPage />} />
                 </Route>
+                <Route path="profile" element={<ProfilePage />} />
             </Route>
-            <Route path="payment">
-                <Route path="success" element={<PaymentSuccess />} />
-                <Route path="fail" element={<PaymentFailed />} />
-            </Route>
+
             <Route path='*' element={<NotFoundPage />} />
         </Routes>
     )

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import type { MenuItem, SidebarProps } from '../../models/Sidebar';
 import { 
     Bell, 
@@ -19,6 +20,8 @@ import type { RootState } from '../../redux/store';
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
     const user = useSelector((state: RootState) => state.auth.user);
+    const navigate = useNavigate();
+    const location = useLocation();
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [menuItems, setMenuItems] = useState<MenuItem[]>([
         {
@@ -27,9 +30,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
             icon: <User size={18} />,
             isOpen: true,
             children: [
-                { id: 'profile', label: 'Profile', icon: <User size={16} /> },
-                { id: 'pets', label: 'Pets', icon: <PawPrint size={16} /> },
-                { id: 'spirits', label: 'Spirits', icon: <MoonStar size={16} /> },
+                { id: 'profile', label: 'Profile', icon: <User size={16} />, href: '/profile' },
+                { id: 'pets', label: 'Pets', icon: <PawPrint size={16} />, href: '/pets' },
+                { id: 'spirits', label: 'Spirits', icon: <MoonStar size={16} />, href: '/spirits' },
             ]
         },
         {
@@ -38,10 +41,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
             icon: <House size={18} />,
             isOpen: false,
             children: [
-                { id: 'notification', label: 'Notification', icon: <Bell size={16} /> },
-                { id: 'voice', label: 'Voice', icon: <Mic size={16} /> },
-                { id: 'message', label: 'Message', icon: <MessageCirclePlus size={16} /> },
-                { id: 'pets', label: 'Pets', icon: <PawPrint size={16} /> },
+                { id: 'notification', label: 'Notification', icon: <Bell size={16} />, href: '/notification' },
+                { id: 'voice', label: 'Voice', icon: <Mic size={16} />, href: '/voice' },
+                { id: 'message', label: 'Message', icon: <MessageCirclePlus size={16} />, href: '/message' },
+                { id: 'server-pets', label: 'Pets', icon: <PawPrint size={16} />, href: '/server-pets' },
             ]
         }
     ]);
@@ -56,21 +59,55 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
         setIsCollapsed(!isCollapsed);
     };
 
+    const handleItemClick = (item: MenuItem) => {
+        // Nếu item có href thì điều hướng
+        if (item.href) {
+            navigate(item.href);
+            // Đóng sidebar trên mobile sau khi chọn item
+            if (window.innerWidth < 768) {
+                onToggle();
+            }
+        }
+        // Nếu item có children thì toggle mở/đóng
+        else if (item.children && item.children.length > 0) {
+            toggleMenuItem(item.id);
+        }
+    };
+
+    const isItemActive = (item: MenuItem): boolean => {
+        if (item.href) {
+            return location.pathname === item.href;
+        }
+        // Kiểm tra xem có children nào đang active không
+        if (item.children) {
+            return item.children.some(child => isItemActive(child));
+        }
+        return false;
+    };
+
     const renderMenuItem = (item: MenuItem, level = 0) => {
         const hasChildren = item.children && item.children.length > 0;
+        const isActive = isItemActive(item);
+        const isClickable = item.href || hasChildren;
 
         if (isCollapsed && level === 0) {
             // Collapsed state - chỉ hiển thị icon
             return (
                 <div key={item.id} className="select-none relative">
                     <div
-                        className="relative group bg-white border-2 border-black rounded-lg p-3 shadow-brutal-sm transition-all duration-300 hover:scale-110 hover:shadow-brutal cursor-pointer mb-2"
-                        onClick={() => hasChildren && toggleMenuItem(item.id)}
+                        className={`
+                            relative group bg-white border-2 border-black rounded-lg p-3 shadow-brutal-sm transition-all duration-300 hover:scale-110 hover:shadow-brutal cursor-pointer mb-2
+                            ${isActive ? 'bg-cyan-50 border-cyan-300 shadow-brutal' : ''}
+                        `}
+                        onClick={() => handleItemClick(item)}
                         title={item.label}
                     >
                         {item.icon}
                         {hasChildren && item.isOpen && (
                             <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-cyan-400 border border-black rounded-full"></div>
+                        )}
+                        {isActive && (
+                            <div className="absolute -top-1 -left-1 w-2 h-2 bg-green-500 border border-black rounded-full"></div>
                         )}
                     </div>
                 </div>
@@ -84,15 +121,16 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
                     className={`
                         relative group bg-white border-2 border-black rounded-xl p-4 transition-all duration-300
                         ${level > 0 ? 'ml-4' : ''}
-                        ${hasChildren ? 'cursor-pointer hover:-translate-y-1 hover:shadow-brutal' : 'cursor-default'}
+                        ${isClickable ? 'cursor-pointer hover:-translate-y-1 hover:shadow-brutal' : 'cursor-default'}
                         ${isCollapsed ? 'justify-center' : ''}
                         ${hasChildren ? '' : 'shadow-brutal-sm'}
+                        ${isActive ? 'bg-cyan-50 border-cyan-300 shadow-brutal' : ''}
                     `}
-                    onClick={() => hasChildren && toggleMenuItem(item.id)}
+                    onClick={() => handleItemClick(item)}
                 >
                     <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'}`}>
                         <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'space-x-3'}`}>
-                            <div className="bg-gray-100 border-2 border-black rounded-lg p-2">
+                            <div className={`border-2 border-black rounded-lg p-2 ${isActive ? 'bg-cyan-100' : 'bg-gray-100'}`}>
                                 {item.icon}
                             </div>
                             {!isCollapsed && (
@@ -111,6 +149,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
                     {/* Hover dot */}
                     {!isCollapsed && (
                         <div className="absolute -top-1 -right-1 w-2 h-2 bg-cyan-400 border border-black rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    )}
+
+                    {/* Active indicator */}
+                    {isActive && !isCollapsed && (
+                        <div className="absolute -top-1 -left-1 w-2 h-2 bg-green-500 border border-black rounded-full"></div>
                     )}
                 </div>
 
@@ -150,12 +193,20 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
                     {/* Header */}
                     <div className={`bg-white border-b-3 border-black p-6 ${isCollapsed ? 'flex flex-col space-y-4 items-center' : 'flex items-center justify-between'}`}>
                         <div className={`flex items-center ${isCollapsed ? 'flex-col space-y-3' : 'space-x-3'}`}>
-                            <div className="relative bg-gradient-to-r from-cyan-400 to-purple-500 border-2 border-black rounded-xl p-2 shadow-brutal">
+                            <div 
+                                className="relative bg-gradient-to-r from-cyan-400 to-purple-500 border-2 border-black rounded-xl p-2 shadow-brutal cursor-pointer"
+                                onClick={() => navigate('/')}
+                            >
                                 <Bot size={24} className="text-black" />
                                 <div className="absolute -top-1 -right-1 w-2 h-2 bg-cyan-400 border border-black rounded-full"></div>
                             </div>
                             {!isCollapsed && (
-                                <h1 className="text-xl font-black text-black">Keldo Menu</h1>
+                                <h1 
+                                    className="text-xl font-black text-black cursor-pointer"
+                                    onClick={() => navigate('/')}
+                                >
+                                    Keldo Menu
+                                </h1>
                             )}
                         </div>
 
@@ -197,7 +248,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
                     {!isCollapsed ? (
                         <div className="bg-white border-t-3 border-black p-6">
                             <div className="flex items-center space-x-3 mb-3">
-                                <div className="relative bg-white border-2 border-black rounded-xl p-1 shadow-brutal-sm">
+                                <div 
+                                    className="relative bg-white border-2 border-black rounded-xl p-1 shadow-brutal-sm cursor-pointer"
+                                    onClick={() => navigate('/profile')}
+                                >
                                     <img
                                         src={user?.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` : 'https://cdn.discordapp.com/embed/avatars/0.png'}
                                         alt="User Avatar"
@@ -225,7 +279,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
                     ) : (
                         // Mini user info khi collapsed
                         <div className="bg-white border-t-3 border-black p-4 flex flex-col items-center">
-                            <div className="relative bg-white border-2 border-black rounded-lg p-1 shadow-brutal-sm mb-2">
+                            <div 
+                                className="relative bg-white border-2 border-black rounded-lg p-1 shadow-brutal-sm mb-2 cursor-pointer"
+                                onClick={() => navigate('/profile')}
+                            >
                                 <img
                                     src={user?.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` : 'https://cdn.discordapp.com/embed/avatars/0.png'}
                                     alt="User Avatar"

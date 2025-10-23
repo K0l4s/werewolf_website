@@ -2,6 +2,7 @@ export interface MenuItem {
   id: string;
   label: string;
   icon?: any;
+  href?:any;
   children?: MenuItem[];
   isOpen?: boolean;
 }
