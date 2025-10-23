@@ -20,6 +20,8 @@ import PaymentFailed from '../pages/payment/PaymentFailed'
 import { GuildSettingsPage } from '../pages/dashboard/guild/GuildSettingsPage'
 import ProfilePage from '../pages/profile/ProfilePage'
 import PaymentPage from '../pages/payment/PaymentPage'
+import GuidePage from '../pages/guide/GuidePage'
+import GiveawayGuide from '../pages/guide/giveaway/GiveawayGuild'
 
 
 // import type { RootState } from '../redux/store'
@@ -59,13 +61,13 @@ const Router = () => {
         const code = urlParams.get("code"); */}
                 <Route path="callback" element={<CallbackPage />} />
                 <Route path="guide">
-                    <Route path="" element={<WerewolfGuide />} />
+                    <Route path="" element={<GuidePage />} />
                     <Route path="werewolf" element={<WerewolfGuide />} />
                     <Route path="server" element={<ServerSettingsGuide />} />
-
+                    <Route path="giveaway" element={<GiveawayGuide />} />
                 </Route>
                 <Route path="payment">
-                    <Route path='' element={<PaymentPage/>}/>
+                    <Route path='' element={<PaymentPage />} />
                     <Route path="success" element={<PaymentSuccess />} />
                     <Route path="fail" element={<PaymentFailed />} />
                 </Route>

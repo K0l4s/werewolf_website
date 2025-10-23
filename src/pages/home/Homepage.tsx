@@ -5,6 +5,8 @@ import minigame from "../../assets/images/minigame.png";
 import shop from "../../assets/images/shop.png";
 import voice from "../../assets/images/voice.png";
 import herobanner from "../../assets/images/herobanner.png";
+import giveaway from "../../assets/images/giveaway.png";
+
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { axiosNoAuth } from "../../utils/axiosIntance";
@@ -38,6 +40,20 @@ const Homepage = () => {
     }, []);
 
     const slides = [
+        {
+            image: 'https://pantado.edu.vn/storage/media/gift-va-present-4_1636424009.jpg',
+            title: 'Giveaway System',
+            description: 'A user creates a giveaway, the admin approves it, and then it goes live.”',
+            label: 'New Feature',
+            labelColor: 'bg-blue-500',
+            actionButton: {
+                text: 'Learn More',
+                onClick: () => {
+                    window.open('/guide/giveaway', '_blank');
+                },
+                variant: 'secondary' as const
+            }
+        },
         {
             image: 'https://cdn2.tuoitre.vn/thumb_w/730/471584752817336320/2024/1/17/build-a-learning-habit-17054833388601968706382.png',
             title: 'Server Streaks',
@@ -301,6 +317,13 @@ const Homepage = () => {
             {/* FEATURES SECTION */}
             <main className="max-w-6xl mx-auto px-6 py-12">
                 <FeatureCard
+                    title="Giveaway System"
+                    text="Create your giveaway, wait for admin approval, and boom — your event is live for everyone to join!"
+                    imgSrc={giveaway}
+                    linkTo="/guide/giveaway"
+                />
+                <FeatureCard
+                align="right"
                     title="Voice Channel & Activity System"
                     text="Keldo notifies when members join or leave voice channels, and keeps daily activity streaks alive across your server."
                     imgSrc={voice}
@@ -308,7 +331,7 @@ const Homepage = () => {
                 />
 
                 <FeatureCard
-                    align="right"
+                    
                     title="Play Werewolf Right in Discord"
                     text="Enjoy the classic Werewolf (Mafia) game with automated logic and smooth UI — no moderator needed!"
                     imgSrc={werewolf}
@@ -316,19 +339,21 @@ const Homepage = () => {
                 />
 
                 <FeatureCard
+                align="right"
                     title="Minigames & Soul Land Integration"
                     text="Challenge friends in fun mini-games or awaken your spirit to become a Spirit Master in the Soul Land world."
                     imgSrc={minigame}
                 />
 
                 <FeatureCard
-                    align="right"
+                    
                     title="Raise Pets Together"
                     text="Let your community raise adorable pets together, feed them, and compete on global and server leaderboards."
                     imgSrc={pet}
                 />
 
                 <FeatureCard
+                align="right"
                     title="Item Shop & Profile System"
                     text="Buy food, boosters, and unique items in the store. Customize your profile and show off your achievements."
                     imgSrc={shop}
