@@ -20,7 +20,7 @@ const PaymentPage: React.FC = () => {
   const [pendingPayment, setPendingPayment] = useState<PaymentOption | null>(null);
 
   const paymentOptions: PaymentOption[] = [
-    // { amount:1000, tokens:1},
+    { amount:1000, tokens:1},
     { amount: 5000, tokens: 5 },
     { amount: 10000, tokens: 10 },
     { amount: 50000, tokens: 50 },
