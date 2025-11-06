@@ -1,0 +1,38 @@
+{
+  "brand": {
+    "title": "Keldo Bot",
+    "description": "Play werewolf with your friends and experience thrilling social deduction games in your Discord server."
+  },
+  "sections": {
+    "pages": "Website Pages",
+    "links": "Other Links",
+    "donate": "Donate",
+    "payment": "Pay with:"
+  },
+  "pages": {
+    "home": "Home",
+    "membership": "Membership",
+    "documentation": "Documentation",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "guide": "Guide",
+    "premium": "Premium"
+  },
+  "links": {
+    "github": "GitHub",
+    "discord": "Discord Server",
+    "topgg": "Top.gg Listing",
+    "support": "Support Server"
+  },
+  "bottom": {
+    "copyright": "© 2025 Keldo Bot. All rights reserved.",
+    "developer": "Developed by Huỳnh Trung Kiên (Kiên Học Code / Kolas)",
+    "contact": "Contact for work:",
+    "owner": "HUYNH TRUNG KIEN",
+    "account": "Account number:"
+  },
+  "tooltip": {
+    "coming": "Coming Soon",
+    "momo": "Momo Wallet"
+  }
+}

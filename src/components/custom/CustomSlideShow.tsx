@@ -95,29 +95,29 @@ const CustomSlideShow: React.FC<ImageSlideshowProps> = ({
 
                         {/* Label với Neo Brutalism style */}
                         {slide.label && (
-                            <div className={`absolute top-4 left-4 px-4 py-2 rounded-full text-sm font-black border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] ${slide.labelColor ? slide.labelColor : 'bg-red-400 text-black'}`}>
+                            <div className={`absolute z-5 top-4 left-4 px-4 py-2 rounded-full text-sm font-black border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] ${slide.labelColor ? slide.labelColor : 'bg-red-400 text-black'}`}>
                                 {slide.label}
                             </div>
                         )}
 
                         {/* Overlay gradient - Neo Brutalism style */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/60" />
 
-                        {/* Content - Layout được chỉnh sửa để tránh overlap */}
-                        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
-                            <div className="max-w-2xl space-y-4">
+                       // Content - Với text shadow và độ tương phản cao
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="text-center max-w-2xl mx-6 space-y-6">
                                 {slide.title && (
-                                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-black leading-tight">
+                                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight text-white [text-shadow:_2px_2px_0_rgb(0_0_0_/_80%)] drop-shadow-2xl">
                                         {slide.title}
                                     </h2>
                                 )}
                                 {slide.description && (
-                                    <p className="text-base md:text-lg lg:text-xl text-gray-200 leading-relaxed font-medium max-w-lg">
+                                    <p className="text-lg md:text-xl lg:text-2xl text-white leading-relaxed font-black [text-shadow:_3px_3px_0_rgb(0_0_0_/_60%)]">
                                         {slide.description}
                                     </p>
                                 )}
                                 {slide.actionButton && (
-                                    <div className="pt-4">
+                                    <div className="pt-6">
                                         <button
                                             onClick={slide.actionButton.onClick}
                                             className={getButtonClass(slide.actionButton.variant)}
@@ -132,12 +132,12 @@ const CustomSlideShow: React.FC<ImageSlideshowProps> = ({
                 ))}
             </div>
 
-            {/* Navigation arrows - Fixed layout và hover */}
+            {/* Navigation arrows */}
             {showNavigation && (
                 <>
                     <button
                         onClick={goToPrevious}
-                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white border-2 border-black rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 hover:bg-gray-100 active:translate-x-0.5  active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white border-2 border-black rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 hover:bg-gray-100 active:translate-x-0.5 active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
                         aria-label="Previous image"
                     >
                         <svg className="w-5 h-5 md:w-6 md:h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -146,7 +146,7 @@ const CustomSlideShow: React.FC<ImageSlideshowProps> = ({
                     </button>
                     <button
                         onClick={goToNext}
-                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white border-2 border-black rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 hover:bg-gray-100 active:translate-x-0.5  active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white border-2 border-black rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 hover:bg-gray-100 active:translate-x-0.5 active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
                         aria-label="Next image"
                     >
                         <svg className="w-5 h-5 md:w-6 md:h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -156,7 +156,7 @@ const CustomSlideShow: React.FC<ImageSlideshowProps> = ({
                 </>
             )}
 
-            {/* Slide indicators - Fixed layout */}
+            {/* Slide indicators */}
             {showIndicators && (
                 <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 bg-white px-3 py-2 rounded-full border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                     {slides.map((_, index) => (
@@ -164,8 +164,8 @@ const CustomSlideShow: React.FC<ImageSlideshowProps> = ({
                             key={index}
                             onClick={() => goToSlide(index)}
                             className={`w-3 h-3 rounded-full border-2 border-black transition-all duration-300 ${index === currentIndex
-                                    ? 'bg-cyan-400 scale-110 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]'
-                                    : 'bg-white hover:bg-gray-200'
+                                ? 'bg-cyan-400 scale-110 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]'
+                                : 'bg-white hover:bg-gray-200'
                                 }`}
                             aria-label={`Go to slide ${index + 1}`}
                         />
@@ -173,7 +173,7 @@ const CustomSlideShow: React.FC<ImageSlideshowProps> = ({
                 </div>
             )}
 
-            {/* Slide counter - Fixed position */}
+            {/* Slide counter */}
             <div className="absolute top-4 right-4 bg-white border-2 border-black rounded-full px-3 py-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                 <span className="font-black text-sm md:text-base text-black">
                     {currentIndex + 1}
@@ -184,7 +184,7 @@ const CustomSlideShow: React.FC<ImageSlideshowProps> = ({
                 </span>
             </div>
 
-            {/* Decorative corner elements - Simplified */}
+            {/* Decorative corner elements */}
             <div className="absolute top-2 left-2 w-3 h-3 bg-cyan-400 border border-black rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="absolute top-2 right-2 w-3 h-3 bg-purple-400 border border-black rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="absolute bottom-2 left-2 w-3 h-3 bg-yellow-400 border border-black rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>

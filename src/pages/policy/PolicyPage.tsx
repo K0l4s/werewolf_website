@@ -29,6 +29,7 @@ const policies = [
         content: "We use trusted third-party services like Discord for authentication and hosting. These services have their own privacy policies that we ensure align with our commitment to your privacy."
     }
 ];
+const clientId = import.meta.env.VITE_CLIENT_ID;
 
 const PolicyPage = () => {
     const [activePolicy, setActivePolicy] = useState(0);
@@ -54,7 +55,7 @@ const PolicyPage = () => {
                             className="group relative px-8 py-4 bg-gradient-to-r from-cyan-400 to-purple-500 border-2 border-black rounded-xl font-black text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 flex items-center gap-3 cursor-pointer"
                             onClick={() =>
                                 window.open(
-                                    "https://discord.com/oauth2/authorize?client_id=1383209480560443392&scope=bot&permissions=8",
+                                    `https://discord.com/oauth2/authorize?client_id=${clientId}&scope=bot&permissions=8`,
                                     "_blank"
                                 )
                             }
@@ -101,11 +102,10 @@ const PolicyPage = () => {
                     {policies.map((policy, index) => (
                         <div
                             key={policy.title}
-                            className={`bg-white border-2 rounded-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 overflow-hidden group cursor-pointer relative ${
-                                activePolicy === index
-                                    ? "border-cyan-400 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
-                                    : "border-black hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
-                            }`}
+                            className={`bg-white border-2 rounded-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 overflow-hidden group cursor-pointer relative ${activePolicy === index
+                                ? "border-cyan-400 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
+                                : "border-black hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
+                                }`}
                             onClick={() => setActivePolicy(index)}
                         >
                             <div className="flex items-center p-8">
@@ -113,9 +113,8 @@ const PolicyPage = () => {
                                 <h3 className="text-2xl font-black flex-1 text-black">{policy.title}</h3>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    className={`h-6 w-6 transition-transform duration-300 ${
-                                        activePolicy === index ? "rotate-180 text-cyan-500" : "text-black"
-                                    }`}
+                                    className={`h-6 w-6 transition-transform duration-300 ${activePolicy === index ? "rotate-180 text-cyan-500" : "text-black"
+                                        }`}
                                     viewBox="0 0 20 20"
                                     fill="currentColor"
                                 >
@@ -127,9 +126,8 @@ const PolicyPage = () => {
                                 </svg>
                             </div>
                             <div
-                                className={`px-8 pb-8 transition-all duration-300 ${
-                                    activePolicy === index ? "block animate-fadeIn" : "hidden"
-                                }`}
+                                className={`px-8 pb-8 transition-all duration-300 ${activePolicy === index ? "block animate-fadeIn" : "hidden"
+                                    }`}
                             >
                                 <div className="flex items-start gap-6">
                                     <div className="w-1 h-auto bg-gradient-to-b from-cyan-400 to-purple-500 rounded-full mt-2"></div>
@@ -138,9 +136,8 @@ const PolicyPage = () => {
                             </div>
 
                             {/* Hover decoration */}
-                            <div className={`absolute -top-1 -right-1 w-2 h-2 bg-yellow-400 border border-black rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-                                activePolicy === index ? "opacity-100" : ""
-                            }`}></div>
+                            <div className={`absolute -top-1 -right-1 w-2 h-2 bg-yellow-400 border border-black rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${activePolicy === index ? "opacity-100" : ""
+                                }`}></div>
                         </div>
                     ))}
                 </div>
@@ -160,7 +157,7 @@ const PolicyPage = () => {
                                 <div className="w-1 h-auto bg-gradient-to-b from-cyan-400 to-purple-500 rounded-full mt-2 flex-shrink-0"></div>
                                 <p className="text-gray-700 font-medium leading-relaxed">{policy.content}</p>
                             </div>
-                            
+
                             {/* Mobile decoration */}
                             <div className="absolute -top-1 -right-1 w-2 h-2 bg-cyan-400 border border-black rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>

@@ -1,0 +1,67 @@
+{
+    "hero": {
+        "badge": "Điều Khoản & Chính Sách",
+        "title": "Điều Khoản & Chính Sách của Keldo Bot",
+        "subtitle": "Tìm hiểu về điều khoản của chúng tôi và cách đảm bảo trải nghiệm an toàn, vui vẻ cho mọi người chơi.",
+        "button": "Thêm vào Discord"
+    },
+    "intro": {
+        "title": "Điều Khoản & Chính Sách",
+        "description": "Chúng tôi cam kết minh bạch và tôn trọng quyền riêng tư của bạn. Dưới đây là mọi điều bạn cần biết về cách xử lý dữ liệu và quy tắc cộng đồng của chúng tôi."
+    },
+    "terms": [
+        {
+            "title": "Quyền Riêng Tư",
+            "icon": "🔒",
+            "content": "Chúng tôi tôn trọng quyền riêng tư của bạn. Keldo Bot không thu thập thông tin cá nhân ngoài những gì cần thiết cho trải nghiệm chơi. Không có tin nhắn hoặc dữ liệu máy chủ nào được lưu bên ngoài Discord."
+        },
+        {
+            "title": "Sử Dụng Dữ Liệu",
+            "icon": "📊",
+            "content": "Tất cả dữ liệu chỉ được sử dụng để cung cấp và cải thiện trải nghiệm chơi Keldo. Chúng tôi không bán hoặc chia sẻ dữ liệu của bạn cho bên thứ ba."
+        },
+        {
+            "title": "Bảo Mật",
+            "icon": "🛡️",
+            "content": "Chúng tôi sử dụng API bảo mật của Discord và tuân theo các phương pháp tốt nhất để bảo vệ dữ liệu của bạn. Nếu bạn phát hiện lỗ hổng, vui lòng liên hệ ngay."
+        },
+        {
+            "title": "Hướng Dẫn Cộng Đồng",
+            "icon": "👥",
+            "content": "Hãy tôn trọng và tuân thủ Điều Khoản Dịch Vụ của Discord. Lạm dụng, quấy rối hoặc gian lận sẽ dẫn đến cấm sử dụng bot."
+        },
+        {
+            "title": "Liên Hệ",
+            "icon": "📧",
+            "content": "Nếu có thắc mắc, vui lòng gửi email đến trungkienhuynh.contact@gmail.com."
+        }
+    ],
+    "points": [
+        {
+            "title": "An Toàn",
+            "description": "Dữ liệu của bạn được bảo vệ với độ bảo mật cao"
+        },
+        {
+            "title": "Minh Bạch",
+            "description": "Điều khoản rõ ràng, dễ hiểu"
+        },
+        {
+            "title": "Công Bằng",
+            "description": "Mọi thành viên đều được đối xử công bằng"
+        }
+    ],
+    "agreement": {
+        "title": "Khi sử dụng Keldo Bot, bạn đồng ý:",
+        "items": [
+            "Tuân thủ Điều Khoản Dịch Vụ của Discord",
+            "Tôn trọng các thành viên khác",
+            "Không lợi dụng hay lạm dụng bot",
+            "Chấp nhận chính sách sử dụng dữ liệu của chúng tôi"
+        ]
+    },
+    "contact": {
+        "title": "Có câu hỏi về điều khoản?",
+        "description": "Chúng tôi sẵn sàng giải đáp mọi thắc mắc của bạn về điều khoản và chính sách.",
+        "button": "Liên hệ hỗ trợ"
+    }
+}

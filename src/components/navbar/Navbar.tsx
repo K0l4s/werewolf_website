@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../redux/store';
-
+import { useLanguage } from '../../context/LanguageContext';
+import vietnam from '../../assets/images/vietnam.png'
+import eng from '../../assets/images/american.png'
 interface NavItem {
     label: string;
     href: string;
@@ -16,13 +18,7 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({
-    items = [
-        { label: 'Home', href: '/' },
-        { label: 'Policy', href: '/policy' },
-        { label: 'Terms', href: '/term' },
-        { label: 'Document', href: '/doc' },
-        { label: 'Guide', href: '/guide' },
-    ]
+
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const location = useLocation();
@@ -34,12 +30,20 @@ const Navbar: React.FC<NavbarProps> = ({
     const user = useSelector((state: RootState) => state.auth.user);
     const isLogin = useSelector((state: RootState) => state.auth.isAuthenticated);
     const isLoadingAuth = useSelector((state: RootState) => state.auth.isLoading);
-
+    const { language, changeLanguage } = useLanguage();
+    console.log(language)
+    const items = [
+        { label: language.nav.Home, href: '/' },
+        { label: language.nav.Policy, href: '/policy' },
+        { label: language.nav.Terms, href: '/term' },
+        { label: language.nav.Document, href: '/doc' },
+        { label: language.nav.Guide, href: '/guide' },
+    ]
     // Render loading state
     const renderAuthButton = () => {
         if (isLoadingAuth) {
             return (
-                <button 
+                <button
                     disabled
                     className="flex items-center justify-center min-w-[140px] bg-gray-300 border-3 border-black rounded-xl px-6 py-3 font-black text-gray-600 shadow-brutal-sm cursor-not-allowed"
                 >
@@ -73,7 +77,7 @@ const Navbar: React.FC<NavbarProps> = ({
                         </div>
                     </div>
                 </Link>
-                
+
             );
         }
 
@@ -81,7 +85,7 @@ const Navbar: React.FC<NavbarProps> = ({
             <a href={url} className="flex-shrink-0">
                 <button className="relative group bg-gradient-to-r from-cyan-400 to-purple-500 border-3 border-black rounded-xl px-6 py-3 font-black text-black shadow-brutal hover:translate-x-1 hover:translate-y-1 hover:shadow-brutal-lg transition-all duration-300 flex items-center">
                     <LogIn size={18} className="mr-2" />
-                    <span>Login</span>
+                    <span>{language.nav.Login}</span>
                     <div className="absolute -top-1 -right-1 w-2 h-2 bg-cyan-400 border border-black rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </button>
             </a>
@@ -92,7 +96,7 @@ const Navbar: React.FC<NavbarProps> = ({
         <nav className="relative bg-white border-3 border-black rounded-2xl shadow-brutal-xl sticky top-4 z-50 mx-auto w-[95%] max-w-6xl">
             {/* Background gradient */}
             <div className="absolute top-2 left-2 right-2 bottom-2 bg-gradient-to-r from-cyan-400/10 to-purple-500/10 rounded-xl -z-10"></div>
-            
+
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">
                     {/* Logo */}
@@ -120,11 +124,10 @@ const Navbar: React.FC<NavbarProps> = ({
                             <Link
                                 key={item.label}
                                 to={item.href}
-                                className={`relative group px-4 py-2 rounded-lg font-bold transition-all duration-300 border-2 ${
-                                    currentHref === item.href 
-                                        ? 'bg-gray-100 text-black border-black shadow-brutal-sm' 
-                                        : 'text-black border-transparent hover:border-black hover:bg-gray-50 hover:shadow-brutal-xs'
-                                }`}
+                                className={`relative group px-4 py-2 rounded-lg font-bold transition-all duration-300 border-2 ${currentHref === item.href
+                                    ? 'bg-gray-100 text-black border-black shadow-brutal-sm'
+                                    : 'text-black border-transparent hover:border-black hover:bg-gray-50 hover:shadow-brutal-xs'
+                                    }`}
                             >
                                 <span className="relative z-10">{item.label}</span>
                                 {currentHref === item.href && (
@@ -135,7 +138,14 @@ const Navbar: React.FC<NavbarProps> = ({
                             </Link>
                         ))}
                     </div>
-
+                    <div className='flex items-center gap-2'>
+                        <button onClick={() => changeLanguage('vi')} className='w-6 h-6'>
+                            <img src={vietnam} alt="Vietnam" className='w-full h-full' />
+                        </button>
+                        <button onClick={() => changeLanguage('en')} className='w-6 h-6'>
+                            <img src={eng} alt="Eng" className='w-full h-full' />
+                        </button>
+                    </div>
                     {/* Right side buttons */}
                     <div className="flex items-center space-x-3">
                         {renderAuthButton()}
@@ -165,23 +175,22 @@ const Navbar: React.FC<NavbarProps> = ({
                         <div className="relative bg-white border-3 border-black rounded-2xl shadow-brutal-lg p-4 mt-2">
                             {/* Background gradient */}
                             <div className="absolute top-2 left-2 right-2 bottom-2 bg-gradient-to-r from-cyan-400/10 to-purple-500/10 rounded-xl -z-10"></div>
-                            
+
                             {items.map((item) => (
                                 <Link
                                     key={item.label}
                                     to={item.href}
-                                    className={`flex items-center justify-between group px-4 py-3 rounded-xl font-bold transition-all duration-300 border-2 mb-2 last:mb-0 ${
-                                        currentHref === item.href 
-                                            ? 'bg-gray-100 text-black border-black shadow-brutal-sm' 
-                                            : 'text-black border-transparent hover:border-black hover:bg-gray-50 hover:shadow-brutal-xs'
-                                    }`}
+                                    className={`flex items-center justify-between group px-4 py-3 rounded-xl font-bold transition-all duration-300 border-2 mb-2 last:mb-0 ${currentHref === item.href
+                                        ? 'bg-gray-100 text-black border-black shadow-brutal-sm'
+                                        : 'text-black border-transparent hover:border-black hover:bg-gray-50 hover:shadow-brutal-xs'
+                                        }`}
                                     onClick={() => setIsOpen(false)}
                                 >
                                     <span>{item.label}</span>
                                     <div className={`w-2 h-2 bg-cyan-400 border border-black rounded-full opacity-0 group-hover:opacity-100 ${currentHref === item.href ? 'opacity-100' : ''}`}></div>
                                 </Link>
                             ))}
-                            
+
                             {/* Mobile auth section */}
                             <div className="border-t-2 border-black pt-4 mt-4">
                                 {isLoadingAuth ? (
@@ -190,8 +199,8 @@ const Navbar: React.FC<NavbarProps> = ({
                                         <span className="font-bold">Loading...</span>
                                     </div>
                                 ) : isLogin && user ? (
-                                    <Link 
-                                        to="/dashboard" 
+                                    <Link
+                                        to="/dashboard"
                                         className="flex items-center space-x-3 group"
                                         onClick={() => setIsOpen(false)}
                                     >
@@ -210,13 +219,13 @@ const Navbar: React.FC<NavbarProps> = ({
                                         </div>
                                     </Link>
                                 ) : (
-                                    <a 
+                                    <a
                                         href={url}
                                         className="flex items-center justify-center w-full bg-gradient-to-r from-cyan-400 to-purple-500 border-3 border-black rounded-xl px-4 py-3 font-black text-black shadow-brutal-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-brutal-xs transition-all duration-300"
                                         onClick={() => setIsOpen(false)}
                                     >
                                         <LogIn size={16} className="mr-2" />
-                                        Login with Discord
+                                        {language.nav.Login}
                                     </a>
                                 )}
                             </div>

@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "badge": "Terms & Conditions",
+    "title": "Keldo Bot Terms & Conditions",
+    "subtitle": "Learn about our terms and how we ensure a safe, fun experience for all players.",
+    "button": "Add to Discord"
+  },
+  "intro": {
+    "title": "Our Terms & Policies",
+    "description": "We're committed to transparency and your privacy. Below you'll find everything you need to know about how we handle your data and our community expectations."
+  },
+  "terms": [
+    {
+      "title": "Privacy",
+      "icon": "🔒",
+      "content": "We respect your privacy. Keldo Bot does not collect personal information beyond what is necessary for gameplay. No messages or server data are stored outside of Discord."
+    },
+    {
+      "title": "Data Usage",
+      "icon": "📊",
+      "content": "All data is used solely to provide and improve the Keldo game experience. We do not sell or share your data with third parties."
+    },
+    {
+      "title": "Security",
+      "icon": "🛡️",
+      "content": "We use Discord's secure APIs and follow best practices to keep your data safe. If you find a vulnerability, please contact us immediately."
+    },
+    {
+      "title": "Community Guidelines",
+      "icon": "👥",
+      "content": "Be respectful and follow Discord's Terms of Service. Abuse, harassment, or cheating will result in bans from the bot."
+    },
+    {
+      "title": "Contact",
+      "icon": "📧",
+      "content": "For questions or concerns, email us at trungkienhuynh.contact@gmail.com."
+    }
+  ],
+  "points": [
+    { "title": "Secure", "description": "Your data is protected with enterprise security" },
+    { "title": "Transparent", "description": "Clear terms you can read and understand" },
+    { "title": "Fair", "description": "Equal treatment for all community members" }
+  ],
+  "agreement": {
+    "title": "By using Keldo Bot, you agree to:",
+    "items": [
+      "Follow Discord's Terms of Service",
+      "Respect other community members",
+      "Not exploit or abuse the bot",
+      "Accept our data usage policies"
+    ]
+  },
+  "contact": {
+    "title": "Questions About Our Terms?",
+    "description": "We're here to help clarify any questions you might have about our terms and conditions.",
+    "button": "Contact Support"
+  }
+}

@@ -13,6 +13,7 @@ import { axiosNoAuth } from "../../utils/axiosIntance";
 import CustomSlideShow from "../../components/custom/CustomSlideShow";
 import ScrollDownButton from "../../components/custom/ScrollDownButton";
 import { ArrowRight, Users, Zap, GamepadIcon, Bot } from "lucide-react";
+// import EmbedBuilder from "../../components/custom/EmbedBuilder";
 
 const Homepage = () => {
     const [health, setHealth] = useState<{
@@ -41,7 +42,21 @@ const Homepage = () => {
 
     const slides = [
         {
-            image: 'https://pantado.edu.vn/storage/media/gift-va-present-4_1636424009.jpg',
+            image: 'https://www.innerdrive.co.uk/wp-content/uploads/2024/01/Why-its-good-to-ask-for-help.jpg',
+            title: 'Ticket System',
+            description: 'Useful ticket system for your server.”',
+            label: 'New Feature',
+            labelColor: 'bg-yellow-500',
+            actionButton: {
+                text: 'Learn More',
+                onClick: () => {
+                    window.open('/guide/giveaway', '_blank');
+                },
+                variant: 'secondary' as const
+            }
+        },
+        {
+            image: 'https://img.freepik.com/premium-vector/giveaway-logo-template-social-media-post-website-banner_123447-3076.jpg',
             title: 'Giveaway System',
             description: 'A user creates a giveaway, the admin approves it, and then it goes live.”',
             label: 'New Feature',
@@ -142,9 +157,12 @@ const Homepage = () => {
     const slidesWithCustomActions = [
         ...slides,
     ];
+    const clientId = import.meta.env.VITE_CLIENT_ID;
+   
 
     return (
         <div className="min-h-screen overflow-hidden">
+            {/* <EmbedBuilder  /> */}
             {/* HERO SECTION */}
             <section className="max-w-7xl mx-auto px-6 py-12">
                 <div className="mb-12">
@@ -225,7 +243,7 @@ const Homepage = () => {
                                 className="group relative bg-gradient-to-r from-cyan-400 to-purple-500 border-2 border-black rounded-xl px-8 py-4 font-black text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:from-cyan-300 hover:to-purple-400 flex items-center justify-center gap-2 cursor-pointer"
                                 onClick={() =>
                                     window.open(
-                                        "https://discord.com/oauth2/authorize?client_id=1383209480560443392&scope=bot&permissions=8",
+                                        `https://discord.com/oauth2/authorize?client_id=${clientId}&scope=bot&permissions=8`,
                                         "_blank"
                                     )
                                 }
@@ -323,7 +341,7 @@ const Homepage = () => {
                     linkTo="/guide/giveaway"
                 />
                 <FeatureCard
-                align="right"
+                    align="right"
                     title="Voice Channel & Activity System"
                     text="Keldo notifies when members join or leave voice channels, and keeps daily activity streaks alive across your server."
                     imgSrc={voice}
@@ -331,7 +349,7 @@ const Homepage = () => {
                 />
 
                 <FeatureCard
-                    
+
                     title="Play Werewolf Right in Discord"
                     text="Enjoy the classic Werewolf (Mafia) game with automated logic and smooth UI — no moderator needed!"
                     imgSrc={werewolf}
@@ -339,21 +357,21 @@ const Homepage = () => {
                 />
 
                 <FeatureCard
-                align="right"
+                    align="right"
                     title="Minigames & Soul Land Integration"
                     text="Challenge friends in fun mini-games or awaken your spirit to become a Spirit Master in the Soul Land world."
                     imgSrc={minigame}
                 />
 
                 <FeatureCard
-                    
+
                     title="Raise Pets Together"
                     text="Let your community raise adorable pets together, feed them, and compete on global and server leaderboards."
                     imgSrc={pet}
                 />
 
                 <FeatureCard
-                align="right"
+                    align="right"
                     title="Item Shop & Profile System"
                     text="Buy food, boosters, and unique items in the store. Customize your profile and show off your achievements."
                     imgSrc={shop}
@@ -390,7 +408,7 @@ const Homepage = () => {
                     ))}
                 </div>
             </section>
-        </div>
+        </div >
     );
 };
 

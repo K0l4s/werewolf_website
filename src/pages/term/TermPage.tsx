@@ -1,43 +1,14 @@
 import { useState } from "react";
 import mascot from "../../assets/images/mascot.png";
 import { Shield, FileText, Users, Mail, Bot, CheckCircle } from "lucide-react";
+import { useLanguage } from "../../context/LanguageContext";
 
-const terms = [
-  {
-    title: "Privacy",
-    icon: "🔒",
-    content:
-      "We respect your privacy. Keldo Bot does not collect personal information beyond what is necessary for gameplay. No messages or server data are stored outside of Discord.",
-  },
-  {
-    title: "Data Usage",
-    icon: "📊",
-    content:
-      "All data is used solely to provide and improve the Keldo game experience. We do not sell or share your data with third parties.",
-  },
-  {
-    title: "Security",
-    icon: "🛡️",
-    content:
-      "We use Discord's secure APIs and follow best practices to keep your data safe. If you find a vulnerability, please contact us immediately.",
-  },
-  {
-    title: "Community Guidelines",
-    icon: "👥",
-    content:
-      "Be respectful and follow Discord's Terms of Service. Abuse, harassment, or cheating will result in bans from the bot.",
-  },
-  {
-    title: "Contact",
-    icon: "📧",
-    content:
-      "For questions or concerns, email us at trungkienhuynh.contact@gmail.com.",
-  },
-];
 
 const TermPage = () => {
   const [activeTerm, setActiveTerm] = useState(0);
-
+  const clientId = import.meta.env.VITE_CLIENT_ID;
+  const { language } = useLanguage();
+  const t = language.term;
   return (
     <div className="min-h-screen overflow-x-hidden">
       {/* HERO SECTION */}
@@ -46,25 +17,25 @@ const TermPage = () => {
           <div className="flex-1">
             <div className="inline-flex items-center mb-4 px-4 py-2 rounded-full bg-cyan-100 border-2 border-black text-black text-sm font-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
               <span className="w-2 h-2 bg-cyan-400 border border-black rounded-full mr-2 animate-pulse"></span>
-              Terms & Conditions
+              {t.hero.badge}
             </div>
             <h1 className="text-5xl md:text-6xl font-black mb-6 text-black">
               Keldo Bot <br />
-              <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Terms & Conditions</span>
+              <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">{t.hero.badge}</span>
             </h1>
             <p className="text-gray-700 text-lg max-w-xl mb-8 font-medium">
-              Learn about our terms and how we ensure a safe, fun experience for all players.
+              {t.hero.subtitle}
             </p>
             <button
               className="group relative px-8 py-4 bg-gradient-to-r from-cyan-400 to-purple-500 border-2 border-black rounded-xl font-black text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 flex items-center gap-3 cursor-pointer"
               onClick={() =>
                 window.open(
-                  "https://discord.com/oauth2/authorize?client_id=1383209480560443392&scope=bot&permissions=8",
+                  `https://discord.com/oauth2/authorize?client_id=${clientId}&scope=bot&permissions=8`,
                   "_blank"
                 )
               }
             >
-              <span>Add to Discord</span>
+              <span>{t.hero.button}</span>
               <Bot size={20} className="group-hover:scale-110 transition-transform duration-300" />
               {/* Button decoration */}
               <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 border border-black rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -94,21 +65,20 @@ const TermPage = () => {
       <section className="max-w-4xl mx-auto px-6 py-10">
         <div className="mb-12 text-center">
           <div className="bg-white border-2 border-black rounded-2xl p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-8">
-            <h2 className="text-4xl font-black mb-4 text-black">Our Terms & Policies</h2>
+            <h2 className="text-4xl font-black mb-4 text-black">{t.intro.title}</h2>
             <p className="text-gray-700 text-lg font-medium max-w-2xl mx-auto">
-              We're committed to transparency and your privacy. Below you'll find everything you need to know about how we handle your data and our community expectations.
-            </p>
+              {t.intro.description}            </p>
           </div>
         </div>
 
         {/* DESKTOP: Accordion-style terms */}
         <div className="hidden md:block space-y-6">
-          {terms.map((term, index) => (
+          {t.terms.map((term: any, index: any) => (
             <div
               key={term.title}
               className={`bg-white border-2 rounded-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 overflow-hidden group cursor-pointer ${activeTerm === index
-                  ? "border-cyan-400 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
-                  : "border-black hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
+                ? "border-cyan-400 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
+                : "border-black hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
                 }`}
               onClick={() => setActiveTerm(index)}
             >
@@ -144,7 +114,7 @@ const TermPage = () => {
 
         {/* MOBILE: Always expanded cards */}
         <div className="md:hidden space-y-6">
-          {terms.map((term) => (
+          {t.terms.map((term: any) => (
             <div
               key={term.title}
               className="bg-white border-2 border-black rounded-2xl p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group relative"
@@ -169,18 +139,18 @@ const TermPage = () => {
           {[
             {
               icon: <Shield className="w-8 h-8" />,
-              title: "Secure",
-              description: "Your data is protected with enterprise security"
+              title: t.points[0].title,
+              description: t.points[0].description,
             },
             {
               icon: <FileText className="w-8 h-8" />,
-              title: "Transparent",
-              description: "Clear terms you can read and understand"
+              title: t.points[1].title,
+              description: t.points[1].description,
             },
             {
               icon: <Users className="w-8 h-8" />,
-              title: "Fair",
-              description: "Equal treatment for all community members"
+              title: t.points[2].title,
+              description: t.points[2].description,
             }
           ].map((item, index) => (
             <div key={index} className="bg-white border-2 border-black rounded-xl p-6 text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 group">
@@ -200,12 +170,13 @@ const TermPage = () => {
               <CheckCircle className="w-6 h-6 text-green-600" />
             </div>
             <div>
-              <h3 className="text-2xl font-black text-black mb-2">By using Keldo Bot, you agree to:</h3>
+              <h3 className="text-2xl font-black text-black mb-2">{t.agreement.title}</h3>
               <ul className="text-gray-700 font-medium space-y-2">
-                <li className="flex items-center gap-2">• Follow Discord's Terms of Service</li>
+                {/* <li className="flex items-center gap-2">• Follow Discord's Terms of Service</li>
                 <li className="flex items-center gap-2">• Respect other community members</li>
                 <li className="flex items-center gap-2">• Not exploit or abuse the bot</li>
-                <li className="flex items-center gap-2">• Accept our data usage policies</li>
+                <li className="flex items-center gap-2">• Accept our data usage policies</li> */}
+                {t.agreement.items.map((i: any) => <li className="flex items-center gap-2">• {i}</li>)}
               </ul>
             </div>
           </div>
@@ -213,16 +184,16 @@ const TermPage = () => {
 
         {/* Contact Section */}
         <div className="bg-white border-2 border-black rounded-2xl p-8 mt-8 text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-          <h3 className="text-2xl font-black text-black mb-4">Questions About Our Terms?</h3>
+          <h3 className="text-2xl font-black text-black mb-4">{t.contact.title}</h3>
           <p className="text-gray-700 font-medium mb-6">
-            We're here to help clarify any questions you might have about our terms and conditions.
+            {t.contact.description}
           </p>
           <a
             href="mailto:trungkienhuynh.contact@gmail.com?subject=Keldo Bot Terms Question"
             className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white border-2 border-black rounded-xl font-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all duration-300"
           >
             <Mail size={18} />
-            Contact Support
+            {t.contact.button}
           </a>
         </div>
       </section>

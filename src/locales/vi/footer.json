@@ -1,0 +1,38 @@
+{
+  "brand": {
+    "title": "Keldo Bot",
+    "description": "Chơi Ma Sói cùng bạn bè và trải nghiệm các trò chơi từ Keldo trong Discord của bạn."
+  },
+  "sections": {
+    "pages": "Trang Website",
+    "links": "Liên Kết Khác",
+    "donate": "Ủng Hộ",
+    "payment": "Thanh toán với:"
+  },
+  "pages": {
+    "home": "Trang chủ",
+    "membership": "Thành viên",
+    "documentation": "Tài liệu",
+    "privacy": "Chính sách bảo mật",
+    "terms": "Điều khoản dịch vụ",
+    "guide": "Hướng dẫn",
+    "premium": "Gói cao cấp"
+  },
+  "links": {
+    "github": "GitHub",
+    "discord": "Máy chủ Discord",
+    "topgg": "Trang Top.gg",
+    "support": "Máy chủ hỗ trợ"
+  },
+  "bottom": {
+    "copyright": "© 2025 Keldo Bot. Mọi quyền được bảo lưu.",
+    "developer": "Phát triển bởi Huỳnh Trung Kiên (Kiên Học Code / Kolas)",
+    "contact": "Liên hệ công việc:",
+    "owner": "HUỲNH TRUNG KIÊN",
+    "account": "STK:"
+  },
+  "tooltip": {
+    "coming": "Sắp ra mắt",
+    "momo": "Ví điện tử Momo"
+  }
+}

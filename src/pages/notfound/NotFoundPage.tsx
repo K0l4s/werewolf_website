@@ -165,23 +165,23 @@ const NotFoundPage = () => {
         };
         return configs[currentSeason];
     };
+    const clientId = import.meta.env.VITE_CLIENT_ID;
 
     const seasonConfig = getSeasonConfig();
 
     return (
         <div className={`min-h-screen bg-gradient-to-b ${seasonConfig.gradient} text-white flex items-center justify-center px-4 relative overflow-hidden`}>
-            
+
             {/* Hiệu ứng rơi cho các mùa */}
             {(currentSeason === "winter" || currentSeason === "autumn" || currentSeason === "spring") && (
                 <div className="absolute inset-0 pointer-events-none overflow-hidden">
                     {fallingElements.map(element => (
                         <div
                             key={element.id}
-                            className={`absolute ${
-                                currentSeason === "winter" ? "text-white" : 
-                                currentSeason === "autumn" ? "text-yellow-500" : 
-                                "text-pink-300"
-                            } animate-fall-fade`}
+                            className={`absolute ${currentSeason === "winter" ? "text-white" :
+                                currentSeason === "autumn" ? "text-yellow-500" :
+                                    "text-pink-300"
+                                } animate-fall-fade`}
                             style={{
                                 left: `${element.left}%`,
                                 animationDelay: `${element.delay}s`,
@@ -237,7 +237,7 @@ const NotFoundPage = () => {
                     </Link>
 
                     <a
-                        href="https://discord.com/oauth2/authorize?client_id=1383209480560443392&scope=bot&permissions=8"
+                        href={`https://discord.com/oauth2/authorize?client_id=${clientId}&scope=bot&permissions=8`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={`p-4 ${seasonConfig.bgColor} ${seasonConfig.hoverBg} border ${seasonConfig.borderColor} rounded-lg transition-all duration-300 flex flex-col items-center transform hover:scale-105`}
@@ -266,9 +266,9 @@ const NotFoundPage = () => {
                 <footer className="mt-12 pt-8 border-t border-zinc-700 text-sm text-zinc-400">
                     <p>© 2025 Keldo Bot. All rights reserved.</p>
                     <p className="mt-2">
-                        Developed by Huỳnh Trung Kiên (Kiên Học Code / Kolas)  
-                        <a 
-                            href="mailto:trungkienhuynh.contact@gmail.com?subject=Keldo Bot Inquiry" 
+                        Developed by Huỳnh Trung Kiên (Kiên Học Code / Kolas)
+                        <a
+                            href="mailto:trungkienhuynh.contact@gmail.com?subject=Keldo Bot Inquiry"
                             className="text-blue-400 hover:text-blue-300 hover:underline ml-1"
                         >
                             Contact here
