@@ -1,117 +1,23 @@
 import { useState } from 'react';
-import { ChevronRight, Users, GamepadIcon, Clock, AlertTriangle, CheckCircle, Moon, Crown, Shield, Swords } from 'lucide-react';
+import { ChevronRight, Users, GamepadIcon, Clock, AlertTriangle, CheckCircle, Moon } from 'lucide-react';
+import { useLanguage } from '../../../context/LanguageContext';
+
 
 const WerewolfGuide = () => {
     const [activeSection, setActiveSection] = useState('commands');
+    const {language}= useLanguage()
+    const t = language.WerewolfGuide;
 
-    const commands = [
-        {
-            command: 'Wnew',
-            description: 'Create a new game room',
-            usage: 'Use when you want to start a new game session',
-            example: 'Wnew',
-            important: true
-        },
-        {
-            command: 'Wjoin',
-            description: 'Join the current game room',
-            usage: 'Use after someone has created a room with Wnew',
-            example: 'Wjoin',
-            important: true
-        },
-        {
-            command: 'Wleave',
-            description: 'Leave the game room',
-            usage: 'Use when you want to exit the game before it starts',
-            example: 'Wleave',
-            important: false
-        },
-        {
-            command: 'Wstart',
-            description: 'Start the game',
-            usage: 'Use when enough players have joined',
-            example: 'Wstart',
-            important: true
-        }
-    ];
-
-    const gameFlow = [
-        {
-            phase: 'SETUP PHASE',
-            steps: [
-                'Game master or any player uses **Wnew** to create a new room',
-                'Other players use **Wjoin** to join the game',
-                'When enough players have joined, use **Wstart** to begin the game'
-            ]
-        },
-        {
-            phase: 'NIGHT - DAY CYCLE',
-            steps: [
-                '🔴 **Night Phase**: Special roles (Werewolves, Seer, Bodyguard...) perform their actions',
-                '🟢 **Day Phase**: All players discuss and vote to eliminate someone',
-                'Game automatically progresses when all actions are completed'
-            ]
-        },
-        {
-            phase: 'END GAME',
-            steps: [
-                'Villagers win when all Werewolves are eliminated',
-                'Werewolves win when their numbers equal or exceed the Villagers',
-                'Use **Wnew** to create a new game after completion'
-            ]
-        }
-    ];
-
-    const tips = [
-        'Perform actions SLOWLY and ONE PLAYER AT A TIME',
-        'Wait for bot confirmation before the next player takes action',
-        'Avoid spamming commands to prevent game errors',
-        'Follow bot instructions carefully in each phase',
-        'If errors occur, use Wnew to create a new game',
-        'Be patient during role assignments and phase transitions',
-        'Pay attention to private messages from the bot for your role instructions'
-    ];
-
-    const roleExamples = [
-        {
-            role: 'Werewolf',
-            team: 'Werewolves',
-            description: 'Kill one villager each night. Work with other werewolves to eliminate villagers.',
-            nightAction: 'Choose one player to eliminate',
-            icon: '🐺',
-            color: 'bg-red-400'
-        },
-        {
-            role: 'Seer',
-            team: 'Villagers',
-            description: 'Can check one player\'s role each night to determine if they are werewolf or not.',
-            nightAction: 'Investigate one player\'s alignment',
-            icon: '🔮',
-            color: 'bg-purple-400'
-        },
-        {
-            role: 'Villager',
-            team: 'Villagers',
-            description: 'No special abilities. Use discussion and voting to find werewolves.',
-            nightAction: 'No action',
-            icon: '👨‍🌾',
-            color: 'bg-green-400'
-        },
-        {
-            role: 'Bodyguard',
-            team: 'Villagers',
-            description: 'Can protect one player each night from werewolf attacks.',
-            nightAction: 'Protect one player',
-            icon: '🛡️',
-            color: 'bg-blue-400'
-        }
-    ];
+    const commands = t.commands;
+    const gameFlow = t.gameFlow;
+    const tips = t.tips;
+    const roleExamples = t.roleExamples;
 
     const navItems = [
-        { id: 'commands', label: 'Commands', icon: GamepadIcon },
-        { id: 'flow', label: 'Game Flow', icon: Clock },
-        { id: 'roles', label: 'Roles', icon: Users },
-        { id: 'tips', label: 'Tips', icon: AlertTriangle }
+        { id: 'commands', label: t.navItems.commands, icon: GamepadIcon },
+        { id: 'flow', label: t.navItems.flow, icon: Clock },
+        { id: 'roles', label: t.navItems.roles, icon: Users },
+        { id: 'tips', label: t.navItems.tips, icon: AlertTriangle }
     ];
 
     return (
@@ -126,10 +32,10 @@ const WerewolfGuide = () => {
                         <div className="absolute bottom-4 right-4 w-3 h-3 bg-green-400 border-2 border-black rounded-full"></div>
                         
                         <h1 className="text-5xl md:text-6xl font-black text-black mb-4">
-                            Werewolf Game Guide
+                            {t.title}
                         </h1>
                         <p className="text-xl text-gray-700 font-medium max-w-2xl mx-auto">
-                            Complete guide to playing Werewolf on Discord server
+                            {t.subtitle}
                         </p>
                     </div>
                 </div>
@@ -162,11 +68,11 @@ const WerewolfGuide = () => {
                 {activeSection === 'commands' && (
                     <div className="space-y-8">
                         <h2 className="text-4xl font-black text-center mb-8 text-black">
-                            📋 Command List
+                            📋 {t.commandsTitle}
                         </h2>
                         
                         <div className="grid gap-6 md:grid-cols-2">
-                            {commands.map((cmd, index) => (
+                            {commands.map((cmd:any, index:any) => (
                                 <div 
                                     key={index}
                                     className={`
@@ -191,7 +97,7 @@ const WerewolfGuide = () => {
                                         </div>
                                         {cmd.important && (
                                             <span className="bg-red-400 border-2 border-black text-white px-3 py-1 rounded-full text-xs font-black shadow-brutal-xs">
-                                                IMPORTANT
+                                                {t.important}
                                             </span>
                                         )}
                                     </div>
@@ -202,11 +108,11 @@ const WerewolfGuide = () => {
                                     
                                     <div className="space-y-3">
                                         <div>
-                                            <span className="text-black font-black">Usage:</span>
+                                            <span className="text-black font-black">{t.usage}</span>
                                             <p className="text-gray-700 ml-2 font-medium">{cmd.usage}</p>
                                         </div>
                                         <div>
-                                            <span className="text-black font-black">Example:</span>
+                                            <span className="text-black font-black">{t.example}</span>
                                             <code className="block bg-gray-100 border-2 border-black text-gray-800 px-3 py-2 rounded-lg mt-1 font-mono font-bold shadow-brutal-xs">
                                                 {cmd.example}
                                             </code>
@@ -224,14 +130,10 @@ const WerewolfGuide = () => {
                             <div className="absolute top-3 left-3 right-3 bottom-3 bg-gradient-to-br from-yellow-500/10 to-orange-500/10 rounded-xl -z-10"></div>
                             
                             <h3 className="text-3xl font-black text-center mb-8 text-black">
-                                🎯 Command Execution Sequence
+                                🎯 {t.commandSequence.title}
                             </h3>
                             <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center">
-                                {[
-                                    { step: '1️⃣', command: 'Wnew', desc: 'Create new room' },
-                                    { step: '2️⃣', command: 'Wjoin', desc: 'Join game' },
-                                    { step: '3️⃣', command: 'Wstart', desc: 'Start game' }
-                                ].map((item, index) => (
+                                {t.commandSequence.items.map((item:any, index:any) => (
                                     <div key={index} className="flex-1">
                                         <div className="text-4xl mb-3">{item.step}</div>
                                         <code className="text-2xl font-black text-white bg-black px-4 py-2 rounded-xl shadow-brutal">
@@ -243,10 +145,9 @@ const WerewolfGuide = () => {
                             </div>
                             
                             <div className="mt-6 p-4 bg-yellow-50 border-2 border-black rounded-xl shadow-brutal-sm">
-                                <h4 className="text-xl font-black text-black mb-3">⚠️ Important Note:</h4>
+                                <h4 className="text-xl font-black text-black mb-3">⚠️ {t.important}:</h4>
                                 <p className="text-gray-700 font-medium">
-                                    After finishing a game, you must use <code className="bg-gray-100 border border-black px-2 py-1 rounded font-mono font-bold">Wnew</code> again to create a new game session. 
-                                    The previous room becomes inactive once the game ends.
+                                    {t.commandSequence.importantNote}
                                 </p>
                             </div>
                         </div>
@@ -257,10 +158,10 @@ const WerewolfGuide = () => {
                 {activeSection === 'flow' && (
                     <div className="space-y-8">
                         <h2 className="text-4xl font-black text-center mb-8 text-black">
-                            🔄 Game Flow
+                            🔄 {t.flowTitle}
                         </h2>
                         
-                        {gameFlow.map((phase, index) => (
+                        {gameFlow.map((phase:any, index:any) => (
                             <div key={index} className="relative bg-white border-3 border-black rounded-2xl p-6 shadow-brutal">
                                 <div className="absolute top-2 left-2 right-2 bottom-2 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl -z-10"></div>
                                 
@@ -274,7 +175,7 @@ const WerewolfGuide = () => {
                                 </div>
                                 
                                 <div className="space-y-4">
-                                    {phase.steps.map((step, stepIndex) => (
+                                    {phase.steps.map((step:any, stepIndex:any) => (
                                         <div key={stepIndex} className="flex items-start gap-4">
                                             <div className="bg-white border-2 border-black rounded-lg p-2 shadow-brutal-xs flex-shrink-0">
                                                 <ChevronRight size={16} className="text-black" />
@@ -293,29 +194,33 @@ const WerewolfGuide = () => {
                             <div className="absolute top-3 left-3 right-3 bottom-3 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl -z-10"></div>
                             
                             <h3 className="text-3xl font-black text-center mb-8 text-black">
-                                🌙🌞 Day & Night Cycle
+                                🌙🌞 {t.dayNightCycle.title}
                             </h3>
                             <div className="grid md:grid-cols-2 gap-8">
                                 <div className="text-center">
                                     <div className="text-5xl mb-4">🌙</div>
-                                    <h4 className="text-2xl font-black text-red-600 mb-4 border-2 border-red-400 bg-red-50 px-4 py-2 rounded-xl shadow-brutal-sm">NIGHT PHASE</h4>
+                                    <h4 className="text-2xl font-black text-red-600 mb-4 border-2 border-red-400 bg-red-50 px-4 py-2 rounded-xl shadow-brutal-sm">
+                                        {t.dayNightCycle.night.title}
+                                    </h4>
                                     <ul className="text-gray-700 space-y-3 text-left font-medium">
-                                        <li className="flex items-center gap-2">• <Swords size={16} className="text-red-600" /> Werewolves choose target</li>
-                                        <li className="flex items-center gap-2">• <Moon size={16} className="text-purple-600" /> Seer investigates players</li>
-                                        <li className="flex items-center gap-2">• <Shield size={16} className="text-blue-600" /> Bodyguard protects players</li>
-                                        <li className="flex items-center gap-2">• <Crown size={16} className="text-yellow-600" /> Other special roles act</li>
-                                        <li className="flex items-center gap-2">• ⏰ Actions happen ONE AT A TIME</li>
+                                        {t.dayNightCycle.night.items.map((item:any, index:any) => (
+                                            <li key={index} className="flex items-center gap-2">
+                                                • {item}
+                                            </li>
+                                        ))}
                                     </ul>
                                 </div>
                                 <div className="text-center">
                                     <div className="text-5xl mb-4">🌞</div>
-                                    <h4 className="text-2xl font-black text-green-600 mb-4 border-2 border-green-400 bg-green-50 px-4 py-2 rounded-xl shadow-brutal-sm">DAY PHASE</h4>
+                                    <h4 className="text-2xl font-black text-green-600 mb-4 border-2 border-green-400 bg-green-50 px-4 py-2 rounded-xl shadow-brutal-sm">
+                                        {t.dayNightCycle.day.title}
+                                    </h4>
                                     <ul className="text-gray-700 space-y-3 text-left font-medium">
-                                        <li className="flex items-center gap-2">• 💬 Public discussion</li>
-                                        <li className="flex items-center gap-2">• 🗳️ Vote to eliminate someone</li>
-                                        <li className="flex items-center gap-2">• 📢 Announce voting results</li>
-                                        <li className="flex items-center gap-2">• 🚪 Eliminated player leaves</li>
-                                        <li className="flex items-center gap-2">• ✅ Majority vote decides</li>
+                                        {t.dayNightCycle.day.items.map((item:any, index:any) => (
+                                            <li key={index} className="flex items-center gap-2">
+                                                • {item}
+                                            </li>
+                                        ))}
                                     </ul>
                                 </div>
                             </div>
@@ -327,11 +232,11 @@ const WerewolfGuide = () => {
                 {activeSection === 'roles' && (
                     <div className="space-y-8">
                         <h2 className="text-4xl font-black text-center mb-8 text-black">
-                            👥 Game Roles
+                            👥 {t.rolesTitle}
                         </h2>
                         
                         <div className="grid gap-6 md:grid-cols-2">
-                            {roleExamples.map((role, index) => (
+                            {roleExamples.map((role:any, index:any) => (
                                 <div 
                                     key={index}
                                     className="relative group bg-white border-3 border-black rounded-2xl p-6 shadow-brutal transition-all duration-300 hover:-translate-y-1 hover:shadow-brutal-lg"
@@ -347,7 +252,7 @@ const WerewolfGuide = () => {
                                         </div>
                                         <span className={`
                                             border-2 border-black px-3 py-1 rounded-full text-xs font-black shadow-brutal-xs
-                                            ${role.team === 'Werewolves' ? 'bg-red-400 text-black' : 'bg-green-400 text-black'}
+                                            ${role.team === t.werewolves ? 'bg-red-400 text-black' : 'bg-green-400 text-black'}
                                         `}>
                                             {role.team}
                                         </span>
@@ -360,7 +265,7 @@ const WerewolfGuide = () => {
                                     <div className="bg-gray-50 border-2 border-black rounded-lg p-4 shadow-brutal-xs">
                                         <div className="flex items-center gap-2 mb-2">
                                             <Moon size={18} className="text-blue-600" />
-                                            <span className="text-blue-600 font-black">Night Action:</span>
+                                            <span className="text-blue-600 font-black">{t.nightAction}:</span>
                                         </div>
                                         <p className="text-gray-700 text-sm font-medium">
                                             {role.nightAction}
@@ -379,11 +284,11 @@ const WerewolfGuide = () => {
                 {activeSection === 'tips' && (
                     <div className="space-y-6">
                         <h2 className="text-4xl font-black text-center mb-8 text-black">
-                            ⚠️ Important Tips & Best Practices
+                            ⚠️ {t.tipsTitle}
                         </h2>
                         
                         <div className="grid gap-4">
-                            {tips.map((tip, index) => (
+                            {tips.map((tip:any, index:any) => (
                                 <div 
                                     key={index}
                                     className="relative group bg-white border-2 border-black rounded-xl p-4 shadow-brutal-sm transition-all duration-300 hover:translate-x-1 hover:shadow-brutal"
@@ -408,16 +313,15 @@ const WerewolfGuide = () => {
                             <div className="flex items-center gap-3 mb-4">
                                 <AlertTriangle className="text-red-600" size={24} />
                                 <h3 className="text-2xl font-black text-red-600">
-                                    CRITICAL: Avoid Game Errors
+                                    {t.criticalWarning.title}
                                 </h3>
                             </div>
                             <div className="grid gap-3 text-gray-700 font-medium">
-                                <div className="flex items-center gap-2">🚫 <strong>DO NOT spam commands</strong> - wait for bot responses</div>
-                                <div className="flex items-center gap-2">🚫 <strong>DO NOT perform actions simultaneously</strong> - go one by one</div>
-                                <div className="flex items-center gap-2">🚫 <strong>DO NOT ignore bot instructions</strong> - follow the sequence</div>
-                                <div className="flex items-center gap-2">✅ <strong>DO wait for your turn</strong> during night phases</div>
-                                <div className="flex items-center gap-2">✅ <strong>DO use Wnew</strong> to reset if game gets stuck</div>
-                                <div className="flex items-center gap-2">✅ <strong>DO be patient</strong> during role assignments</div>
+                                {t.criticalWarning.items.map((item:any, index:any) => (
+                                    <div key={index} className="flex items-center gap-2">
+                                        {item}
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>

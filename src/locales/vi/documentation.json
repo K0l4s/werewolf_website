@@ -1,0 +1,299 @@
+{
+    "hero": {
+      "badge": "Lệnh",
+      "title": "Keldo Bot",
+      "titleHighlight": "Hướng Dẫn Lệnh",
+      "description": "Tìm hiểu cách sử dụng tất cả các lệnh và tính năng của Keldo Bot để nâng cao trải nghiệm Discord của bạn.",
+      "searchPlaceholder": "Tìm kiếm lệnh..."
+    },
+    
+    "commands": {
+      "categories": "Danh Mục Lệnh",
+      "note": "💡 Lưu ý: Bạn có thể sử dụng lệnh tiền tố thay vì lệnh slash. Mặc định: w[lệnh]",
+      "commands": "Lệnh",
+      "noCommandsFound": {
+        "icon": "🔍",
+        "title": "Không tìm thấy lệnh nào",
+        "description": "Thử từ khóa tìm kiếm khác hoặc duyệt qua các danh mục khác."
+      },
+      "commandDetails": {
+        "usage": "Cách Dùng",
+        "arguments": "Tham Số",
+        "example": "Ví Dụ",
+        "copyExample": "Sao Chép",
+        "copied": "Đã Sao Chép!"
+      }
+    },
+    
+    "commandGroups": {
+      "economy": {
+        "name": "Kinh Tế",
+        "icon": "💰",
+        "commands": {
+          "donate": {
+            "name": "/donate",
+            "description": "Mua cho tôi một ly cà phê ☕!",
+            "usage": "/donate",
+            "example": "/donate"
+          },
+          "wallet": {
+            "name": "/wallet",
+            "description": "Kiểm tra số dư xu hiện tại của bạn",
+            "usage": "/wallet",
+            "example": "/wallet"
+          },
+          "daily": {
+            "name": "/daily",
+            "description": "Nhận phần thưởng xu hàng ngày",
+            "usage": "/daily",
+            "example": "/daily"
+          },
+          "give": {
+            "name": "/give",
+            "description": "Chuyển xu cho người dùng khác",
+            "usage": "/give <user: @tênngườidùng> <amount: số>",
+            "example": "/give @Kolas 100",
+            "arguments": {
+              "user": {
+                "name": "user",
+                "type": "Mention (bắt buộc)",
+                "description": "Người dùng bạn muốn gửi xu đến"
+              },
+              "amount": {
+                "name": "amount",
+                "type": "Số (bắt buộc)",
+                "description": "Số lượng xu để chuyển"
+              }
+            }
+          },
+          "shop": {
+            "name": "/shop",
+            "description": "Xem thông tin trong cửa hàng!",
+            "usage": "/shop",
+            "example": "/shop"
+          },
+          "buy": {
+            "name": "/buy",
+            "description": "Mua vật phẩm trong cửa hàng!",
+            "usage": "/buy <itemRef:String> <quantity:Number>",
+            "example": "/buy SPI1 5",
+            "arguments": {
+              "itemRef": {
+                "name": "itemRef",
+                "type": "Chuỗi (bắt buộc)",
+                "description": "Mã vật phẩm"
+              },
+              "quantity": {
+                "name": "quantity",
+                "type": "Số",
+                "description": "Số lượng vật phẩm muốn mua."
+              }
+            }
+          },
+          "sell": {
+            "name": "/sell",
+            "description": "Bán vật phẩm cho cửa hàng!",
+            "usage": "/sell <itemRef:String> <quantity:Number>",
+            "example": "/sell SPI1 5",
+            "arguments": {
+              "itemRef": {
+                "name": "itemRef",
+                "type": "Chuỗi (bắt buộc)",
+                "description": "Mã vật phẩm"
+              },
+              "quantity": {
+                "name": "quantity",
+                "type": "Số",
+                "description": "Số lượng vật phẩm muốn bán."
+              }
+            }
+          }
+        }
+      },
+      "streak": {
+        "name": "Chuỗi",
+        "icon": "🔥",
+        "commands": {
+          "streak": {
+            "name": "wset streak",
+            "description": "Bật/ tắt chuỗi",
+            "usage": "wset streak [streak:số]",
+            "example": "wset streak on",
+            "arguments": {
+              "streak": {
+                "name": "giá trị chuỗi",
+                "type": "Chuỗi (bắt buộc)",
+                "description": "Giá trị chuỗi muốn đặt"
+              }
+            }
+          }
+        }
+      },
+      "minigames": {
+        "name": "Mini Games",
+        "icon": "🎮",
+        "commands": {
+          "baucua": {
+            "name": "/baucua",
+            "description": "Trò chơi truyền thống Việt Nam trong dịp Tết!",
+            "usage": "/baucua [bet:số]",
+            "example": "/baucua 5000",
+            "arguments": {
+              "bet": {
+                "name": "bet",
+                "type": "Số (bắt buộc)",
+                "description": "Số lượng xu để đặt cược"
+              }
+            }
+          },
+          "jackpot": {
+            "name": "/jackpot",
+            "description": "Trò chơi jackpot",
+            "usage": "/jackpot [bet: số]",
+            "example": "/jackpot 30",
+            "arguments": {
+              "bet": {
+                "name": "bet",
+                "type": "Số (bắt buộc)",
+                "description": "Số lượng xu để đặt cược"
+              }
+            }
+          },
+          "keoco": {
+            "name": "/keoco",
+            "description": "Trò chơi kéo co",
+            "usage": "/keoco [bet: số]",
+            "example": "/keoco 30",
+            "arguments": {
+              "bet": {
+                "name": "bet",
+                "type": "Số (bắt buộc)",
+                "description": "Số lượng xu để đặt cược"
+              }
+            }
+          },
+          "keobuabao": {
+            "name": "/keobuabao",
+            "description": "Trò chơi Oẳn tù tì",
+            "usage": "/keobuabao [bet: số]",
+            "example": "/keobuabao 30",
+            "arguments": {
+              "bet": {
+                "name": "bet",
+                "type": "Số (bắt buộc)",
+                "description": "Số lượng xu để đặt cược"
+              }
+            }
+          },
+          "baicao": {
+            "name": "/baicao",
+            "description": "Trò chơi bài cào",
+            "usage": "/baicao [bet: số]",
+            "example": "/baicao 30",
+            "arguments": {
+              "bet": {
+                "name": "bet",
+                "type": "Số (bắt buộc)",
+                "description": "Số lượng xu để đặt cược"
+              }
+            }
+          }
+        }
+      },
+      "werewolf": {
+        "name": "Ma Sói",
+        "icon": "🐺",
+        "commands": {
+          "new": {
+            "name": "/new",
+            "description": "Tạo game Ma Sói mới",
+            "usage": "/new",
+            "example": "/new"
+          },
+          "join": {
+            "name": "/join",
+            "description": "Tham gia game Ma Sói hiện có",
+            "usage": "/join",
+            "example": "/join"
+          },
+          "start": {
+            "name": "/start",
+            "description": "Bắt đầu game Ma Sói",
+            "usage": "/start",
+            "example": "/start"
+          }
+        }
+      },
+      "systems": {
+        "name": "Hệ Thống",
+        "icon": "⚙️",
+        "commands": {
+          "prefix": {
+            "name": "/set prefix",
+            "description": "[Admin - Manager] Đặt tiền tố mặc định của server!",
+            "usage": "/set prefix <custom prefix: String>",
+            "example": "/set prefix w",
+            "arguments": {
+              "prefix": {
+                "name": "custom prefix",
+                "type": "Chuỗi (bắt buộc)",
+                "description": "Tiền tố tùy chỉnh muốn thay đổi trong server. Mặc định là w"
+              }
+            }
+          },
+          "lang": {
+            "name": "/set lang",
+            "description": "[Admin - Manager] Đặt ngôn ngữ mặc định của server!",
+            "usage": "/set lang <lang: String>",
+            "example": "/set lang en",
+            "arguments": {
+              "lang": {
+                "name": "lang",
+                "type": "Enum: [en,vi] (bắt buộc)",
+                "description": "Ngôn ngữ muốn thay đổi trong server. Mặc định là en"
+              }
+            }
+          },
+          "voice": {
+            "name": "/set voice",
+            "description": "[Admin - Manager] Đặt kênh thoại mặc định của server!",
+            "usage": "/set voice true|false",
+            "example": "/set voice true",
+            "arguments": {
+              "enabled": {
+                "name": "enabled",
+                "type": "Boolean (bắt buộc)",
+                "description": "Có bật hoặc tắt thông báo tham gia thoại cho kênh thoại không. Mặc định là false"
+              }
+            }
+          },
+          "embed": {
+            "name": "/set embed",
+            "description": "[Admin - Manager] Đặt tin nhắn embed mặc định của server!",
+            "usage": "/set embed true|false",
+            "example": "/set embed true",
+            "arguments": {
+              "enabled": {
+                "name": "enabled",
+                "type": "Boolean (bắt buộc)",
+                "description": "Có bật hoặc tắt tin nhắn embed (cho thông báo tham gia thoại) cho server không. Mặc định là false"
+              }
+            }
+          },
+          "streak": {
+            "name": "/set streak",
+            "description": "[Admin - Manager] Đặt tin nhắn chuỗi mặc định của server!",
+            "usage": "/set streak on|off",
+            "example": "/set streak on",
+            "arguments": {
+              "status": {
+                "name": "on|off",
+                "type": "Chuỗi (bắt buộc)",
+                "description": "Có bật hoặc tắt tin nhắn chuỗi cho server không. Mặc định là off"
+              }
+            }
+          }
+        }
+      }
+    }
+  }

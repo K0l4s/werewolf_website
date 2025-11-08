@@ -1,0 +1,44 @@
+{
+  "heroBadge": "Chính sách & Quyền riêng tư",
+  "heroTitle": "Keldo Bot",
+  "heroHighlight": "Chính sách & Quyền riêng tư",
+  "heroDescription": "Tìm hiểu cách chúng tôi bảo vệ dữ liệu của bạn và mang lại trải nghiệm an toàn, thú vị cho mọi người chơi.",
+  "addToDiscord": "Thêm vào Discord",
+  "ourPolicies": "Chính sách của chúng tôi",
+  "ourPoliciesDesc": "Chúng tôi cam kết minh bạch và tôn trọng quyền riêng tư của bạn. Dưới đây là mọi thông tin bạn cần biết về cách chúng tôi xử lý dữ liệu và quy tắc cộng đồng.",
+  "policies": [
+    {
+      "title": "Chính sách bảo mật",
+      "icon": "🔒",
+      "content": "Chúng tôi chỉ thu thập dữ liệu cần thiết để cung cấp dịch vụ, bao gồm ID người dùng, thông tin máy chủ và dữ liệu trò chơi. Dữ liệu của bạn không bao giờ được bán và chỉ dùng để cải thiện trải nghiệm của bạn."
+    },
+    {
+      "title": "Thu thập dữ liệu",
+      "icon": "📊",
+      "content": "Chúng tôi lưu trữ các dữ liệu cần thiết như số dư người chơi, tiến trình trò chơi, và thiết lập máy chủ. Tất cả đều được mã hóa và bảo mật. Bạn có thể yêu cầu xóa dữ liệu bất kỳ lúc nào."
+    },
+    {
+      "title": "Quyền của người dùng",
+      "icon": "👤",
+      "content": "Bạn có quyền truy cập, chỉnh sửa hoặc xóa dữ liệu cá nhân của mình. Hãy liên hệ nếu bạn có yêu cầu liên quan đến dữ liệu. Chúng tôi luôn minh bạch về cách sử dụng thông tin của bạn."
+    },
+    {
+      "title": "Biện pháp bảo mật",
+      "icon": "🛡️",
+      "content": "Chúng tôi áp dụng các tiêu chuẩn bảo mật hàng đầu như mã hóa, máy chủ an toàn và kiểm tra định kỳ. An toàn dữ liệu của bạn là ưu tiên hàng đầu."
+    },
+    {
+      "title": "Dịch vụ bên thứ ba",
+      "icon": "🔗",
+      "content": "Chúng tôi sử dụng các dịch vụ uy tín như Discord để xác thực và lưu trữ. Các dịch vụ này có chính sách bảo mật riêng phù hợp với cam kết bảo vệ người dùng của chúng tôi."
+    }
+  ],
+  "extraCards": [
+    { "title": "An toàn", "description": "Bảo mật dữ liệu cấp doanh nghiệp" },
+    { "title": "Mã hóa", "description": "Dữ liệu được mã hóa khi truyền và lưu trữ" },
+    { "title": "Minh bạch", "description": "Chính sách rõ ràng và dễ hiểu" }
+  ],
+  "contactTitle": "Có thắc mắc về quyền riêng tư?",
+  "contactDesc": "Chúng tôi luôn sẵn sàng hỗ trợ! Liên hệ với chúng tôi nếu bạn có câu hỏi về chính sách.",
+  "contactButton": "Liên hệ hỗ trợ"
+}

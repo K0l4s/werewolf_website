@@ -1,148 +1,26 @@
 import { useState } from 'react';
 import { Settings, Languages, Hash, Bell, Volume2, Award, Shield, ExternalLink, Crown, Zap } from 'lucide-react';
+import { useLanguage } from '../../../context/LanguageContext';
 
 const ServerSettingsGuide = () => {
     const [activeSection, setActiveSection] = useState('language');
+    const {language}=useLanguage()
+    const t = language.ServerSettingsGuide;
 
-    const languageSettings = {
-        command: 'wset lang [language]',
-        description: 'Change server language for bot responses',
-        usage: 'Set the preferred language for all bot messages and interactions',
-        examples: [
-            'wset lang vi - Set language to Vietnamese',
-            'wset lang en - Set language to English'
-        ],
-        supportedLanguages: [
-            { code: 'vi', name: 'Vietnamese', flag: '🇻🇳' },
-            { code: 'en', name: 'English', flag: '🇺🇸' }
-        ],
-        notes: [
-            'Changes apply to all bot responses server-wide',
-            'Only server administrators can change this setting',
-            'Default language is English'
-        ]
-    };
-
-    const prefixSettings = {
-        command: 'wset prefix [character]',
-        description: 'Change the bot command prefix for this server',
-        usage: 'Set a custom prefix for all bot commands',
-        examples: [
-            'wset prefix ! - Change prefix to exclamation mark',
-            'wset prefix $ - Change prefix to dollar sign',
-            'wset prefix . - Change prefix to dot'
-        ],
-        importantNotes: [
-            'After changing prefix, members can check it with: wcheck prefix',
-            'Once changed, the default prefix (w) will no longer work',
-            'If you forget your custom prefix, use slash command: /set prefix [character] to reset',
-            'Prefix must be a single character',
-            'Avoid using special characters that might conflict with other bots'
-        ]
-    };
-
-    const notificationSettings = {
-        commands: [
-            {
-                command: '/set notification [#channel]',
-                description: 'Set welcome/farewell notification channel',
-                usage: 'Configure where welcome and goodbye messages are sent',
-                example: '/set notification #welcome-channel'
-            }
-        ],
-        features: [
-            'Welcome messages for new members',
-            'Farewell messages for leaving members',
-            'Customizable message templates',
-            'Embed-style notifications'
-        ],
-        importantNotes: [
-            '⚠️ This feature ONLY works with SLASH COMMANDS, not prefix commands',
-            '⚡ For advanced customization, use the Dashboard at /dashboard',
-            '🎨 Custom backgrounds available for 15 tokens or with Premium packages',
-            '👑 Premium features include animated backgrounds and custom messages'
-        ],
-        dashboardFeatures: [
-            'Live preview of welcome messages',
-            'Custom message editor',
-            'Background image selection',
-            'Font and color customization',
-            'Test notification feature'
-        ]
-    };
-
-    const voiceSettings = {
-        command: 'wset voice [true/false]',
-        description: 'Enable/disable voice chat notifications',
-        usage: 'Toggle notifications for voice channel activities',
-        examples: [
-            'wset voice true - Enable voice notifications',
-            'wset voice false - Disable voice notifications'
-        ],
-        notificationTypes: [
-            'Member joining voice channels',
-            'Member leaving voice channels',
-            'Member moving between voice channels'
-        ],
-        embedSettings: {
-            command: 'wset embed [true/false]',
-            description: 'Toggle beautiful embed-style notifications',
-            usage: 'Switch between embed and plain text notifications',
-            examples: [
-                'wset embed true - Enable embed notifications',
-                'wset embed false - Disable embed notifications'
-            ]
-        }
-    };
-
-    const streakSettings = {
-        command: 'wset streak [on/off]',
-        description: 'Enable/disable streak tracking for the entire server',
-        usage: 'Toggle daily streak functionality server-wide',
-        examples: [
-            'wset streak on - Enable streak system',
-            'wset streak off - Disable streak system'
-        ],
-        features: [
-            'Daily activity tracking',
-            'Reward system for consistent participation',
-            'Leaderboard for top streakers',
-            'Bonus rewards for milestone streaks'
-        ],
-        learnMore: {
-            text: 'Visit the streak details page for in-depth information',
-            link: '/guild/streak',
-            features: [
-                'How streaks are calculated',
-                'Reward tiers and benefits',
-                'Streak reset conditions',
-                'Premium streak bonuses'
-            ]
-        }
-    };
-
-    const permissionInfo = {
-        requiredRoles: ['Administrator', 'Server Manager', 'Manage Server permission'],
-        userLimitations: [
-            'Regular members CANNOT use these settings commands',
-            'Commands will return permission denied for non-admins',
-            'Some features may require specific bot permissions'
-        ],
-        botRequirements: [
-            'Manage Channels permission for notification setup',
-            'Send Messages permission',
-            'Embed Links permission for rich notifications',
-            'View Channels permission for voice tracking'
-        ]
-    };
+    const languageSettings = t.languageSettings;
+    const prefixSettings = t.prefixSettings;
+    const notificationSettings = t.notificationSettings;
+    const voiceSettings = t.voiceSettings;
+    const streakSettings = t.streakSettings;
+    const permissionInfo = t.permissionInfo;
 
     const navItems = [
-        { id: 'language', icon: Languages, label: 'Language' },
-        { id: 'prefix', icon: Hash, label: 'Prefix' },
-        { id: 'notifications', icon: Bell, label: 'Welcome' },
-        { id: 'voice', icon: Volume2, label: 'Voice' },
-        { id: 'streak', icon: Award, label: 'Streak' },
-        { id: 'permissions', icon: Shield, label: 'Permissions' }
+        { id: 'language', icon: Languages, label: t.navItems.language },
+        { id: 'prefix', icon: Hash, label: t.navItems.prefix },
+        { id: 'notifications', icon: Bell, label: t.navItems.notifications },
+        { id: 'voice', icon: Volume2, label: t.navItems.voice },
+        { id: 'streak', icon: Award, label: t.navItems.streak },
+        { id: 'permissions', icon: Shield, label: t.navItems.permissions }
     ];
 
     return (
@@ -160,10 +38,10 @@ const ServerSettingsGuide = () => {
                     </div>
                     <div className="bg-white border-3 border-black rounded-2xl p-8 shadow-brutal-lg mb-8">
                         <h1 className="text-4xl md:text-5xl font-black text-black mb-4">
-                            Server Settings Guide
+                            {t.title}
                         </h1>
                         <p className="text-xl text-gray-700 font-medium max-w-2xl mx-auto">
-                            Complete administrator guide for server configuration and management
+                            {t.subtitle}
                         </p>
                     </div>
                 </div>
@@ -174,11 +52,10 @@ const ServerSettingsGuide = () => {
                         <div className="bg-yellow-100 border-2 border-black rounded-lg p-2">
                             <Shield className="text-black" size={24} />
                         </div>
-                        <h3 className="text-xl font-black text-black">Administrator Only</h3>
+                        <h3 className="text-xl font-black text-black">{t.adminWarning}</h3>
                     </div>
                     <p className="text-gray-700 font-medium">
-                        All commands on this page require <strong>Administrator</strong> or <strong>Manage Server</strong> permissions. 
-                        Regular members cannot access these settings.
+                        {t.adminWarning}
                     </p>
                 </div>
 
@@ -207,13 +84,13 @@ const ServerSettingsGuide = () => {
                 {activeSection === 'language' && (
                     <div className="space-y-6">
                         <h2 className="text-4xl font-black text-center mb-8 text-black">
-                            🌐 Server Language Settings
+                            🌐 {t.languageTitle}
                         </h2>
                         
                         <div className="grid lg:grid-cols-2 gap-8">
                             {/* Command Info */}
                             <div className="bg-white border-3 border-cyan-400 rounded-2xl p-6 shadow-brutal group">
-                                <h3 className="text-2xl font-black text-black mb-4">Command Information</h3>
+                                <h3 className="text-2xl font-black text-black mb-4">{t.commandInformation}</h3>
                                 
                                 <div className="space-y-4">
                                     <div>
@@ -224,14 +101,14 @@ const ServerSettingsGuide = () => {
                                     </div>
                                     
                                     <div>
-                                        <h4 className="text-black font-black mb-2">Usage:</h4>
+                                        <h4 className="text-black font-black mb-2">{t.usage}:</h4>
                                         <p className="text-gray-700 font-medium">{languageSettings.usage}</p>
                                     </div>
                                     
                                     <div>
-                                        <h4 className="text-black font-black mb-2">Examples:</h4>
+                                        <h4 className="text-black font-black mb-2">{t.examples}:</h4>
                                         <div className="space-y-2">
-                                            {languageSettings.examples.map((example, index) => (
+                                            {languageSettings.examples.map((example:any, index:any) => (
                                                 <code key={index} className="block bg-gray-100 border-2 border-black text-gray-800 px-3 py-2 rounded-lg font-mono font-bold shadow-brutal-xs">
                                                     {example}
                                                 </code>
@@ -244,10 +121,10 @@ const ServerSettingsGuide = () => {
 
                             {/* Supported Languages */}
                             <div className="bg-white border-3 border-blue-400 rounded-2xl p-6 shadow-brutal group">
-                                <h3 className="text-2xl font-black text-black mb-4">Supported Languages</h3>
+                                <h3 className="text-2xl font-black text-black mb-4">{t.supportedLanguages}</h3>
                                 
                                 <div className="grid gap-4">
-                                    {languageSettings.supportedLanguages.map((lang) => (
+                                    {t.supportedLanguage.map((lang:any) => (
                                         <div key={lang.code} className="flex items-center gap-4 p-4 bg-gray-50 border-2 border-black rounded-xl shadow-brutal-xs">
                                             <span className="text-2xl">{lang.flag}</span>
                                             <div>
@@ -259,9 +136,9 @@ const ServerSettingsGuide = () => {
                                 </div>
 
                                 <div className="mt-6 p-4 bg-cyan-50 border-2 border-black rounded-lg shadow-brutal-xs">
-                                    <h4 className="text-black font-black mb-2">Important Notes:</h4>
+                                    <h4 className="text-black font-black mb-2">{t.importantNotes}:</h4>
                                     <ul className="text-gray-700 space-y-2 font-medium">
-                                        {languageSettings.notes.map((note, index) => (
+                                        {languageSettings.notes.map((note:any, index:any) => (
                                             <li key={index} className="flex items-start gap-2">
                                                 <div className="bg-cyan-400 border border-black rounded-full p-1 mt-1 flex-shrink-0">
                                                     <Zap size={12} className="text-black" />
@@ -280,7 +157,7 @@ const ServerSettingsGuide = () => {
                 {activeSection === 'prefix' && (
                     <div className="space-y-6">
                         <h2 className="text-4xl font-black text-center mb-8 text-black">
-                            #️⃣ Custom Prefix Settings
+                            #️⃣ {t.prefixTitle}
                         </h2>
                         
                         <div className="bg-white border-3 border-purple-400 rounded-2xl p-6 shadow-brutal mb-6 group">
@@ -293,14 +170,14 @@ const ServerSettingsGuide = () => {
                                 </div>
                                 
                                 <div>
-                                    <h4 className="text-black font-black mb-2">Usage:</h4>
+                                    <h4 className="text-black font-black mb-2">{t.usage}:</h4>
                                     <p className="text-gray-700 font-medium">{prefixSettings.usage}</p>
                                 </div>
                                 
                                 <div>
-                                    <h4 className="text-black font-black mb-2">Examples:</h4>
+                                    <h4 className="text-black font-black mb-2">{t.examples}:</h4>
                                     <div className="space-y-2">
-                                        {prefixSettings.examples.map((example, index) => (
+                                        {prefixSettings.examples.map((example:any, index:any) => (
                                             <code key={index} className="block bg-gray-100 border-2 border-black text-gray-800 px-3 py-2 rounded-lg font-mono font-bold shadow-brutal-xs">
                                                 {example}
                                             </code>
@@ -312,9 +189,9 @@ const ServerSettingsGuide = () => {
 
                         {/* Critical Warning */}
                         <div className="bg-red-50 border-3 border-red-400 rounded-2xl p-6 shadow-brutal">
-                            <h3 className="text-2xl font-black text-red-600 mb-4">⚠️ Critical Information</h3>
+                            <h3 className="text-2xl font-black text-red-600 mb-4">⚠️ {t.criticalInformation}</h3>
                             <ul className="text-gray-700 space-y-3 font-medium">
-                                {prefixSettings.importantNotes.map((note, index) => (
+                                {prefixSettings.importantNotes.map((note:any, index:any) => (
                                     <li key={index} className="flex items-start gap-3">
                                         <div className="bg-red-400 border-2 border-black rounded-lg p-1 mt-1 flex-shrink-0">
                                             <Shield size={16} className="text-black" />
@@ -325,9 +202,9 @@ const ServerSettingsGuide = () => {
                             </ul>
                             
                             <div className="mt-4 p-4 bg-white border-2 border-black rounded-lg shadow-brutal-xs">
-                                <h4 className="text-black font-black mb-2">Recovery Command:</h4>
+                                <h4 className="text-black font-black mb-2">{t.recoveryCommand}:</h4>
                                 <p className="text-gray-700 font-medium">
-                                    If you forget your custom prefix, use the slash command:
+                                    {t.recoveryCommand}:
                                 </p>
                                 <code className="block bg-gray-100 border-2 border-black text-gray-800 px-3 py-2 rounded-lg mt-2 font-mono font-bold shadow-brutal-xs">
                                     /set prefix [character]
@@ -341,27 +218,27 @@ const ServerSettingsGuide = () => {
                 {activeSection === 'notifications' && (
                     <div className="space-y-6">
                         <h2 className="text-4xl font-black text-center mb-8 text-black">
-                            🔔 Welcome & Farewell Notifications
+                            🔔 {t.notificationsTitle}
                         </h2>
                         
                         <div className="grid lg:grid-cols-2 gap-8">
                             {/* Command Section */}
                             <div className="space-y-6">
                                 <div className="bg-white border-3 border-purple-400 rounded-2xl p-6 shadow-brutal group">
-                                    <h3 className="text-2xl font-black text-black mb-4">Slash Commands</h3>
+                                    <h3 className="text-2xl font-black text-black mb-4">{t.slashCommands}</h3>
                                     
-                                    {notificationSettings.commands.map((cmd, index) => (
+                                    {notificationSettings.commands.map((cmd:any, index:any) => (
                                         <div key={index} className="space-y-3">
                                             <code className="text-lg font-black text-white bg-black px-3 py-2 rounded-lg block shadow-brutal-sm">
                                                 {cmd.command}
                                             </code>
                                             <p className="text-gray-700 font-medium">{cmd.description}</p>
                                             <div>
-                                                <span className="text-black font-black">Usage:</span>
+                                                <span className="text-black font-black">{t.usage}:</span>
                                                 <p className="text-gray-700 font-medium">{cmd.usage}</p>
                                             </div>
                                             <div>
-                                                <span className="text-black font-black">Example:</span>
+                                                <span className="text-black font-black">{t.example}:</span>
                                                 <code className="block bg-gray-100 border-2 border-black text-gray-800 px-3 py-2 rounded-lg mt-1 font-mono font-bold shadow-brutal-xs">
                                                     {cmd.example}
                                                 </code>
@@ -372,9 +249,9 @@ const ServerSettingsGuide = () => {
 
                                 {/* Important Notes */}
                                 <div className="bg-yellow-50 border-3 border-yellow-400 rounded-2xl p-6 shadow-brutal">
-                                    <h4 className="text-black font-black mb-3">Important Notes:</h4>
+                                    <h4 className="text-black font-black mb-3">{t.importantNotes}:</h4>
                                     <ul className="text-gray-700 space-y-2 font-medium">
-                                        {notificationSettings.importantNotes.map((note, index) => (
+                                        {notificationSettings.importantNotes.map((note:any, index:any) => (
                                             <li key={index} className="flex items-start gap-2">
                                                 <div className="bg-yellow-400 border border-black rounded-full p-1 mt-1 flex-shrink-0">
                                                     <Zap size={12} className="text-black" />
@@ -389,9 +266,9 @@ const ServerSettingsGuide = () => {
                             {/* Features & Dashboard */}
                             <div className="space-y-6">
                                 <div className="bg-white border-3 border-blue-400 rounded-2xl p-6 shadow-brutal group">
-                                    <h3 className="text-2xl font-black text-black mb-4">Features</h3>
+                                    <h3 className="text-2xl font-black text-black mb-4">{t.features}</h3>
                                     <ul className="text-gray-700 space-y-3 font-medium">
-                                        {notificationSettings.features.map((feature, index) => (
+                                        {notificationSettings.features.map((feature:any, index:any) => (
                                             <li key={index} className="flex items-center gap-3">
                                                 <div className="bg-green-400 border-2 border-black rounded-lg p-1">
                                                     <Bell size={14} className="text-black" />
@@ -403,18 +280,18 @@ const ServerSettingsGuide = () => {
                                 </div>
 
                                 <div className="bg-purple-50 border-3 border-purple-400 rounded-2xl p-6 shadow-brutal group">
-                                    <h3 className="text-2xl font-black text-black mb-4">Dashboard Features</h3>
+                                    <h3 className="text-2xl font-black text-black mb-4">{t.dashboardFeatures}</h3>
                                     <p className="text-gray-700 font-medium mb-4">
-                                        For advanced customization, visit the Dashboard:
+                                        {t.goToDashboard}:
                                     </p>
                                     <a 
                                         href="/dashboard" 
                                         className="inline-flex items-center gap-2 px-4 py-2 bg-purple-400 border-2 border-black rounded-lg text-black font-black shadow-brutal-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-brutal-xs transition-all duration-300"
                                     >
-                                        Go to Dashboard <ExternalLink size={16} />
+                                        {t.goToDashboard} <ExternalLink size={16} />
                                     </a>
                                     <ul className="text-gray-700 space-y-2 mt-4 font-medium">
-                                        {notificationSettings.dashboardFeatures.map((feature, index) => (
+                                        {notificationSettings.dashboardFeatures.map((feature:any, index:any) => (
                                             <li key={index} className="flex items-center gap-2">
                                                 <div className="w-2 h-2 bg-pink-400 border border-black rounded-full"></div>
                                                 {feature}
@@ -431,13 +308,13 @@ const ServerSettingsGuide = () => {
                 {activeSection === 'voice' && (
                     <div className="space-y-6">
                         <h2 className="text-4xl font-black text-center mb-8 text-black">
-                            🔊 Voice Chat Notifications
+                            🔊 {t.voiceTitle}
                         </h2>
                         
                         <div className="grid lg:grid-cols-2 gap-8">
                             {/* Voice Settings */}
                             <div className="bg-white border-3 border-purple-400 rounded-2xl p-6 shadow-brutal group">
-                                <h3 className="text-2xl font-black text-black mb-4">Voice Notifications</h3>
+                                <h3 className="text-2xl font-black text-black mb-4">{t.voiceTitle}</h3>
                                 
                                 <div className="space-y-4">
                                     <div>
@@ -448,14 +325,14 @@ const ServerSettingsGuide = () => {
                                     </div>
                                     
                                     <div>
-                                        <h4 className="text-black font-black mb-2">Usage:</h4>
+                                        <h4 className="text-black font-black mb-2">{t.usage}:</h4>
                                         <p className="text-gray-700 font-medium">{voiceSettings.usage}</p>
                                     </div>
                                     
                                     <div>
-                                        <h4 className="text-black font-black mb-2">Examples:</h4>
+                                        <h4 className="text-black font-black mb-2">{t.examples}:</h4>
                                         <div className="space-y-2">
-                                            {voiceSettings.examples.map((example, index) => (
+                                            {voiceSettings.examples.map((example:any, index:any) => (
                                                 <code key={index} className="block bg-gray-100 border-2 border-black text-gray-800 px-3 py-2 rounded-lg font-mono font-bold shadow-brutal-xs">
                                                     {example}
                                                 </code>
@@ -464,9 +341,9 @@ const ServerSettingsGuide = () => {
                                     </div>
 
                                     <div>
-                                        <h4 className="text-black font-black mb-2">Tracks:</h4>
+                                        <h4 className="text-black font-black mb-2">{t.tracks}:</h4>
                                         <ul className="text-gray-700 space-y-2 font-medium">
-                                            {voiceSettings.notificationTypes.map((type, index) => (
+                                            {voiceSettings.notificationTypes.map((type:any, index:any) => (
                                                 <li key={index} className="flex items-center gap-2">
                                                     <div className="bg-blue-400 border-2 border-black rounded-lg p-1">
                                                         <Volume2 size={14} className="text-black" />
@@ -481,7 +358,7 @@ const ServerSettingsGuide = () => {
 
                             {/* Embed Settings */}
                             <div className="bg-white border-3 border-blue-400 rounded-2xl p-6 shadow-brutal group">
-                                <h3 className="text-2xl font-black text-black mb-4">Embed Notifications</h3>
+                                <h3 className="text-2xl font-black text-black mb-4">{t.embedNotifications}</h3>
                                 
                                 <div className="space-y-4">
                                     <div>
@@ -492,14 +369,14 @@ const ServerSettingsGuide = () => {
                                     </div>
                                     
                                     <div>
-                                        <h4 className="text-black font-black mb-2">Usage:</h4>
+                                        <h4 className="text-black font-black mb-2">{t.usage}:</h4>
                                         <p className="text-gray-700 font-medium">{voiceSettings.embedSettings.usage}</p>
                                     </div>
                                     
                                     <div>
-                                        <h4 className="text-black font-black mb-2">Examples:</h4>
+                                        <h4 className="text-black font-black mb-2">{t.examples}:</h4>
                                         <div className="space-y-2">
-                                            {voiceSettings.embedSettings.examples.map((example, index) => (
+                                            {voiceSettings.embedSettings.examples.map((example:any, index:any) => (
                                                 <code key={index} className="block bg-gray-100 border-2 border-black text-gray-800 px-3 py-2 rounded-lg font-mono font-bold shadow-brutal-xs">
                                                     {example}
                                                 </code>
@@ -508,7 +385,7 @@ const ServerSettingsGuide = () => {
                                     </div>
 
                                     <div className="p-4 bg-green-50 border-2 border-black rounded-lg shadow-brutal-xs">
-                                        <h4 className="text-black font-black mb-2">Embed Features:</h4>
+                                        <h4 className="text-black font-black mb-2">{t.embedFeatures}:</h4>
                                         <ul className="text-gray-700 space-y-2 text-sm font-medium">
                                             <li>• Beautiful colored borders</li>
                                             <li>• Member information</li>
@@ -526,13 +403,13 @@ const ServerSettingsGuide = () => {
                 {activeSection === 'streak' && (
                     <div className="space-y-6">
                         <h2 className="text-4xl font-black text-center mb-8 text-black">
-                            🔥 Streak System Settings
+                            🔥 {t.streakTitle}
                         </h2>
                         
                         <div className="grid lg:grid-cols-2 gap-8">
                             {/* Command Info */}
                             <div className="bg-white border-3 border-purple-400 rounded-2xl p-6 shadow-brutal group">
-                                <h3 className="text-2xl font-black text-black mb-4">Streak Configuration</h3>
+                                <h3 className="text-2xl font-black text-black mb-4">{t.streakConfiguration}</h3>
                                 
                                 <div className="space-y-4">
                                     <div>
@@ -543,14 +420,14 @@ const ServerSettingsGuide = () => {
                                     </div>
                                     
                                     <div>
-                                        <h4 className="text-black font-black mb-2">Usage:</h4>
+                                        <h4 className="text-black font-black mb-2">{t.usage}:</h4>
                                         <p className="text-gray-700 font-medium">{streakSettings.usage}</p>
                                     </div>
                                     
                                     <div>
-                                        <h4 className="text-black font-black mb-2">Examples:</h4>
+                                        <h4 className="text-black font-black mb-2">{t.examples}:</h4>
                                         <div className="space-y-2">
-                                            {streakSettings.examples.map((example, index) => (
+                                            {streakSettings.examples.map((example:any, index:any) => (
                                                 <code key={index} className="block bg-gray-100 border-2 border-black text-gray-800 px-3 py-2 rounded-lg font-mono font-bold shadow-brutal-xs">
                                                     {example}
                                                 </code>
@@ -559,9 +436,9 @@ const ServerSettingsGuide = () => {
                                     </div>
 
                                     <div>
-                                        <h4 className="text-black font-black mb-2">Features:</h4>
+                                        <h4 className="text-black font-black mb-2">{t.features}:</h4>
                                         <ul className="text-gray-700 space-y-2 font-medium">
-                                            {streakSettings.features.map((feature, index) => (
+                                            {streakSettings.features.map((feature:any, index:any) => (
                                                 <li key={index} className="flex items-center gap-2">
                                                     <div className="bg-yellow-400 border-2 border-black rounded-lg p-1">
                                                         <Award size={14} className="text-black" />
@@ -576,7 +453,7 @@ const ServerSettingsGuide = () => {
 
                             {/* Learn More */}
                             <div className="bg-orange-50 border-3 border-orange-400 rounded-2xl p-6 shadow-brutal group">
-                                <h3 className="text-2xl font-black text-black mb-4">Learn More About Streaks</h3>
+                                <h3 className="text-2xl font-black text-black mb-4">{t.learnMoreAbout}</h3>
                                 
                                 <p className="text-gray-700 font-medium mb-4">
                                     {streakSettings.learnMore.text}
@@ -586,12 +463,12 @@ const ServerSettingsGuide = () => {
                                     href={streakSettings.learnMore.link}
                                     className="inline-flex items-center gap-2 px-4 py-2 bg-orange-400 border-2 border-black rounded-lg text-black font-black shadow-brutal-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-brutal-xs transition-all duration-300 mb-4"
                                 >
-                                    Visit Streak Details <ExternalLink size={16} />
+                                    {t.visitDetails} <ExternalLink size={16} />
                                 </a>
 
-                                <h4 className="text-black font-black mb-2">Detailed Information:</h4>
+                                <h4 className="text-black font-black mb-2">{t.detailedInformation}:</h4>
                                 <ul className="text-gray-700 space-y-2 font-medium">
-                                    {streakSettings.learnMore.features.map((feature, index) => (
+                                    {streakSettings.learnMore.features.map((feature:any, index:any) => (
                                         <li key={index} className="flex items-start gap-2">
                                             <div className="bg-orange-400 border border-black rounded-full p-1 mt-1 flex-shrink-0">
                                                 <Zap size={12} className="text-black" />
@@ -609,14 +486,14 @@ const ServerSettingsGuide = () => {
                 {activeSection === 'permissions' && (
                     <div className="space-y-6">
                         <h2 className="text-4xl font-black text-center mb-8 text-black">
-                            🛡️ Permissions & Requirements
+                            🛡️ {t.permissionsTitle}
                         </h2>
                         <div className="grid lg:grid-cols-2 gap-8">
                             {/* Required Roles */}
                             <div className="bg-white border-3 border-purple-400 rounded-2xl p-6 shadow-brutal group">
-                                <h3 className="text-2xl font-black text-black mb-4">Required Roles</h3>
+                                <h3 className="text-2xl font-black text-black mb-4">{t.requiredRoles}</h3>
                                 <ul className="text-gray-700 space-y-3 font-medium">
-                                    {permissionInfo.requiredRoles.map((role, index) => (
+                                    {permissionInfo.requiredRoles.map((role:any, index:any) => (
                                         <li key={index} className="flex items-center gap-3">
                                             <div className="bg-blue-400 border-2 border-black rounded-lg p-1">
                                                 <Shield size={14} className="text-black" />
@@ -628,12 +505,12 @@ const ServerSettingsGuide = () => {
                             </div>
                             {/* Limitations & Requirements */}
                             <div className="bg-red-50 border-3 border-red-400 rounded-2xl p-6 shadow-brutal group">
-                                <h3 className="text-2xl font-black text-red-600 mb-4">Limitations & Requirements</h3>
+                                <h3 className="text-2xl font-black text-red-600 mb-4">{t.limitationsRequirements}</h3>
                                 <div className="space-y-6">
                                     <div>
-                                        <h4 className="text-black font-black mb-2">User Limitations:</h4>
+                                        <h4 className="text-black font-black mb-2">{t.userLimitations}:</h4>
                                         <ul className="text-gray-700 space-y-2 font-medium">
-                                            {permissionInfo.userLimitations.map((limitation, index) => (
+                                            {permissionInfo.userLimitations.map((limitation:any, index:any) => (
                                                 <li key={index} className="flex items-start gap-2">
                                                     <div className="bg-yellow-400 border border-black rounded-full p-1 mt-1 flex-shrink-0">
                                                         <Zap size={12} className="text-black" />
@@ -644,9 +521,9 @@ const ServerSettingsGuide = () => {
                                         </ul>
                                     </div>
                                     <div>
-                                        <h4 className="text-black font-black mb-2">Bot Requirements:</h4>
+                                        <h4 className="text-black font-black mb-2">{t.botRequirements}:</h4>
                                         <ul className="text-gray-700 space-y-2 font-medium">
-                                            {permissionInfo.botRequirements.map((requirement, index) => (
+                                            {permissionInfo.botRequirements.map((requirement:any, index:any) => (
                                                 <li key={index} className="flex items-start gap-2">
                                                     <div className="bg-yellow-400 border border-black rounded-full p-1 mt-1 flex-shrink-0">
                                                         <Zap size={12} className="text-black" />

@@ -1,0 +1,12 @@
+{
+    "logging": "Logging...",
+    "error": "Authentication Error",
+    "connect": "Trying to connect Discord and get your information...",
+    "codeE": "Not found code. Try again!",
+    "complete": "Completed",
+    "loading": "Loading",
+    "pending": "Pending",
+    "tip": "Tip:",
+    "tip_des": "You drove yourself to the dashboard, human detected!",
+    "return":"Return home"
+}

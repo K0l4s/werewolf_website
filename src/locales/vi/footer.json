@@ -11,12 +11,12 @@
   },
   "pages": {
     "home": "Trang chủ",
-    "membership": "Thành viên",
+    "membership": "Membership",
     "documentation": "Tài liệu",
     "privacy": "Chính sách bảo mật",
     "terms": "Điều khoản dịch vụ",
     "guide": "Hướng dẫn",
-    "premium": "Gói cao cấp"
+    "premium": "Premium"
   },
   "links": {
     "github": "GitHub",

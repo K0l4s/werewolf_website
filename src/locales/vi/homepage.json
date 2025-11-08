@@ -1,0 +1,120 @@
+{
+    "hero": {
+        "onlineStatus": "Trạng Thái Online",
+        "botOnline": "Bot Đang Hoạt Động",
+        "servers": "Máy Chủ",
+        "mainTitle": "Nâng Tầm",
+        "mainTitleHighlight": "Trải Nghiệm Discord",
+        "description": "Keldo là bot Discord đa năng tối thượng biến những máy chủ thông thường thành cộng đồng sôi động. Với các tính năng mạnh mẽ và tích hợp liền mạch, chúng tôi đang định nghĩa lại những gì một bot Discord có thể làm.",
+        "stats": {
+            "servers": "Máy Chủ",
+            "uptime": "Thời Gian Hoạt Động",
+            "features": "Tính Năng",
+            "users": "Người Dùng"
+        },
+        "ctaButtons": {
+            "addToDiscord": "Thêm Vào Discord",
+            "customBotRequest": "Bạn muốn có Bot Custom?"
+        },
+        "trustedBy": "Được Tin Dùng Bởi Các Cộng Đồng Hàng Đầu"
+    },
+    "slides": {
+        "ticketSystem": {
+            "title": "Hệ Thống Ticket",
+            "description": "Hệ thống ticket hữu ích cho máy chủ của bạn.",
+            "label": "Tính Năng Mới",
+            "actionText": "Tìm Hiểu Thêm"
+        },
+        "giveawaySystem": {
+            "title": "Hệ Thống Giveaway",
+            "description": "Người dùng tạo giveaway, admin phê duyệt, và sau đó sự kiện sẽ diễn ra.",
+            "label": "Tính Năng Mới",
+            "actionText": "Tìm Hiểu Thêm"
+        },
+        "serverStreaks": {
+            "title": "Chuỗi Hoạt Động Server",
+            "description": "Khuyến khích hoạt động hàng ngày với chuỗi kênh thoại và giữ cho cộng đồng của bạn luôn gắn kết.",
+            "label": "Tính Năng Mới",
+            "actionText": "Tìm Hiểu Thêm"
+        },
+        "werewolfGame": {
+            "title": "Tích Hợp Game Ma Sói",
+            "description": "Tổ chức game Ma Sói thú vị trực tiếp trong máy chủ Discord của bạn với quản lý tự động.",
+            "label": "Phổ Biến",
+            "actionText": "Khám Phá Ngay"
+        },
+        "welcomeMessages": {
+            "title": "Tin Nhắn Chào Mừng/ Tạm Biệt",
+            "description": "Tự động hóa tin nhắn chào mừng và tạm biệt cho thành viên máy chủ Discord.",
+            "label": "Phổ Biến",
+            "actionText": "Khám Phá Ngay"
+        },
+        "voiceNotifications": {
+            "title": "Thông Báo Vào/ Rời Kênh Thoại",
+            "description": "Tự động hóa thông báo vào và rời kênh thoại cho thành viên máy chủ Discord.",
+            "label": "Phổ Biến",
+            "actionText": "Khám Phá Ngay"
+        },
+        "minigames": {
+            "title": "Minigames & Soul Land",
+            "description": "Thu hút cộng đồng của bạn với các minigame thú vị và đắm chìm họ vào thế giới Soul Land.",
+            "label": "Vui Nhộn",
+            "actionText": "Khám Phá Ngay"
+        },
+        "serverManagement": {
+            "title": "Công Cụ Quản Lý Server",
+            "description": "Các công cụ mạnh mẽ giúp bạn quản lý và phát triển cộng đồng Discord hiệu quả.",
+            "label": "Quản Trị",
+            "actionText": "Tìm Hiểu Thêm"
+        }
+    },
+    "features": {
+        "title": "Khám Phá Tất Cả Tính Năng Keldo",
+        "giveaway": {
+            "title": "Hệ Thống Giveaway",
+            "text": "Tạo giveaway của bạn, chờ admin phê duyệt, và boom — sự kiện của bạn đã sẵn sàng cho mọi người tham gia!"
+        },
+        "voiceSystem": {
+            "title": "Hệ Thống Kênh Thoại & Hoạt Động",
+            "text": "Keldo thông báo khi thành viên tham gia hoặc rời kênh thoại, và duy trì chuỗi hoạt động hàng ngày trên toàn máy chủ của bạn."
+        },
+        "werewolf": {
+            "title": "Chơi Ma Sói Ngay Trong Discord",
+            "text": "Tận hưởng game Ma Sói (Mafia) cổ điển với logic tự động và giao diện mượt mà — không cần người điều hành!"
+        },
+        "minigames": {
+            "title": "Minigames & Tích Hợp Soul Land",
+            "text": "Thách thức bạn bè trong các mini-game thú vị hoặc đánh thức tinh linh của bạn để trở thành Hồn Sư trong thế giới Soul Land."
+        },
+        "pets": {
+            "title": "Cùng Nuôi Thú Cưng",
+            "text": "Để cộng đồng của bạn cùng nuôi những con thú cưng đáng yêu, cho chúng ăn và cạnh tranh trên bảng xếp hạng toàn cầu và máy chủ."
+        },
+        "shop": {
+            "title": "Cửa Hàng Vật Phẩm & Hệ Thống Hồ Sơ",
+            "text": "Mua thức ăn, vật phẩm tăng cường và vật phẩm độc đáo trong cửa hàng. Tùy chỉnh hồ sơ của bạn và khoe thành tích."
+        }
+    },
+    "extraFeatures": {
+        "title": "🌟 Khám Phá Tất Cả Tính Năng Keldo",
+        "features": [
+            "🔔 Thông báo thời gian thực khi thành viên tham gia hoặc rời kênh thoại.",
+            "👋 Tin nhắn chào mừng và tạm biệt cho thành viên mới hoặc rời máy chủ.",
+            "🔥 Hệ thống chuỗi – theo dõi hoạt động người dùng và duy trì chuỗi kênh thoại hàng ngày.",
+            "🎟️ Trao đổi, báo lỗi dễ dàng hơn với hệ thống ticket.",
+            "🐺 Chế độ game Ma Sói tích hợp cho cộng đồng vui vẻ.",
+            "🎮 Nhiều minigame đa dạng để giải trí cho người dùng.",
+            "⚔️ Tích hợp game Soul Land (Đấu La Đại Lục).",
+            "🐾 Hệ thống Thú cưng toàn máy chủ – cùng nuôi và cho thú cưng ăn.",
+            "🏆 Bảng xếp hạng xuyên máy chủ và trong máy chủ để xếp hạng người dùng và thú cưng.",
+            "🛒 Cửa hàng vật phẩm với thức ăn, vật phẩm tăng cường và vật phẩm tiện ích.",
+            "🧑‍💼 Lệnh quản lý hồ sơ và các công cụ quản trị bổ sung.",
+            "💡 Và nhiều tính năng khác được thiết kế để làm cho máy chủ hấp dẫn và sôi động hơn."
+        ]
+    },
+    "liveActivity": "Hoạt Động Trực Tiếp",
+    "activeIn": "Đang hoạt động trong",
+    "servers": "máy chủ",
+    "members": "Thành Viên",
+    "community": "Cộng Đồng"
+}

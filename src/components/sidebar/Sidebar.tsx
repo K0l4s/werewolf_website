@@ -6,7 +6,7 @@ import {
     House, 
     MessageCirclePlus, 
     Mic, 
-    MoonStar, 
+    
     PawPrint, 
     User, 
     X, 
@@ -23,6 +23,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const [isCollapsed, setIsCollapsed] = useState(false);
+
     const [menuItems, setMenuItems] = useState<MenuItem[]>([
         {
             id: 'user',
@@ -31,8 +32,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
             isOpen: true,
             children: [
                 { id: 'profile', label: 'Profile', icon: <User size={16} />, href: '/profile' },
-                { id: 'pets', label: 'Pets', icon: <PawPrint size={16} />, href: '/pets' },
-                { id: 'spirits', label: 'Spirits', icon: <MoonStar size={16} />, href: '/spirits' },
             ]
         },
         {

@@ -74,9 +74,9 @@ const Footer = () => {
               </p>
               <p className="text-sm text-gray-700 font-medium flex items-center">
                 {t.sections.payment}{" "}
-                <Tooltip text={t.tooltip.momo} delay={0}>
+                {/* <Tooltip text={t.tooltip.momo} delay={0}> */}
                   <img src={Momo} alt="momo logo" className="w-8 h-8 ml-2" />
-                </Tooltip>
+                {/* </Tooltip> */}
               </p>
             </div>
 

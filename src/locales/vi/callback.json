@@ -1,0 +1,12 @@
+{
+    "logging":"Đang đăng nhập...",
+    "error":"Lỗi xác thực",
+    "connect":"Đang cố bơi tới Discord và nhặt về thông tin của bạn...",
+    "codeE":"Không tìm thấy mã xác thực. Tôi đã rất cố gắng rồi, về đồng bằng ở giùm tôi!",
+    "complete":"Xác thực thành công",
+    "loading":"Đang tải",
+    "pending":"Đang chuyển hướng",
+    "tip":"Mẹo:",
+    "tip_des":"Bạn sẽ được đưa tới dashboard nếu là người!",
+    "return":"Về trang chủ"
+}

@@ -1,0 +1,175 @@
+{
+    "title": "Hướng Dẫn Cài Đặt Server",
+    "subtitle": "Hướng dẫn quản trị viên đầy đủ cho cấu hình và quản lý server",
+    "adminWarning": "Chỉ Dành Cho Quản Trị Viên - Tất cả lệnh trên trang này yêu cầu quyền Quản trị viên hoặc Quản lý Server. Thành viên thường không thể truy cập các cài đặt này.",
+    
+    "navItems": {
+      "language": "Ngôn Ngữ",
+      "prefix": "Tiền Tố",
+      "notifications": "Chào Mừng",
+      "voice": "Kênh Thoại",
+      "streak": "Chuỗi",
+      "permissions": "Quyền Hạn"
+    },
+    
+    "languageTitle": "Cài Đặt Ngôn Ngữ Server",
+    "languageSettings": {
+      "command": "wset lang [language]",
+      "description": "Thay đổi ngôn ngữ server cho phản hồi của bot",
+      "usage": "Đặt ngôn ngữ ưa thích cho tất cả tin nhắn và tương tác của bot",
+      "examples": [
+        "wset lang vi - Đặt ngôn ngữ thành Tiếng Việt",
+        "wset lang en - Đặt ngôn ngữ thành Tiếng Anh"
+      ],
+      "notes": [
+        "Thay đổi áp dụng cho tất cả phản hồi bot trên toàn server",
+        "Chỉ quản trị viên server mới có thể thay đổi cài đặt này",
+        "Ngôn ngữ mặc định là Tiếng Anh"
+      ]
+    },
+    "supportedLanguage": [
+      { "code": "vi", "name": "Tiếng Việt", "flag": "🇻🇳" },
+      { "code": "en", "name": "Tiếng Anh", "flag": "🇺🇸" }
+    ],
+    
+    "prefixTitle": "Cài Đặt Tiền Tố Tùy Chỉnh",
+    "prefixSettings": {
+      "command": "wset prefix [character]",
+      "description": "Thay đổi tiền tố lệnh bot cho server này",
+      "usage": "Đặt tiền tố tùy chỉnh cho tất cả lệnh bot",
+      "examples": [
+        "wset prefix ! - Đổi tiền tố thành dấu chấm than",
+        "wset prefix $ - Đổi tiền tố thành dấu đô la",
+        "wset prefix . - Đổi tiền tố thành dấu chấm"
+      ],
+      "importantNotes": [
+        "Sau khi đổi tiền tố, thành viên có thể kiểm tra bằng: wcheck prefix",
+        "Sau khi thay đổi, tiền tố mặc định (w) sẽ không còn hoạt động",
+        "Nếu quên tiền tố tùy chỉnh, dùng lệnh slash: /set prefix [character] để đặt lại",
+        "Tiền tố phải là một ký tự đơn",
+        "Tránh dùng ký tự đặc biệt có thể xung đột với bot khác"
+      ]
+    },
+    
+    "notificationsTitle": "Thông Báo Chào Mừng & Tạm Biệt",
+    "notificationSettings": {
+      "commands": [
+        {
+          "command": "/set notification [#channel]",
+          "description": "Đặt kênh thông báo chào mừng/tạm biệt",
+          "usage": "Cấu hình nơi gửi tin nhắn chào mừng và tạm biệt",
+          "example": "/set notification #welcome-channel"
+        }
+      ],
+      "features": [
+        "Tin nhắn chào mừng cho thành viên mới",
+        "Tin nhắn tạm biệt cho thành viên rời đi",
+        "Mẫu tin nhắn có thể tùy chỉnh",
+        "Thông báo kiểu embed"
+      ],
+      "importantNotes": [
+        "⚠️ Tính năng này CHỈ hoạt động với LỆNH SLASH, không phải lệnh tiền tố",
+        "⚡ Để tùy chỉnh nâng cao, sử dụng Bảng điều khiển tại /dashboard",
+        "🎨 Nền tùy chỉnh có sẵn với 15 token hoặc gói Premium",
+        "👑 Tính năng Premium bao gồm nền động và tin nhắn tùy chỉnh"
+      ],
+      "dashboardFeatures": [
+        "Xem trước trực tiếp tin nhắn chào mừng",
+        "Trình chỉnh sửa tin nhắn tùy chỉnh",
+        "Lựa chọn hình nền",
+        "Tùy chỉnh phông chữ và màu sắc",
+        "Tính năng thử nghiệm thông báo"
+      ]
+    },
+    
+    "voiceTitle": "Thông Báo Kênh Thoại",
+    "voiceSettings": {
+      "command": "wset voice [true/false]",
+      "description": "Bật/tắt thông báo kênh thoại",
+      "usage": "Chuyển đổi thông báo cho hoạt động kênh thoại",
+      "examples": [
+        "wset voice true - Bật thông báo thoại",
+        "wset voice false - Tắt thông báo thoại"
+      ],
+      "notificationTypes": [
+        "Thành viên tham gia kênh thoại",
+        "Thành viên rời kênh thoại",
+        "Thành viên di chuyển giữa các kênh thoại"
+      ],
+      "embedSettings": {
+        "command": "wset embed [true/false]",
+        "description": "Chuyển đổi thông báo kiểu embed đẹp mắt",
+        "usage": "Chuyển đổi giữa thông báo embed và văn bản thuần",
+        "examples": [
+          "wset embed true - Bật thông báo embed",
+          "wset embed false - Tắt thông báo embed"
+        ]
+      }
+    },
+    
+    "streakTitle": "Cài Đặt Hệ Thống Chuỗi",
+    "streakSettings": {
+      "command": "wset streak [on/off]",
+      "description": "Bật/tắt theo dõi chuỗi cho toàn bộ server",
+      "usage": "Chuyển đổi chức năng chuỗi hàng ngày trên toàn server",
+      "examples": [
+        "wset streak on - Bật hệ thống chuỗi",
+        "wset streak off - Tắt hệ thống chuỗi"
+      ],
+      "features": [
+        "Theo dõi hoạt động hàng ngày",
+        "Hệ thống phần thưởng cho sự tham gia nhất quán",
+        "Bảng xếp hạng cho người có chuỗi cao nhất",
+        "Phần thưởng thêm cho chuỗi cột mốc"
+      ],
+      "learnMore": {
+        "text": "Truy cập trang chi tiết chuỗi để biết thông tin chuyên sâu",
+        "link": "/guild/streak",
+        "features": [
+          "Cách tính chuỗi",
+          "Cấp độ phần thưởng và lợi ích",
+          "Điều kiện reset chuỗi",
+          "Phần thưởng chuỗi Premium"
+        ]
+      }
+    },
+    
+    "permissionsTitle": "Quyền Hạn & Yêu Cầu",
+    "permissionInfo": {
+      "requiredRoles": ["Quản trị viên", "Quản lý Server", "Quyền Quản lý Server"],
+      "userLimitations": [
+        "Thành viên thường KHÔNG THỂ sử dụng các lệnh cài đặt này",
+        "Lệnh sẽ trả về từ chối quyền cho người không phải admin",
+        "Một số tính năng có thể yêu cầu quyền bot cụ thể"
+      ],
+      "botRequirements": [
+        "Quyền Quản lý Kênh cho thiết lập thông báo",
+        "Quyền Gửi Tin nhắn",
+        "Quyền Nhúng Liên kết cho thông báo phong phú",
+        "Quyền Xem Kênh cho theo dõi thoại"
+      ]
+    },
+    
+    "commandInformation": "Thông Tin Lệnh",
+    "usage": "Cách Dùng",
+    "examples": "Ví Dụ",
+    "importantNotes": "Ghi Chú Quan Trọng",
+    "supportedLanguages": "Ngôn Ngữ Được Hỗ Trợ",
+    "criticalInformation": "Thông Tin Quan Trọng",
+    "recoveryCommand": "Lệnh Khôi Phục",
+    "slashCommands": "Lệnh Slash",
+    "features": "Tính Năng",
+    "dashboardFeatures": "Tính Năng Bảng Điều Khiển",
+    "goToDashboard": "Đến Bảng Điều Khiển",
+    "tracks": "Theo Dõi",
+    "embedFeatures": "Tính Năng Embed",
+    "streakConfiguration": "Cấu Hình Chuỗi",
+    "learnMoreAbout": "Tìm Hiểu Thêm Về Chuỗi",
+    "visitDetails": "Xem Chi Tiết Chuỗi",
+    "detailedInformation": "Thông Tin Chi Tiết",
+    "requiredRoles": "Vai Trò Yêu Cầu",
+    "limitationsRequirements": "Hạn Chế & Yêu Cầu",
+    "userLimitations": "Hạn Chế Người Dùng",
+    "botRequirements": "Yêu Cầu Bot",
+    "embedNotifications": "Thông Báo Embed"
+  }

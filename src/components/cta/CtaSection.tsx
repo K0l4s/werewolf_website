@@ -1,7 +1,10 @@
 import mascot from "../../assets/images/mascot.png";
-import { ArrowRight, Bot } from "lucide-react";
+import { ArrowRight, Bot } from "lucide-react"; 
+import { useLanguage } from "../../context/LanguageContext";
 
 const CtaSection = () => {
+  const {language} = useLanguage()
+  const t = language.ctaSection;
   const clientId = import.meta.env.VITE_CLIENT_ID;
 
   return (
@@ -17,19 +20,19 @@ const CtaSection = () => {
           {/* Content Section */}
           <div className="flex-1 text-center md:text-left">
             <h2 className="text-3xl md:text-4xl font-black mb-4 text-black leading-tight">
-              Ready to Transform Your Discord?
+              {t.title}
             </h2>
             <p className="text-gray-700 mb-6 text-lg font-medium max-w-md">
-              Add Keldo Bot to your server and experience the ultimate gaming and community features!
+              {t.description}
             </p>
 
             {/* Feature Highlights */}
             <div className="flex flex-wrap gap-3 mb-6">
               {[
-                { icon: "🐺", text: "Werewolf Games" },
-                { icon: "🎮", text: "Minigames" },
-                { icon: "🐾", text: "Pet System" },
-                { icon: "🔥", text: "Activity Streaks" }
+                { icon: "🐺", text: t.featureHighlights.werewolf },
+                { icon: "🎮", text: t.featureHighlights.minigames },
+                { icon: "🐾", text: t.featureHighlights.petSystem },
+                { icon: "🔥", text: t.featureHighlights.activityStreaks }
               ].map((feature, index) => (
                 <div
                   key={index}
@@ -52,7 +55,7 @@ const CtaSection = () => {
               }
             >
               <Bot size={20} className="mr-2" />
-              <span>Add To Discord</span>
+              <span>{t.ctaButton}</span>
               <ArrowRight size={18} className="ml-2 transform transition-transform group-hover:translate-x-1" />
 
               {/* Button decoration */}
@@ -63,11 +66,11 @@ const CtaSection = () => {
             <div className="flex items-center gap-4 mt-4 text-sm text-gray-600 font-bold">
               <div className="flex items-center gap-1">
                 <div className="w-2 h-2 bg-green-500 border border-black rounded-full"></div>
-                <span>9,000+ Servers</span>
+                <span>9,000+ {t.stats.servers}</span>
               </div>
               <div className="flex items-center gap-1">
                 <div className="w-2 h-2 bg-blue-500 border border-black rounded-full"></div>
-                <span>24/7 Online</span>
+                <span>24/7 {t.stats.online}</span>
               </div>
             </div>
           </div>
@@ -93,7 +96,7 @@ const CtaSection = () => {
               <div className="absolute bottom-2 right-2 bg-white border border-black px-2 py-1 rounded-full shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
                 <div className="flex items-center gap-1">
                   <div className="w-2 h-2 bg-green-500 border border-black rounded-full animate-pulse"></div>
-                  <span className="text-xs font-black">LIVE</span>
+                  <span className="text-xs font-black">{t.liveStatus}</span>
                 </div>
               </div>
             </div>

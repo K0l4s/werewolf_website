@@ -1,0 +1,56 @@
+{
+  "title": "Hướng Dẫn Sử Dụng Chức Năng Giveaway",
+  "subtitle": "Hướng dẫn từng bước để tạo và quản lý giveaway",
+  "sections": {
+    "flow": "Quy Trình",
+    "requirements": "Yêu Cầu",
+    "tips": "Lưu ý",
+    "support": "Hỗ Trợ"
+  },
+  "processTitle": "Quy Trình Giveaway",
+  "flowSteps": {
+    "initiate": "Khởi Tạo Giveaway",
+    "approval": "Admin phê duyệt",
+    "announcement": "Thông Báo",
+    "participation": "Tham Gia",
+    "completion": "Hoàn Tất",
+    "results": "Kết Quả & Nhận Thưởng"
+  },
+  "flowDetails": {
+    "initiate": "Host sử dụng lệnh /giveaway để tạo giveaway mới. Điền thông tin giải thưởng, thời gian và số người thắng.",
+    "approval": "Admin xem xét giveaway và có thể phê duyệt, từ chối hoặc yêu cầu chỉnh sửa trước khi công bố.",
+    "announcement": "Sau khi được phê duyệt, giveaway tự động xuất hiện trong kênh thông báo.",
+    "participation": "Thành viên nhấn nút 'Tham gia' để tham gia giveaway cho đến khi kết thúc.",
+    "completion": "Giveaway kết thúc tự động hoặc host/admin có thể kết thúc trực tiếp.",
+    "results": "Người thắng được công bố và phải xác nhận nhận thưởng trong kênh kết quả."
+  },
+  "requirementsTitle": "Yêu Cầu",
+  "requirementSections": {
+    "host": "Yêu Cầu Cho Host",
+    "participant": "Yêu Cầu Cho Người Tham Gia"
+  },
+  "hostRequirements": [
+    "Phải là thành viên server với quyền hạn đầy đủ.",
+    "Tài khoản phải trên 7 ngày tuổi.",
+    "Không có hành động kiểm duyệt đang hoạt động."
+  ],
+  "participantRequirements": [
+    "Phải là thành viên server đã xác minh.",
+    "Đáp ứng điều kiện cụ thể của giveaway (vai trò, reaction, v.v.).",
+    "Không có lịch sử bị ban trong server."
+  ],
+  "tipsTitle": "Lưu ý cơ bản",
+  "tips": [
+    "Số lượng người thắng minh bạch.",
+    "Đặt thời gian hợp lý — từ 24h đến 7 ngày là tốt nhất.",
+    "Công bố kết quả kịp thời và liên hệ với người thắng trong vòng 24h.",
+    "Tránh chạy quá nhiều giveaway cùng lúc.",
+    "Tuân thủ Discord TOS và quy tắc server."
+  ],
+  "supportTitle": "Cần Trợ Giúp?",
+  "supportMessages": [
+    "Cần trợ giúp? Liên hệ đội hỗ trợ qua #help-desk.",
+    "Kiểm tra tài liệu chính thức để biết hướng dẫn thiết lập.",
+    "Tham gia Discord cộng đồng của chúng tôi để cập nhật và hỏi đáp."
+  ]
+}

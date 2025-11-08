@@ -1,0 +1,120 @@
+{
+    "hero": {
+        "onlineStatus": "Online Status",
+        "botOnline": "Bot Online",
+        "servers": "Servers",
+        "mainTitle": "Elevate Your",
+        "mainTitleHighlight": "Discord Experience",
+        "description": "Keldo is the ultimate multi-purpose Discord bot that transforms ordinary servers into vibrant communities. With powerful features and seamless integrations, we're redefining what a Discord bot can do.",
+        "stats": {
+            "servers": "Servers",
+            "uptime": "Uptime",
+            "features": "Features",
+            "users": "Users"
+        },
+        "ctaButtons": {
+            "addToDiscord": "Add To Discord",
+            "customBotRequest": "Custom Bot Request"
+        },
+        "trustedBy": "Trusted by Top Communities"
+    },
+    "slides": {
+        "ticketSystem": {
+            "title": "Ticket System",
+            "description": "Useful ticket system for your server.",
+            "label": "New Feature",
+            "actionText": "Learn More"
+        },
+        "giveawaySystem": {
+            "title": "Giveaway System",
+            "description": "A user creates a giveaway, the admin approves it, and then it goes live.",
+            "label": "New Feature",
+            "actionText": "Learn More"
+        },
+        "serverStreaks": {
+            "title": "Server Streaks",
+            "description": "Encourage daily activity with voice channel streaks and keep your community engaged.",
+            "label": "New Feature",
+            "actionText": "Learn More"
+        },
+        "werewolfGame": {
+            "title": "Werewolf Game Integration",
+            "description": "Host exciting Werewolf games directly in your Discord server with automated management.",
+            "label": "Popular",
+            "actionText": "Explore Now"
+        },
+        "welcomeMessages": {
+            "title": "Welcome/ Farewell Messages",
+            "description": "Automate welcome and farewell messages for your Discord server members.",
+            "label": "Popular",
+            "actionText": "Explore Now"
+        },
+        "voiceNotifications": {
+            "title": "Join/ Leave Voice Channel Notifications",
+            "description": "Automate join and leave voice channel notifications for your Discord server members.",
+            "label": "Popular",
+            "actionText": "Explore Now"
+        },
+        "minigames": {
+            "title": "Minigames & Soul Land",
+            "description": "Engage your community with fun minigames and immerse them in the world of Soul Land.",
+            "label": "Fun",
+            "actionText": "Explore Now"
+        },
+        "serverManagement": {
+            "title": "Server Management Tools",
+            "description": "Powerful tools to help you manage and grow your Discord community effectively.",
+            "label": "Admin",
+            "actionText": "Learn More"
+        }
+    },
+    "features": {
+        "title": "Explore All Keldo Features",
+        "giveaway": {
+            "title": "Giveaway System",
+            "text": "Create your giveaway, wait for admin approval, and boom — your event is live for everyone to join!"
+        },
+        "voiceSystem": {
+            "title": "Voice Channel & Activity System",
+            "text": "Keldo notifies when members join or leave voice channels, and keeps daily activity streaks alive across your server."
+        },
+        "werewolf": {
+            "title": "Play Werewolf Right in Discord",
+            "text": "Enjoy the classic Werewolf (Mafia) game with automated logic and smooth UI — no moderator needed!"
+        },
+        "minigames": {
+            "title": "Minigames & Soul Land Integration",
+            "text": "Challenge friends in fun mini-games or awaken your spirit to become a Spirit Master in the Soul Land world."
+        },
+        "pets": {
+            "title": "Raise Pets Together",
+            "text": "Let your community raise adorable pets together, feed them, and compete on global and server leaderboards."
+        },
+        "shop": {
+            "title": "Item Shop & Profile System",
+            "text": "Buy food, boosters, and unique items in the store. Customize your profile and show off your achievements."
+        }
+    },
+    "extraFeatures": {
+        "title": "🌟 Explore All Keldo Features",
+        "features": [
+            "🔔 Real-time notifications for members joining or leaving voice channels.",
+            "👋 Welcome and farewell messages for new or departing server members.",
+            "🔥 Streak system – track user activity and maintain daily voice channel chains.",
+            "🎟️ Communicate and report errors more easily with the ticket system.",
+            "🐺 Integrated Werewolf game mode for community fun.",
+            "🎮 A variety of minigames to entertain users.",
+            "⚔️ Soul Land (Đấu La Đại Lục) game integration.",
+            "🐾 Server-wide Pet system – raise and feed pets together.",
+            "🏆 Cross-server and in-server leaderboards for ranking users and pets.",
+            "🛒 Item shop with foods, boosters, and utility items.",
+            "🧑‍💼 Profile management commands and additional administrative tools.",
+            "💡 And many other features designed to make servers more engaging and lively."
+        ]
+    },
+    "liveActivity": "Live Activity",
+    "activeIn": "Active in",
+    "servers": "servers",
+    "members": "Members",
+    "community": "Community"
+}

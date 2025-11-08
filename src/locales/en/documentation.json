@@ -1,0 +1,297 @@
+{
+    "hero": {
+        "badge": "Command Documentation",
+        "title": "Keldo Bot",
+        "titleHighlight": "Commands Guide",
+        "description": "Learn how to use all of Keldo Bot's commands and features to enhance your Discord experience.",
+        "searchPlaceholder": "Search commands..."
+    },
+    "commands": {
+        "categories": "Command Categories",
+        "note": "💡 Note: You can use prefix command instead of slash command. Default: w[command]",
+        "commands": "Commands",
+        "noCommandsFound": {
+            "icon": "🔍",
+            "title": "No commands found",
+            "description": "Try a different search term or browse through other categories."
+        },
+        "commandDetails": {
+            "usage": "Usage",
+            "arguments": "Arguments",
+            "example": "Example",
+            "copyExample": "Copy Example",
+            "copied": "Copied!"
+        }
+    },
+    "commandGroups": {
+        "economy": {
+            "name": "Economy",
+            "icon": "💰",
+            "commands": {
+                "donate": {
+                    "name": "/donate",
+                    "description": "Buy me a coffee ☕!",
+                    "usage": "/donate",
+                    "example": "/donate"
+                },
+                "wallet": {
+                    "name": "/wallet",
+                    "description": "Check your current coin balance",
+                    "usage": "/wallet",
+                    "example": "/wallet"
+                },
+                "daily": {
+                    "name": "/daily",
+                    "description": "Claim your daily coins reward",
+                    "usage": "/daily",
+                    "example": "/daily"
+                },
+                "give": {
+                    "name": "/give",
+                    "description": "Transfer coins to another user",
+                    "usage": "/give <user: @username> <amount: number>",
+                    "example": "/give @Kolas 100",
+                    "arguments": {
+                        "user": {
+                            "name": "user",
+                            "type": "Mention (required)",
+                            "description": "The user you want to send coins to"
+                        },
+                        "amount": {
+                            "name": "amount",
+                            "type": "Number (required)",
+                            "description": "The number of coins to transfer"
+                        }
+                    }
+                },
+                "shop": {
+                    "name": "/shop",
+                    "description": "See information in shop!",
+                    "usage": "/shop",
+                    "example": "/shop"
+                },
+                "buy": {
+                    "name": "/buy",
+                    "description": "Buy item in shop!",
+                    "usage": "/buy <itemRef:String> <quantity:Number>",
+                    "example": "/buy SPI1 5",
+                    "arguments": {
+                        "itemRef": {
+                            "name": "itemRef",
+                            "type": "String (required)",
+                            "description": "The item Ref"
+                        },
+                        "quantity": {
+                            "name": "quantity",
+                            "type": "Number",
+                            "description": "The quantity of items want to buy."
+                        }
+                    }
+                },
+                "sell": {
+                    "name": "/sell",
+                    "description": "See item for shop!",
+                    "usage": "/sell <itemRef:String> <quantity:Number>",
+                    "example": "/sell SPI1 5",
+                    "arguments": {
+                        "itemRef": {
+                            "name": "itemRef",
+                            "type": "String (required)",
+                            "description": "The item Ref"
+                        },
+                        "quantity": {
+                            "name": "quantity",
+                            "type": "Number",
+                            "description": "The quantity of items want to sell."
+                        }
+                    }
+                }
+            }
+        },
+        "streak": {
+            "name": "Streak",
+            "icon": "🔥",
+            "commands": {
+                "streak": {
+                    "name": "wset streak",
+                    "description": "Set your streak",
+                    "usage": "wset streak [streak:number]",
+                    "example": "wset streak on",
+                    "arguments": {
+                        "streak": {
+                            "name": "streak value",
+                            "type": "String (required)",
+                            "description": "The value of streak to set"
+                        }
+                    }
+                }
+            }
+        },
+        "minigames": {
+            "name": "Mini Games",
+            "icon": "🎮",
+            "commands": {
+                "baucua": {
+                    "name": "/baucua",
+                    "description": "Traditional Vietnam games in Tet Holiday!",
+                    "usage": "/baucua [bet:number]",
+                    "example": "/baucua 5000",
+                    "arguments": {
+                        "bet": {
+                            "name": "bet",
+                            "type": "Number (required)",
+                            "description": "The amount of coins to wager"
+                        }
+                    }
+                },
+                "jackpot": {
+                    "name": "/jackpot",
+                    "description": "Jackpot games",
+                    "usage": "/jackpot [bet: number]",
+                    "example": "/jackpot 30",
+                    "arguments": {
+                        "bet": {
+                            "name": "bet",
+                            "type": "Number (required)",
+                            "description": "The amount of coins to wager"
+                        }
+                    }
+                },
+                "keoco": {
+                    "name": "/keoco",
+                    "description": "Physical games",
+                    "usage": "/keoco [bet: number]",
+                    "example": "/keoco 30",
+                    "arguments": {
+                        "bet": {
+                            "name": "bet",
+                            "type": "Number (required)",
+                            "description": "The amount of coins to wager"
+                        }
+                    }
+                },
+                "keobuabao": {
+                    "name": "/keobuabao",
+                    "description": "One Two Three games",
+                    "usage": "/keobuabao [bet: number]",
+                    "example": "/keobuabao 30",
+                    "arguments": {
+                        "bet": {
+                            "name": "bet",
+                            "type": "Number (required)",
+                            "description": "The amount of coins to wager"
+                        }
+                    }
+                },
+                "baicao": {
+                    "name": "/baicao",
+                    "description": "The card games",
+                    "usage": "/baicao [bet: number]",
+                    "example": "/baicao 30",
+                    "arguments": {
+                        "bet": {
+                            "name": "bet",
+                            "type": "Number (required)",
+                            "description": "The amount of coins to wager"
+                        }
+                    }
+                }
+            }
+        },
+        "werewolf": {
+            "name": "Werewolf",
+            "icon": "🐺",
+            "commands": {
+                "new": {
+                    "name": "/new",
+                    "description": "Create a new Werewolf game",
+                    "usage": "/new",
+                    "example": "/new"
+                },
+                "join": {
+                    "name": "/join",
+                    "description": "Join an existing Werewolf game",
+                    "usage": "/join",
+                    "example": "/join"
+                },
+                "start": {
+                    "name": "/start",
+                    "description": "Start the Werewolf game",
+                    "usage": "/start",
+                    "example": "/start"
+                }
+            }
+        },
+        "systems": {
+            "name": "Systems",
+            "icon": "⚙️",
+            "commands": {
+                "prefix": {
+                    "name": "/set prefix",
+                    "description": "[Admin - Manager] Set default prefix of the server!",
+                    "usage": "/set prefix <custom prefix: String>",
+                    "example": "/set prefix w",
+                    "arguments": {
+                        "prefix": {
+                            "name": "custom prefix",
+                            "type": "String (required)",
+                            "description": "Custom prefix want to change in the server. Default is w"
+                        }
+                    }
+                },
+                "lang": {
+                    "name": "/set lang",
+                    "description": "[Admin - Manager] Set default language of the server!",
+                    "usage": "/set lang <lang: String>",
+                    "example": "/set lang en",
+                    "arguments": {
+                        "lang": {
+                            "name": "lang",
+                            "type": "Enum: [en,vi] (required)",
+                            "description": "Language want to change in the server. Default is en"
+                        }
+                    }
+                },
+                "voice": {
+                    "name": "/set voice",
+                    "description": "[Admin - Manager] Set default voice channel of the server!",
+                    "usage": "/set voice true|false",
+                    "example": "/set voice true",
+                    "arguments": {
+                        "enabled": {
+                            "name": "enabled",
+                            "type": "Boolean (required)",
+                            "description": "Whether to enable or disable join voice notifications for the voice channel. Default is false"
+                        }
+                    }
+                },
+                "embed": {
+                    "name": "/set embed",
+                    "description": "[Admin - Manager] Set default embed messages of the server!",
+                    "usage": "/set embed true|false",
+                    "example": "/set embed true",
+                    "arguments": {
+                        "enabled": {
+                            "name": "enabled",
+                            "type": "Boolean (required)",
+                            "description": "Whether to enable or disable embed (for voice join notification) messages for the server. Default is false"
+                        }
+                    }
+                },
+                "streak": {
+                    "name": "/set streak",
+                    "description": "[Admin - Manager] Set default streak messages of the server!",
+                    "usage": "/set streak on|off",
+                    "example": "/set streak on",
+                    "arguments": {
+                        "status": {
+                            "name": "on|off",
+                            "type": "String (required)",
+                            "description": "Whether to enable or disable streak messages for the server. Default is off"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

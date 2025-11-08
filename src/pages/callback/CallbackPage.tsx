@@ -4,6 +4,7 @@ import { axiosNoAuth } from "../../utils/axiosIntance";
 import { useDispatch } from "react-redux";
 import { login, setIsLoadingFalse, setIsLoadingTrue } from "../../redux/reducer/authReducer";
 import { Loader, CheckCircle, XCircle } from "lucide-react";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function CallbackPage() {
     const navigate = useNavigate();
@@ -49,7 +50,8 @@ export default function CallbackPage() {
 
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get("code");
-
+    const { language } = useLanguage()
+    const t = language.call;
     return (
         <div className="min-h-screen bg-white flex items-center justify-center p-6">
             <div className="relative bg-white border-2 border-black rounded-2xl p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] max-w-md w-full">
@@ -76,14 +78,14 @@ export default function CallbackPage() {
 
                     {/* Title */}
                     <h1 className="text-3xl font-black text-black">
-                        {code ? "Đang đăng nhập..." : "Lỗi xác thực"}
+                        {code ? t.logging : t.error}
                     </h1>
 
                     {/* Description */}
                     <p className="text-gray-700 text-lg font-medium max-w-md">
                         {code
-                            ? "Đang kết nối với Discord và tải thông tin tài khoản của bạn..."
-                            : "Không tìm thấy mã xác thực. Vui lòng thử lại."
+                            ? t.connect
+                            : t.codeE
                         }
                     </p>
 
@@ -100,9 +102,9 @@ export default function CallbackPage() {
                     {code && (
                         <div className="grid grid-cols-3 gap-4 max-w-md mx-auto">
                             {[
-                                { label: "Xác thực", status: "completed" },
-                                { label: "Đang xử lý", status: "loading" },
-                                { label: "Chuyển hướng", status: "pending" }
+                                { label: t.completed, status: "completed" },
+                                { label: t.loading, status: "loading" },
+                                { label: t.pending, status: "pending" }
                             ].map((step, index) => (
                                 <div key={index} className="text-center">
                                     <div className={`flex items-center justify-center w-10 h-10 mx-auto border-2 border-black rounded-full ${step.status === 'completed' ? 'bg-green-400' :
@@ -128,7 +130,7 @@ export default function CallbackPage() {
                     {/* Additional info */}
                     <div className="bg-cyan-50 border-2 border-cyan-200 rounded-lg p-4 max-w-md mx-auto">
                         <p className="text-sm text-cyan-800 font-medium">
-                            💡 <strong>Mẹo:</strong> Bạn sẽ được tự động chuyển hướng sau khi hoàn tất
+                            💡 <strong>{t.tip}</strong> {t.tip_des}
                         </p>
                     </div>
 
@@ -138,7 +140,7 @@ export default function CallbackPage() {
                             onClick={() => navigate("/")}
                             className="flex items-center justify-center bg-cyan-400 border-2 border-black rounded-xl px-6 py-3 font-black text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-cyan-300 mx-auto"
                         >
-                            Quay lại trang chủ
+                            {t.return}
                         </button>
                     )}
                 </div>

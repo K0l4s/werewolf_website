@@ -1,347 +1,295 @@
 import { useState } from "react";
 import mascot from "../../assets/images/mascot.png";
 import { Search, Copy, CheckCircle } from "lucide-react";
-
-const commandGroups = [
-    {
-        name: "Economy",
-        icon: "💰",
-        commands: [
-            {
-                name: "/donate",
-                description: "Buy me a coffee ☕!",
-                usage: "/donate",
-                arguments: [],
-                example: "/donate"
-            },
-            {
-                name: "/wallet",
-                description: "Check your current coin balance",
-                usage: "/wallet",
-                arguments: [],
-                example: "/wallet"
-            },
-            {
-                name: "/daily",
-                description: "Claim your daily coins reward",
-                usage: "/daily",
-                arguments: [],
-                example: "/daily"
-            },
-            {
-                name: "/give",
-                description: "Transfer coins to another user",
-                usage: "/give <user: @username> <amount: number>",
-                arguments: [
-                    {
-                        name: "user",
-                        type: "Mention (required)",
-                        description: "The user you want to send coins to"
-                    },
-                    {
-                        name: "amount",
-                        type: "Number (required)",
-                        description: "The number of coins to transfer"
-                    }
-                ],
-                example: "/give @Kolas 100"
-            },
-            {
-                name: "/shop",
-                description: "See information in shop!",
-                usage: "/shop",
-                arguments: [],
-                example: "/shop"
-            },
-            {
-                name: "/buy",
-                description: "Buy item in shop!",
-                usage: "/buy <itemRef:String> <quantity:Number>",
-                arguments: [
-                    {
-                        name: "itemRef",
-                        type: "String (required)",
-                        description: "The item Ref"
-                    },
-                    {
-                        name: "quantity",
-                        type: "Number",
-                        description: "The quantity of items want to buy."
-                    }
-                ],
-                example: "/buy SPI1 5"
-            },
-            {
-                name: "/sell",
-                description: "See item for shop!",
-                usage: "/sell <itemRef:String> <quantity:Number>",
-                arguments: [
-                    {
-                        name: "itemRef",
-                        type: "String (required)",
-                        description: "The item Ref"
-                    },
-                    {
-                        name: "quantity",
-                        type: "Number",
-                        description: "The quantity of items want to sell."
-                    }
-                ],
-                example: "/sell SPI1 5"
-            },
-        ]
-    },
-    {
-        name: "Streak",
-        icon: "🔥",
-        commands: [
-            {
-                name: "wset streak",
-                description: "Set your streak",
-                usage: "wset streak [streak:number]",
-                arguments: [
-                    {
-                        name: "streak value",
-                        type: "String (required)",
-                        description: "The value of streak to set"
-                    }
-                ],
-                example: "wset streak on"
-            },
-        ]
-    },
-    {
-        name: "Mini Games",
-        icon: "🎮",
-        commands: [
-            {
-                name: "/baucua",
-                description: "Tranditional Vietnam games in Tet Holiday!",
-                usage: "/baucua [bet:number]",
-                arguments: [
-                    {
-                        name: "bet",
-                        type: "Number (required)",
-                        description: "The amount of coins to wager"
-                    }
-                ],
-                example: "/baucua 5000"
-            },
-            {
-                name: "/jackpot",
-                description: "Jackpot games",
-                usage: "/jackpot [bet: number]",
-                arguments: [
-                    {
-                        name: "bet",
-                        type: "Number (required)",
-                        description: "The amount of coins to wager"
-                    }
-                ],
-                example: "/jackpot 30"
-            },
-            {
-                name: "/keoco",
-                description: "Physical games",
-                usage: "/keoco [bet: number]",
-                arguments: [
-                    {
-                        name: "bet",
-                        type: "Number (required)",
-                        description: "The amount of coins to wager"
-                    }
-                ],
-                example: "/keoco 30"
-            },
-            {
-                name: "/keobuabao",
-                description: "One Two Three games",
-                usage: "/keobuabao [bet: number]",
-                arguments: [
-                    {
-                        name: "bet",
-                        type: "Number (required)",
-                        description: "The amount of coins to wager"
-                    }
-                ],
-                example: "/keobuabao 30"
-            },
-            {
-                name: "/baicao",
-                description: "The card games",
-                usage: "/baicao [bet: number]",
-                arguments: [
-                    {
-                        name: "bet",
-                        type: "Number (required)",
-                        description: "The amount of coins to wager"
-                    }
-                ],
-                example: "/baicao 30"
-            }
-        ]
-    },
-    {
-        name: "Soul Land",
-        icon: "🌌",
-        commands: [
-            {
-                name: "/awake",
-                description: "Awake random spirit!",
-                usage: "/awake",
-                arguments: [],
-                example: "/awake"
-            },
-            {
-                name: "/spirit information",
-                description: "See your Spirit!",
-                usage: "/spirit information",
-                arguments: [],
-                example: "/spirit information"
-            },
-            {
-                name: "/hunt",
-                description: "Hunt spirit soul from random spirit beast (1->99.999.999 years)!",
-                usage: "/hunt",
-                arguments: [],
-                example: "/hunt"
-            },
-            {
-                name: "/spirit attach",
-                description: "Attach Spirit Soul to your Spirit",
-                usage: "/soulland attach [spiritRef: String] [ringRef: String]",
-                arguments: [
-                    {
-                        name: "spiritRef",
-                        type: "String (require)",
-                        description: "Spirit ref"
-                    },
-                    {
-                        name: "ringRef",
-                        type: "String (require)",
-                        description: "Ring ref"
-                    }
-                ],
-                example: "/spirit attach LNT1 DKW21SDX"
-            }, {
-                name: "/battle  ",
-                description: "Battle with other Spirit Master!",
-                usage: "/battle <user: @mention>",
-                arguments: [
-                    {
-                        name: "user",
-                        type: "Mention (optional)",
-                        description: "The user whose you want to send battle invtite!"
-                    }
-                ],
-                example: "/battle @WerewolfBot"
-            }
-        ]
-    },
-    {
-        name: "Werewolf",
-        icon: "🐺",
-        commands: [
-            {
-                name: "/new",
-                description: "Create a new Werewolf game",
-                usage: "/new",
-                arguments: [],
-                example: "/new"
-            },
-            {
-                name: "/join",
-                description: "Join an existing Werewolf game",
-                usage: "/join",
-                arguments: [],
-                example: "/join"
-            },
-            {
-                name: "/start",
-                description: "Start the Werewolf game",
-                usage: "/start",
-                arguments: [],
-                example: "/start"
-            }
-        ]
-    }, {
-        name: "Systems",
-        icon: "⚙️",
-        commands: [
-            {
-                name: "/set prefix",
-                description: "[Admin - Manager] Set default prefix of the server!",
-                usage: "/set prefix <custom prefix: String>",
-                arguments: [
-                    {
-                        name: "custom prefix",
-                        type: "String (required)",
-                        description: "Custom prefix want to change in the server. Default is w"
-                    }
-                ],
-                example: "/set prefix w"
-            },
-            {
-                name: "/set lang",
-                description: "[Admin - Manager] Set default language of the server!",
-                usage: "/set lang <lang: String>",
-                arguments: [
-                    {
-                        name: "lang",
-                        type: "Enum: [en,vi] (required)",
-                        description: "Language want to change in the server. Default is en"
-                    }
-                ],
-                example: "/set lang en"
-            },
-            {
-                name: "/set voice",
-                description: "[Admin - Manager] Set default voice channel of the server!",
-                usage: "/set voice true|false",
-                arguments: [
-                    {
-                        name: "enabled",
-                        type: "Boolean (required)",
-                        description: "Whether to enable or disable join voice notifications for the voice channel. Default is false"
-                    }
-                ],
-                example: "/set voice true"
-            },
-            {
-                name: "/set embed",
-                description: "[Admin - Manager] Set default embed messages of the server!",
-                usage: "/set embed true|false",
-                arguments: [
-                    {
-                        name: "enabled",
-                        type: "Boolean (required)",
-                        description: "Whether to enable or disable embed (for voice join notification) messages for the server. Default is false"
-                    }
-                ],
-                example: "/set embed true"
-            },
-            {
-                name: "/set streak",
-                description: "[Admin - Manager] Set default streak messages of the server!",
-                usage: "/set streak on|off",
-                arguments: [
-                    {
-                        name: "on|off",
-                        type: "String (required)",
-                        description: "Whether to enable or disable streak messages for the server. Default is off"
-                    }
-                ],
-                example: "/set streak on"
-            },
-        ]
-    },
-];
+import { useLanguage } from "../../context/LanguageContext";
 
 const DocumentationPage = () => {
     const [activeGroup, setActiveGroup] = useState(0);
     const [activeCommand, setActiveCommand] = useState(0);
     const [searchQuery, setSearchQuery] = useState("");
     const [copiedCommand, setCopiedCommand] = useState("");
+    const {language} = useLanguage()
+    const t = language.documentation;
+
+    // Build command groups from translation data
+    const commandGroups = [
+        {
+            name: t.commandGroups.economy.name,
+            icon: t.commandGroups.economy.icon,
+            commands: [
+                {
+                    name: t.commandGroups.economy.commands.donate.name,
+                    description: t.commandGroups.economy.commands.donate.description,
+                    usage: t.commandGroups.economy.commands.donate.usage,
+                    arguments: [],
+                    example: t.commandGroups.economy.commands.donate.example
+                },
+                {
+                    name: t.commandGroups.economy.commands.wallet.name,
+                    description: t.commandGroups.economy.commands.wallet.description,
+                    usage: t.commandGroups.economy.commands.wallet.usage,
+                    arguments: [],
+                    example: t.commandGroups.economy.commands.wallet.example
+                },
+                {
+                    name: t.commandGroups.economy.commands.daily.name,
+                    description: t.commandGroups.economy.commands.daily.description,
+                    usage: t.commandGroups.economy.commands.daily.usage,
+                    arguments: [],
+                    example: t.commandGroups.economy.commands.daily.example
+                },
+                {
+                    name: t.commandGroups.economy.commands.give.name,
+                    description: t.commandGroups.economy.commands.give.description,
+                    usage: t.commandGroups.economy.commands.give.usage,
+                    arguments: [
+                        {
+                            name: t.commandGroups.economy.commands.give.arguments.user.name,
+                            type: t.commandGroups.economy.commands.give.arguments.user.type,
+                            description: t.commandGroups.economy.commands.give.arguments.user.description
+                        },
+                        {
+                            name: t.commandGroups.economy.commands.give.arguments.amount.name,
+                            type: t.commandGroups.economy.commands.give.arguments.amount.type,
+                            description: t.commandGroups.economy.commands.give.arguments.amount.description
+                        }
+                    ],
+                    example: t.commandGroups.economy.commands.give.example
+                },
+                {
+                    name: t.commandGroups.economy.commands.shop.name,
+                    description: t.commandGroups.economy.commands.shop.description,
+                    usage: t.commandGroups.economy.commands.shop.usage,
+                    arguments: [],
+                    example: t.commandGroups.economy.commands.shop.example
+                },
+                {
+                    name: t.commandGroups.economy.commands.buy.name,
+                    description: t.commandGroups.economy.commands.buy.description,
+                    usage: t.commandGroups.economy.commands.buy.usage,
+                    arguments: [
+                        {
+                            name: t.commandGroups.economy.commands.buy.arguments.itemRef.name,
+                            type: t.commandGroups.economy.commands.buy.arguments.itemRef.type,
+                            description: t.commandGroups.economy.commands.buy.arguments.itemRef.description
+                        },
+                        {
+                            name: t.commandGroups.economy.commands.buy.arguments.quantity.name,
+                            type: t.commandGroups.economy.commands.buy.arguments.quantity.type,
+                            description: t.commandGroups.economy.commands.buy.arguments.quantity.description
+                        }
+                    ],
+                    example: t.commandGroups.economy.commands.buy.example
+                },
+                {
+                    name: t.commandGroups.economy.commands.sell.name,
+                    description: t.commandGroups.economy.commands.sell.description,
+                    usage: t.commandGroups.economy.commands.sell.usage,
+                    arguments: [
+                        {
+                            name: t.commandGroups.economy.commands.sell.arguments.itemRef.name,
+                            type: t.commandGroups.economy.commands.sell.arguments.itemRef.type,
+                            description: t.commandGroups.economy.commands.sell.arguments.itemRef.description
+                        },
+                        {
+                            name: t.commandGroups.economy.commands.sell.arguments.quantity.name,
+                            type: t.commandGroups.economy.commands.sell.arguments.quantity.type,
+                            description: t.commandGroups.economy.commands.sell.arguments.quantity.description
+                        }
+                    ],
+                    example: t.commandGroups.economy.commands.sell.example
+                },
+            ]
+        },
+        {
+            name: t.commandGroups.streak.name,
+            icon: t.commandGroups.streak.icon,
+            commands: [
+                {
+                    name: t.commandGroups.streak.commands.streak.name,
+                    description: t.commandGroups.streak.commands.streak.description,
+                    usage: t.commandGroups.streak.commands.streak.usage,
+                    arguments: [
+                        {
+                            name: t.commandGroups.streak.commands.streak.arguments.streak.name,
+                            type: t.commandGroups.streak.commands.streak.arguments.streak.type,
+                            description: t.commandGroups.streak.commands.streak.arguments.streak.description
+                        }
+                    ],
+                    example: t.commandGroups.streak.commands.streak.example
+                },
+            ]
+        },
+        {
+            name: t.commandGroups.minigames.name,
+            icon: t.commandGroups.minigames.icon,
+            commands: [
+                {
+                    name: t.commandGroups.minigames.commands.baucua.name,
+                    description: t.commandGroups.minigames.commands.baucua.description,
+                    usage: t.commandGroups.minigames.commands.baucua.usage,
+                    arguments: [
+                        {
+                            name: t.commandGroups.minigames.commands.baucua.arguments.bet.name,
+                            type: t.commandGroups.minigames.commands.baucua.arguments.bet.type,
+                            description: t.commandGroups.minigames.commands.baucua.arguments.bet.description
+                        }
+                    ],
+                    example: t.commandGroups.minigames.commands.baucua.example
+                },
+                {
+                    name: t.commandGroups.minigames.commands.jackpot.name,
+                    description: t.commandGroups.minigames.commands.jackpot.description,
+                    usage: t.commandGroups.minigames.commands.jackpot.usage,
+                    arguments: [
+                        {
+                            name: t.commandGroups.minigames.commands.jackpot.arguments.bet.name,
+                            type: t.commandGroups.minigames.commands.jackpot.arguments.bet.type,
+                            description: t.commandGroups.minigames.commands.jackpot.arguments.bet.description
+                        }
+                    ],
+                    example: t.commandGroups.minigames.commands.jackpot.example
+                },
+                {
+                    name: t.commandGroups.minigames.commands.keoco.name,
+                    description: t.commandGroups.minigames.commands.keoco.description,
+                    usage: t.commandGroups.minigames.commands.keoco.usage,
+                    arguments: [
+                        {
+                            name: t.commandGroups.minigames.commands.keoco.arguments.bet.name,
+                            type: t.commandGroups.minigames.commands.keoco.arguments.bet.type,
+                            description: t.commandGroups.minigames.commands.keoco.arguments.bet.description
+                        }
+                    ],
+                    example: t.commandGroups.minigames.commands.keoco.example
+                },
+                {
+                    name: t.commandGroups.minigames.commands.keobuabao.name,
+                    description: t.commandGroups.minigames.commands.keobuabao.description,
+                    usage: t.commandGroups.minigames.commands.keobuabao.usage,
+                    arguments: [
+                        {
+                            name: t.commandGroups.minigames.commands.keobuabao.arguments.bet.name,
+                            type: t.commandGroups.minigames.commands.keobuabao.arguments.bet.type,
+                            description: t.commandGroups.minigames.commands.keobuabao.arguments.bet.description
+                        }
+                    ],
+                    example: t.commandGroups.minigames.commands.keobuabao.example
+                },
+                {
+                    name: t.commandGroups.minigames.commands.baicao.name,
+                    description: t.commandGroups.minigames.commands.baicao.description,
+                    usage: t.commandGroups.minigames.commands.baicao.usage,
+                    arguments: [
+                        {
+                            name: t.commandGroups.minigames.commands.baicao.arguments.bet.name,
+                            type: t.commandGroups.minigames.commands.baicao.arguments.bet.type,
+                            description: t.commandGroups.minigames.commands.baicao.arguments.bet.description
+                        }
+                    ],
+                    example: t.commandGroups.minigames.commands.baicao.example
+                },
+            ]
+        },
+        {
+            name: t.commandGroups.werewolf.name,
+            icon: t.commandGroups.werewolf.icon,
+            commands: [
+                {
+                    name: t.commandGroups.werewolf.commands.new.name,
+                    description: t.commandGroups.werewolf.commands.new.description,
+                    usage: t.commandGroups.werewolf.commands.new.usage,
+                    arguments: [],
+                    example: t.commandGroups.werewolf.commands.new.example
+                },
+                {
+                    name: t.commandGroups.werewolf.commands.join.name,
+                    description: t.commandGroups.werewolf.commands.join.description,
+                    usage: t.commandGroups.werewolf.commands.join.usage,
+                    arguments: [],
+                    example: t.commandGroups.werewolf.commands.join.example
+                },
+                {
+                    name: t.commandGroups.werewolf.commands.start.name,
+                    description: t.commandGroups.werewolf.commands.start.description,
+                    usage: t.commandGroups.werewolf.commands.start.usage,
+                    arguments: [],
+                    example: t.commandGroups.werewolf.commands.start.example
+                },
+            ]
+        },
+        {
+            name: t.commandGroups.systems.name,
+            icon: t.commandGroups.systems.icon,
+            commands: [
+                {
+                    name: t.commandGroups.systems.commands.prefix.name,
+                    description: t.commandGroups.systems.commands.prefix.description,
+                    usage: t.commandGroups.systems.commands.prefix.usage,
+                    arguments: [
+                        {
+                            name: t.commandGroups.systems.commands.prefix.arguments.prefix.name,
+                            type: t.commandGroups.systems.commands.prefix.arguments.prefix.type,
+                            description: t.commandGroups.systems.commands.prefix.arguments.prefix.description
+                        }
+                    ],
+                    example: t.commandGroups.systems.commands.prefix.example
+                },
+                {
+                    name: t.commandGroups.systems.commands.lang.name,
+                    description: t.commandGroups.systems.commands.lang.description,
+                    usage: t.commandGroups.systems.commands.lang.usage,
+                    arguments: [
+                        {
+                            name: t.commandGroups.systems.commands.lang.arguments.lang.name,
+                            type: t.commandGroups.systems.commands.lang.arguments.lang.type,
+                            description: t.commandGroups.systems.commands.lang.arguments.lang.description
+                        }
+                    ],
+                    example: t.commandGroups.systems.commands.lang.example
+                },
+                {
+                    name: t.commandGroups.systems.commands.voice.name,
+                    description: t.commandGroups.systems.commands.voice.description,
+                    usage: t.commandGroups.systems.commands.voice.usage,
+                    arguments: [
+                        {
+                            name: t.commandGroups.systems.commands.voice.arguments.enabled.name,
+                            type: t.commandGroups.systems.commands.voice.arguments.enabled.type,
+                            description: t.commandGroups.systems.commands.voice.arguments.enabled.description
+                        }
+                    ],
+                    example: t.commandGroups.systems.commands.voice.example
+                },
+                {
+                    name: t.commandGroups.systems.commands.embed.name,
+                    description: t.commandGroups.systems.commands.embed.description,
+                    usage: t.commandGroups.systems.commands.embed.usage,
+                    arguments: [
+                        {
+                            name: t.commandGroups.systems.commands.embed.arguments.enabled.name,
+                            type: t.commandGroups.systems.commands.embed.arguments.enabled.type,
+                            description: t.commandGroups.systems.commands.embed.arguments.enabled.description
+                        }
+                    ],
+                    example: t.commandGroups.systems.commands.embed.example
+                },
+                {
+                    name: t.commandGroups.systems.commands.streak.name,
+                    description: t.commandGroups.systems.commands.streak.description,
+                    usage: t.commandGroups.systems.commands.streak.usage,
+                    arguments: [
+                        {
+                            name: t.commandGroups.systems.commands.streak.arguments.status.name,
+                            type: t.commandGroups.systems.commands.streak.arguments.status.type,
+                            description: t.commandGroups.systems.commands.streak.arguments.status.description
+                        }
+                    ],
+                    example: t.commandGroups.systems.commands.streak.example
+                },
+            ]
+        },
+    ];
 
     // Filter commands based on search query
     const filteredGroups = commandGroups.map(group => ({
@@ -370,7 +318,6 @@ const DocumentationPage = () => {
         }
     };
 
-
     return (
         <div className="min-h-screen overflow-x-hidden">
             {/* HERO SECTION */}
@@ -379,14 +326,14 @@ const DocumentationPage = () => {
                     <div className="flex-1">
                         <div className="inline-flex items-center mb-4 px-4 py-2 rounded-full bg-cyan-100 border-2 border-black text-black text-sm font-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                             <span className="w-2 h-2 bg-cyan-400 border border-black rounded-full mr-2 animate-pulse"></span>
-                            Command Documentation
+                            {t.hero.badge}
                         </div>
                         <h1 className="text-5xl md:text-6xl font-black mb-6 text-black">
-                            Keldo Bot <br />
-                            <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Commands Guide</span>
+                            {t.hero.title} <br />
+                            <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">{t.hero.titleHighlight}</span>
                         </h1>
                         <p className="text-gray-700 text-lg max-w-xl mb-8 font-medium">
-                            Learn how to use all of Keldo Bot's commands and features to enhance your Discord experience.
+                            {t.hero.description}
                         </p>
 
                         {/* SEARCH BAR */}
@@ -396,7 +343,7 @@ const DocumentationPage = () => {
                             </div>
                             <input
                                 type="text"
-                                placeholder="Search commands..."
+                                placeholder={t.hero.searchPlaceholder}
                                 className="w-full pl-12 pr-4 py-4 bg-white border-2 border-black rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-medium shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -430,7 +377,7 @@ const DocumentationPage = () => {
                     {/* SIDEBAR - COMMAND GROUPS */}
                     <div className="lg:w-1/4">
                         <div className="sticky top-24 bg-white border-2 border-black rounded-2xl p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                            <h3 className="text-xl font-black mb-6 text-black border-b-2 border-black pb-3">Command Categories</h3>
+                            <h3 className="text-xl font-black mb-6 text-black border-b-2 border-black pb-3">{t.commands.categories}</h3>
                             <ul className="space-y-2">
                                 {filteredGroups.map((group, index) => (
                                     <li key={group.name}>
@@ -462,13 +409,13 @@ const DocumentationPage = () => {
                             {/* Note */}
                             <div className="bg-yellow-50 border-2 border-black rounded-xl p-4 mb-8 text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                                 <p className="text-black font-black">
-                                    💡 Note: You can use prefix command instead of slash command. Default: w[command]
+                                    {t.commands.note}
                                 </p>
                             </div>
 
                             <h2 className="text-3xl font-black mb-8 flex items-center gap-4 text-black border-b-2 border-black pb-4">
                                 <span className="text-3xl">{filteredGroups[activeGroup]?.icon}</span>
-                                {filteredGroups[activeGroup]?.name} Commands
+                                {filteredGroups[activeGroup]?.name} {t.commands.commands}
                             </h2>
 
                             {filteredGroups[activeGroup]?.commands.length > 0 ? (
@@ -511,7 +458,7 @@ const DocumentationPage = () => {
                                                     ) : (
                                                         <Copy size={18} />
                                                     )}
-                                                    {copiedCommand === filteredGroups[activeGroup]?.commands[activeCommand].example ? "Copied!" : "Copy Example"}
+                                                    {copiedCommand === filteredGroups[activeGroup]?.commands[activeCommand].example ? t.commands.commandDetails.copied : t.commands.commandDetails.copyExample}
                                                 </button>
                                             </div>
 
@@ -520,7 +467,7 @@ const DocumentationPage = () => {
                                             </p>
 
                                             <div className="mb-8">
-                                                <h4 className="font-black text-black mb-4 text-xl">Usage</h4>
+                                                <h4 className="font-black text-black mb-4 text-xl">{t.commands.commandDetails.usage}</h4>
                                                 <div className="bg-black text-white p-4 rounded-xl font-mono text-lg border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] overflow-x-auto">
                                                     {filteredGroups[activeGroup]?.commands[activeCommand].usage}
                                                 </div>
@@ -528,7 +475,7 @@ const DocumentationPage = () => {
 
                                             {filteredGroups[activeGroup]?.commands[activeCommand].arguments.length > 0 && (
                                                 <div className="mb-8">
-                                                    <h4 className="font-black text-black mb-4 text-xl">Arguments</h4>
+                                                    <h4 className="font-black text-black mb-4 text-xl">{t.commands.commandDetails.arguments}</h4>
                                                     <div className="grid gap-4">
                                                         {filteredGroups[activeGroup]?.commands[activeCommand].arguments.map((arg, index) => (
                                                             <div key={index} className="bg-gray-50 border-2 border-black p-4 rounded-xl shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
@@ -546,7 +493,7 @@ const DocumentationPage = () => {
                                             )}
 
                                             <div>
-                                                <h4 className="font-black text-black mb-4 text-xl">Example</h4>
+                                                <h4 className="font-black text-black mb-4 text-xl">{t.commands.commandDetails.example}</h4>
                                                 <div className="bg-gray-100 border-2 border-black p-4 rounded-xl font-mono text-lg font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] overflow-x-auto">
                                                     {filteredGroups[activeGroup]?.commands[activeCommand].example}
                                                 </div>
@@ -556,10 +503,10 @@ const DocumentationPage = () => {
                                 </div>
                             ) : (
                                 <div className="text-center py-16">
-                                    <div className="text-6xl mb-6">🔍</div>
-                                    <h3 className="text-2xl font-black mb-4 text-black">No commands found</h3>
+                                    <div className="text-6xl mb-6">{t.commands.noCommandsFound.icon}</div>
+                                    <h3 className="text-2xl font-black mb-4 text-black">{t.commands.noCommandsFound.title}</h3>
                                     <p className="text-gray-700 font-medium text-lg">
-                                        Try a different search term or browse through other categories.
+                                        {t.commands.noCommandsFound.description}
                                     </p>
                                 </div>
                             )}

@@ -1,0 +1,62 @@
+{
+    "title": "Giveaway Management Guide",
+    "subtitle": "Complete step-by-step guide to creating and managing giveaways",
+    
+    "sections": {
+      "flow": "Process Flow",
+      "requirements": "Requirements",
+      "tips": "Best Practices",
+      "support": "Support"
+    },
+    
+    "processTitle": "Giveaway Process Flow",
+    "flowSteps": {
+      "initiate": "Initiate Giveaway",
+      "approval": "Admin Approval",
+      "announcement": "Announcement",
+      "participation": "Participation",
+      "completion": "Completion",
+      "results": "Results & Prize Claim"
+    },
+    "flowDetails": {
+      "initiate": "Host uses /giveaway command to create a new giveaway. Fill in prize, duration, and number of winners.",
+      "approval": "Admins review the giveaway and can approve, reject, or request modifications before publishing.",
+      "announcement": "Once approved, the giveaway automatically appears in the announcement channel.",
+      "participation": "Members click the 'Join' button to enter the giveaway until it ends.",
+      "completion": "Giveaway ends automatically or manually by the host/admin based on the schedule.",
+      "results": "Winners are announced and must confirm their prize in the results channel."
+    },
+    
+    "requirementsTitle": "Requirements",
+    "requirementSections": {
+      "host": "Host Requirements",
+      "participant": "Participant Requirements"
+    },
+    "hostRequirements": [
+      "Must be a server member with sufficient permissions.",
+      "Account older than 7 days.",
+      "No active moderation actions."
+    ],
+    "participantRequirements": [
+      "Must be a verified server member.",
+      "Meet giveaway-specific conditions (e.g., role, reaction).",
+      "No history of bans in the server."
+    ],
+    
+    "tipsTitle": "Best Practices",
+    "tips": [
+      "Be clear about the prize and number of winners.",
+      "Set reasonable duration — 24h to 7d works best.",
+      "Announce results promptly and contact winners within 24h.",
+      "Avoid running too many giveaways simultaneously.",
+      "Follow Discord TOS and server rules."
+    ],
+    
+    "supportTitle": "Need Help?",
+    "supportMessages": [
+      "Need help? Contact the support team via #help-desk.",
+      "Check the official documentation for setup instructions.",
+      "Join our community Discord for updates and Q&A."
+    ]
+
+}

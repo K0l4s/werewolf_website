@@ -1,0 +1,175 @@
+{
+    "title": "Server Settings Guide",
+    "subtitle": "Complete administrator guide for server configuration and management",
+    "adminWarning": "Administrator Only - All commands on this page require Administrator or Manage Server permissions. Regular members cannot access these settings.",
+    
+    "navItems": {
+      "language": "Language",
+      "prefix": "Prefix",
+      "notifications": "Welcome",
+      "voice": "Voice",
+      "streak": "Streak",
+      "permissions": "Permissions"
+    },
+    
+    "languageTitle": "Server Language Settings",
+    "languageSettings": {
+      "command": "wset lang [language]",
+      "description": "Change server language for bot responses",
+      "usage": "Set the preferred language for all bot messages and interactions",
+      "examples": [
+        "wset lang vi - Set language to Vietnamese",
+        "wset lang en - Set language to English"
+      ],
+      "notes": [
+        "Changes apply to all bot responses server-wide",
+        "Only server administrators can change this setting",
+        "Default language is English"
+      ]
+    },
+    "supportedLanguage": [
+      { "code": "vi", "name": "Vietnamese", "flag": "🇻🇳" },
+      { "code": "en", "name": "English", "flag": "🇺🇸" }
+    ],
+    
+    "prefixTitle": "Custom Prefix Settings",
+    "prefixSettings": {
+      "command": "wset prefix [character]",
+      "description": "Change the bot command prefix for this server",
+      "usage": "Set a custom prefix for all bot commands",
+      "examples": [
+        "wset prefix ! - Change prefix to exclamation mark",
+        "wset prefix $ - Change prefix to dollar sign",
+        "wset prefix . - Change prefix to dot"
+      ],
+      "importantNotes": [
+        "After changing prefix, members can check it with: wcheck prefix",
+        "Once changed, the default prefix (w) will no longer work",
+        "If you forget your custom prefix, use slash command: /set prefix [character] to reset",
+        "Prefix must be a single character",
+        "Avoid using special characters that might conflict with other bots"
+      ]
+    },
+    
+    "notificationsTitle": "Welcome & Farewell Notifications",
+    "notificationSettings": {
+      "commands": [
+        {
+          "command": "/set notification [#channel]",
+          "description": "Set welcome/farewell notification channel",
+          "usage": "Configure where welcome and goodbye messages are sent",
+          "example": "/set notification #welcome-channel"
+        }
+      ],
+      "features": [
+        "Welcome messages for new members",
+        "Farewell messages for leaving members",
+        "Customizable message templates",
+        "Embed-style notifications"
+      ],
+      "importantNotes": [
+        "⚠️ This feature ONLY works with SLASH COMMANDS, not prefix commands",
+        "⚡ For advanced customization, use the Dashboard at /dashboard",
+        "🎨 Custom backgrounds available for 15 tokens or with Premium packages",
+        "👑 Premium features include animated backgrounds and custom messages"
+      ],
+      "dashboardFeatures": [
+        "Live preview of welcome messages",
+        "Custom message editor",
+        "Background image selection",
+        "Font and color customization",
+        "Test notification feature"
+      ]
+    },
+    
+    "voiceTitle": "Voice Chat Notifications",
+    "voiceSettings": {
+      "command": "wset voice [true/false]",
+      "description": "Enable/disable voice chat notifications",
+      "usage": "Toggle notifications for voice channel activities",
+      "examples": [
+        "wset voice true - Enable voice notifications",
+        "wset voice false - Disable voice notifications"
+      ],
+      "notificationTypes": [
+        "Member joining voice channels",
+        "Member leaving voice channels",
+        "Member moving between voice channels"
+      ],
+      "embedSettings": {
+        "command": "wset embed [true/false]",
+        "description": "Toggle beautiful embed-style notifications",
+        "usage": "Switch between embed and plain text notifications",
+        "examples": [
+          "wset embed true - Enable embed notifications",
+          "wset embed false - Disable embed notifications"
+        ]
+      }
+    },
+    
+    "streakTitle": "Streak System Settings",
+    "streakSettings": {
+      "command": "wset streak [on/off]",
+      "description": "Enable/disable streak tracking for the entire server",
+      "usage": "Toggle daily streak functionality server-wide",
+      "examples": [
+        "wset streak on - Enable streak system",
+        "wset streak off - Disable streak system"
+      ],
+      "features": [
+        "Daily activity tracking",
+        "Reward system for consistent participation",
+        "Leaderboard for top streakers",
+        "Bonus rewards for milestone streaks"
+      ],
+      "learnMore": {
+        "text": "Visit the streak details page for in-depth information",
+        "link": "/guild/streak",
+        "features": [
+          "How streaks are calculated",
+          "Reward tiers and benefits",
+          "Streak reset conditions",
+          "Premium streak bonuses"
+        ]
+      }
+    },
+    
+    "permissionsTitle": "Permissions & Requirements",
+    "permissionInfo": {
+      "requiredRoles": ["Administrator", "Server Manager", "Manage Server permission"],
+      "userLimitations": [
+        "Regular members CANNOT use these settings commands",
+        "Commands will return permission denied for non-admins",
+        "Some features may require specific bot permissions"
+      ],
+      "botRequirements": [
+        "Manage Channels permission for notification setup",
+        "Send Messages permission",
+        "Embed Links permission for rich notifications",
+        "View Channels permission for voice tracking"
+      ]
+    },
+    
+    "commandInformation": "Command Information",
+    "usage": "Usage",
+    "examples": "Examples",
+    "importantNotes": "Important Notes",
+    "supportedLanguages": "Supported Languages",
+    "criticalInformation": "Critical Information",
+    "recoveryCommand": "Recovery Command",
+    "slashCommands": "Slash Commands",
+    "features": "Features",
+    "dashboardFeatures": "Dashboard Features",
+    "goToDashboard": "Go to Dashboard",
+    "tracks": "Tracks",
+    "embedFeatures": "Embed Features",
+    "streakConfiguration": "Streak Configuration",
+    "learnMoreAbout": "Learn More About Streaks",
+    "visitDetails": "Visit Streak Details",
+    "detailedInformation": "Detailed Information",
+    "requiredRoles": "Required Roles",
+    "limitationsRequirements": "Limitations & Requirements",
+    "userLimitations": "User Limitations",
+    "botRequirements": "Bot Requirements",
+    "embedNotifications": "Embed Notifications"
+  }

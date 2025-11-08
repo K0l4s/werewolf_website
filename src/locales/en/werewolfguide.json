@@ -1,0 +1,175 @@
+{
+        "title": "Werewolf Game Guide",
+        "subtitle": "Complete guide to playing Werewolf on Discord server",
+        "navItems": {
+            "commands": "Commands",
+            "flow": "Game Flow",
+            "roles": "Roles",
+            "tips": "Tips"
+        },
+        "commandsTitle": "Command List",
+        "commands": [
+            {
+                "command": "Wnew",
+                "description": "Create a new game room",
+                "usage": "Use when you want to start a new game session",
+                "example": "Wnew",
+                "important": true
+            },
+            {
+                "command": "Wjoin",
+                "description": "Join the current game room",
+                "usage": "Use after someone has created a room with Wnew",
+                "example": "Wjoin",
+                "important": true
+            },
+            {
+                "command": "Wleave",
+                "description": "Leave the game room",
+                "usage": "Use when you want to exit the game before it starts",
+                "example": "Wleave",
+                "important": false
+            },
+            {
+                "command": "Wstart",
+                "description": "Start the game",
+                "usage": "Use when enough players have joined",
+                "example": "Wstart",
+                "important": true
+            }
+        ],
+        "commandSequence": {
+            "title": "Command Execution Sequence",
+            "items": [
+                {
+                    "step": "1️⃣",
+                    "command": "Wnew",
+                    "desc": "Create new room"
+                },
+                {
+                    "step": "2️⃣",
+                    "command": "Wjoin",
+                    "desc": "Join game"
+                },
+                {
+                    "step": "3️⃣",
+                    "command": "Wstart",
+                    "desc": "Start game"
+                }
+            ],
+            "importantNote": "After finishing a game, you must use Wnew again to create a new game session. The previous room becomes inactive once the game ends."
+        },
+        "flowTitle": "Game Flow",
+        "gameFlow": [
+            {
+                "phase": "SETUP PHASE",
+                "steps": [
+                    "Game master or any player uses **Wnew** to create a new room",
+                    "Other players use **Wjoin** to join the game",
+                    "When enough players have joined, use **Wstart** to begin the game"
+                ]
+            },
+            {
+                "phase": "NIGHT - DAY CYCLE",
+                "steps": [
+                    "🔴 **Night Phase**: Special roles (Werewolves, Seer, Bodyguard...) perform their actions",
+                    "🟢 **Day Phase**: All players discuss and vote to eliminate someone",
+                    "Game automatically progresses when all actions are completed"
+                ]
+            },
+            {
+                "phase": "END GAME",
+                "steps": [
+                    "Villagers win when all Werewolves are eliminated",
+                    "Werewolves win when their numbers equal or exceed the Villagers",
+                    "Use **Wnew** to create a new game after completion"
+                ]
+            }
+        ],
+        "dayNightCycle": {
+            "title": "Day & Night Cycle",
+            "night": {
+                "title": "NIGHT PHASE",
+                "items": [
+                    "🐺 Werewolves choose target",
+                    "🔮 Seer investigates players",
+                    "🛡️ Bodyguard protects players",
+                    "👑 Other special roles act",
+                    "⏰ Actions happen ONE AT A TIME"
+                ]
+            },
+            "day": {
+                "title": "DAY PHASE",
+                "items": [
+                    "💬 Public discussion",
+                    "🗳️ Vote to eliminate someone",
+                    "📢 Announce voting results",
+                    "🚪 Eliminated player leaves",
+                    "✅ Majority vote decides"
+                ]
+            }
+        },
+        "rolesTitle": "Game Roles",
+        "roleExamples": [
+            {
+                "role": "Werewolf",
+                "team": "Werewolves",
+                "description": "Kill one villager each night. Work with other werewolves to eliminate villagers.",
+                "nightAction": "Choose one player to eliminate",
+                "icon": "🐺",
+                "color": "bg-red-400"
+            },
+            {
+                "role": "Seer",
+                "team": "Villagers",
+                "description": "Can check one player's role each night to determine if they are werewolf or not.",
+                "nightAction": "Investigate one player's alignment",
+                "icon": "🔮",
+                "color": "bg-purple-400"
+            },
+            {
+                "role": "Villager",
+                "team": "Villagers",
+                "description": "No special abilities. Use discussion and voting to find werewolves.",
+                "nightAction": "No action",
+                "icon": "👨‍🌾",
+                "color": "bg-green-400"
+            },
+            {
+                "role": "Bodyguard",
+                "team": "Villagers",
+                "description": "Can protect one player each night from werewolf attacks.",
+                "nightAction": "Protect one player",
+                "icon": "🛡️",
+                "color": "bg-blue-400"
+            }
+        ],
+        "tipsTitle": "Important Tips & Best Practices",
+        "tips": [
+            "Perform actions SLOWLY and ONE PLAYER AT A TIME",
+            "Wait for bot confirmation before the next player takes action",
+            "Avoid spamming commands to prevent game errors",
+            "Follow bot instructions carefully in each phase",
+            "If errors occur, use Wnew to create a new game",
+            "Be patient during role assignments and phase transitions",
+            "Pay attention to private messages from the bot for your role instructions"
+        ],
+        "criticalWarning": {
+            "title": "CRITICAL: Avoid Game Errors",
+            "items": [
+                "🚫 DO NOT spam commands - wait for bot responses",
+                "🚫 DO NOT perform actions simultaneously - go one by one",
+                "🚫 DO NOT ignore bot instructions - follow the sequence",
+                "✅ DO wait for your turn during night phases",
+                "✅ DO use Wnew to reset if game gets stuck",
+                "✅ DO be patient during role assignments"
+            ]
+        },
+        "important": "IMPORTANT",
+        "usage": "Usage:",
+        "example": "Example:",
+        "nightAction": "Night Action",
+        "werewolves": "Werewolves",
+        "villagers": "Villagers"
+    
+}

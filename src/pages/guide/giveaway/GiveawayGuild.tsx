@@ -12,88 +12,69 @@ import {
   Shield,
   MessageSquare,
 } from "lucide-react";
+import { useLanguage } from "../../../context/LanguageContext";
+
+// Props interface for the component
+
 
 const GiveawayGuide = () => {
   const [activeSection, setActiveSection] = useState("flow");
+  const { language } = useLanguage()
+  const t = language.GAGuide;
 
   const sections = [
-    { id: "flow", label: "Process Flow", icon: ClipboardList },
-    { id: "requirements", label: "Requirements", icon: Shield },
-    { id: "tips", label: "Best Practices", icon: Crown },
-    { id: "support", label: "Support", icon: MessageSquare },
+    { id: "flow", label: t.sections.flow, icon: ClipboardList },
+    { id: "requirements", label: t.sections.requirements, icon: Shield },
+    { id: "tips", label: t.sections.tips, icon: Crown },
+    { id: "support", label: t.sections.support, icon: MessageSquare },
   ];
 
   const flowSteps = [
     {
-      title: "Initiate Giveaway",
+      title: t.flowSteps.initiate,
       icon: GiftIcon,
-      details:
-        "Host uses /giveaway command to create a new giveaway. Fill in prize, duration, and number of winners.",
+      details: t.flowDetails.initiate,
     },
     {
-      title: "Admin Approval",
+      title: t.flowSteps.approval,
       icon: CheckCircle,
-      details:
-        "Admins review the giveaway and can approve, reject, or request modifications before publishing.",
+      details: t.flowDetails.approval,
     },
     {
-      title: "Announcement",
+      title: t.flowSteps.announcement,
       icon: Megaphone,
-      details:
-        "Once approved, the giveaway automatically appears in the announcement channel.",
+      details: t.flowDetails.announcement,
     },
     {
-      title: "Participation",
+      title: t.flowSteps.participation,
       icon: Users,
-      details:
-        "Members click the 'Join' button to enter the giveaway until it ends.",
+      details: t.flowDetails.participation,
     },
     {
-      title: "Completion",
+      title: t.flowSteps.completion,
       icon: Clock,
-      details:
-        "Giveaway ends automatically or manually by the host/admin based on the schedule.",
+      details: t.flowDetails.completion,
     },
     {
-      title: "Results & Prize Claim",
+      title: t.flowSteps.results,
       icon: Crown,
-      details:
-        "Winners are announced and must confirm their prize in the results channel.",
+      details: t.flowDetails.results,
     },
   ];
 
   const requirements = [
     {
-      title: "Host Requirements",
-      points: [
-        "Must be a server member with sufficient permissions.",
-        "Account older than 7 days.",
-        "No active moderation actions.",
-      ],
+      title: t.requirementSections.host,
+      points: t.hostRequirements,
     },
     {
-      title: "Participant Requirements",
-      points: [
-        "Must be a verified server member.",
-        "Meet giveaway-specific conditions (e.g., role, reaction).",
-        "No history of bans in the server.",
-      ],
+      title: t.requirementSections.participant,
+      points: t.participantRequirements,
     },
   ];
 
-  const tips = [
-    "Be clear about the prize and number of winners.",
-    "Set reasonable duration — 24h to 7d works best.",
-    "Announce results promptly and contact winners within 24h.",
-    "Avoid running too many giveaways simultaneously.",
-    "Follow Discord TOS and server rules.",
-  ];
-
-  const support = [
-    "Need help? Contact the support team via #help-desk.",
-    "Check the official documentation for setup instructions.",
-    "Join our community Discord for updates and Q&A.",
-  ];
+  const tips = t.tips;
+  const support = t.supportMessages;
 
   return (
     <div className="min-h-screen py-8">
@@ -106,10 +87,10 @@ const GiveawayGuide = () => {
           <div className="absolute bottom-4 right-4 w-3 h-3 bg-blue-400 border-2 border-black rounded-full"></div>
 
           <h1 className="text-5xl md:text-6xl font-black text-black mb-4">
-            Giveaway Management Guide
+            {t.title}
           </h1>
           <p className="text-lg text-gray-700 font-medium">
-            Complete step-by-step guide to creating and managing giveaways
+            {t.subtitle}
           </p>
         </div>
 
@@ -119,11 +100,10 @@ const GiveawayGuide = () => {
             <button
               key={item.id}
               onClick={() => setActiveSection(item.id)}
-              className={`relative group flex items-center gap-2 px-6 py-3 font-black border-3 border-black rounded-xl transition-all duration-300 hover:translate-x-1 hover:translate-y-1 ${
-                activeSection === item.id
-                  ? "bg-gradient-to-r from-yellow-300 to-orange-400 text-black shadow-brutal"
-                  : "bg-white text-black shadow-brutal hover:bg-gray-50"
-              }`}
+              className={`relative group flex items-center gap-2 px-6 py-3 font-black border-3 border-black rounded-xl transition-all duration-300 hover:translate-x-1 hover:translate-y-1 ${activeSection === item.id
+                ? "bg-gradient-to-r from-yellow-300 to-orange-400 text-black shadow-brutal"
+                : "bg-white text-black shadow-brutal hover:bg-gray-50"
+                }`}
             >
               <item.icon size={20} />
               <span>{item.label}</span>
@@ -138,7 +118,7 @@ const GiveawayGuide = () => {
         {activeSection === "flow" && (
           <div className="space-y-8">
             <h2 className="text-4xl font-black text-center mb-10 text-black">
-              🎯 Giveaway Process Flow
+              🎯 {t.processTitle}
             </h2>
             <div className="grid gap-6 md:grid-cols-2">
               {flowSteps.map((step, index) => (
@@ -169,7 +149,7 @@ const GiveawayGuide = () => {
         {activeSection === "requirements" && (
           <div className="space-y-8">
             <h2 className="text-4xl font-black text-center mb-10 text-black">
-              🧩 Requirements
+              🧩 {t.requirementsTitle}
             </h2>
             {requirements.map((req, index) => (
               <div
@@ -181,7 +161,7 @@ const GiveawayGuide = () => {
                   {req.title}
                 </h3>
                 <ul className="space-y-2 text-gray-700 font-medium">
-                  {req.points.map((p, i) => (
+                  {req.points.map((p: any, i: any) => (
                     <li key={i} className="flex items-start gap-3">
                       <CheckCircle
                         size={18}
@@ -200,12 +180,12 @@ const GiveawayGuide = () => {
         {activeSection === "tips" && (
           <div className="space-y-8">
             <h2 className="text-4xl font-black text-center mb-10 text-black">
-              💡 Best Practices
+              💡 {t.tipsTitle}
             </h2>
             <div className="bg-white border-3 border-black rounded-2xl p-8 shadow-brutal-lg relative">
               <div className="absolute top-2 left-2 right-2 bottom-2 bg-gradient-to-br from-green-300/10 to-blue-300/10 rounded-xl -z-10"></div>
               <ul className="space-y-4 text-gray-800 font-medium">
-                {tips.map((tip, i) => (
+                {tips.map((tip: any, i: any) => (
                   <li key={i} className="flex items-start gap-3">
                     <AlertTriangle
                       size={18}
@@ -223,10 +203,10 @@ const GiveawayGuide = () => {
         {activeSection === "support" && (
           <div className="space-y-8 text-center">
             <h2 className="text-4xl font-black text-center mb-10 text-black">
-              💬 Need Help?
+              💬 {t.supportTitle}
             </h2>
             <div className="grid gap-6 md:grid-cols-3">
-              {support.map((msg, i) => (
+              {support.map((msg: any, i: any) => (
                 <div
                   key={i}
                   className="bg-white border-3 border-black rounded-2xl p-6 shadow-brutal hover:-translate-y-1 hover:shadow-brutal-lg transition-all duration-300"

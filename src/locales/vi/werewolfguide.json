@@ -1,0 +1,174 @@
+{
+    "title": "Hướng Dẫn Chơi Ma Sói",
+    "subtitle": "Hướng dẫn chơi Ma Sói trên Discord server",
+    "navItems": {
+        "commands": "Lệnh",
+        "flow": "Luồng Game",
+        "roles": "Vai Trò",
+        "tips": "Lưu ý"
+    },
+    "commandsTitle": "Danh Sách Lệnh",
+    "commands": [
+        {
+            "command": "Wnew",
+            "description": "Tạo phòng game mới",
+            "usage": "Dùng khi bạn muốn bắt đầu một phiên game mới",
+            "example": "Wnew",
+            "important": true
+        },
+        {
+            "command": "Wjoin",
+            "description": "Tham gia phòng game hiện tại",
+            "usage": "Dùng sau khi ai đó đã tạo phòng với Wnew",
+            "example": "Wjoin",
+            "important": true
+        },
+        {
+            "command": "Wleave",
+            "description": "Rời khỏi phòng game",
+            "usage": "Dùng khi bạn muốn thoát game trước khi nó bắt đầu",
+            "example": "Wleave",
+            "important": false
+        },
+        {
+            "command": "Wstart",
+            "description": "Bắt đầu game",
+            "usage": "Dùng khi đã có đủ người chơi tham gia",
+            "example": "Wstart",
+            "important": true
+        }
+    ],
+    "commandSequence": {
+        "title": "Trình Tự Thực Hiện Lệnh",
+        "items": [
+            {
+                "step": "1️⃣",
+                "command": "Wnew",
+                "desc": "Tạo phòng mới"
+            },
+            {
+                "step": "2️⃣",
+                "command": "Wjoin",
+                "desc": "Tham gia game"
+            },
+            {
+                "step": "3️⃣",
+                "command": "Wstart",
+                "desc": "Bắt đầu game"
+            }
+        ],
+        "importantNote": "Sau khi kết thúc một game, bạn phải dùng Wnew lại để tạo phiên game mới. Phòng trước đó sẽ trở nên không hoạt động khi game kết thúc."
+    },
+    "flowTitle": "Luồng Game",
+    "gameFlow": [
+        {
+            "phase": "THAM GIA",
+            "steps": [
+                "Quản trò hoặc bất kỳ người chơi nào dùng **Wnew** để tạo phòng mới",
+                "Người chơi khác dùng **Wjoin** để tham gia game",
+                "Khi đủ người chơi tham gia, dùng **Wstart** để bắt đầu game"
+            ]
+        },
+        {
+            "phase": "CHU KỲ ĐÊM - NGÀY",
+            "steps": [
+                "🔴 **Giai đoạn Đêm**: Các vai trò đặc biệt (Ma Sói, Tiên tri, Bảo vệ...) thực hiện hành động",
+                "🟢 **Giai đoạn Ngày**: Tất cả người chơi thảo luận và bỏ phiếu loại ai đó",
+                "Game tự động chuyển tiếp khi tất cả hành động hoàn thành"
+            ]
+        },
+        {
+            "phase": "KẾT THÚC GAME",
+            "steps": [
+                "Dân làng thắng khi tất cả Ma Sói bị loại",
+                "Ma Sói thắng khi số lượng bằng hoặc vượt quá Dân làng",
+                "Dùng **Wnew** để tạo game mới sau khi hoàn thành"
+            ]
+        }
+    ],
+    "dayNightCycle": {
+        "title": "Chu Kỳ Ngày & Đêm",
+        "night": {
+            "title": "GIAI ĐOẠN ĐÊM",
+            "items": [
+                "🐺 Ma Sói chọn mục tiêu",
+                "🔮 Tiên tri điều tra người chơi",
+                "🛡️ Bảo vệ bảo vệ người chơi",
+                "👑 Các vai trò đặc biệt khác hành động",
+                "⏰ Hành động xảy ra TỪNG NGƯỜI MỘT"
+            ]
+        },
+        "day": {
+            "title": "GIAI ĐOẠN NGÀY",
+            "items": [
+                "💬 Thảo luận công khai",
+                "🗳️ Bỏ phiếu loại ai đó",
+                "📢 Công bố kết quả bỏ phiếu",
+                "🚪 Người chơi bị loại rời đi",
+                "✅ Phiếu bầu đa số quyết định"
+            ]
+        }
+    },
+    "rolesTitle": "Vai Trò Trong Game",
+    "roleExamples": [
+        {
+            "role": "Ma Sói",
+            "team": "Ma Sói",
+            "description": "Giết một dân làng mỗi đêm. Hợp tác với các ma sói khác để loại dân làng.",
+            "nightAction": "Chọn một người chơi để loại",
+            "icon": "🐺",
+            "color": "bg-red-400"
+        },
+        {
+            "role": "Tiên Tri",
+            "team": "Dân Làng",
+            "description": "Có thể kiểm tra vai trò của một người chơi mỗi đêm để xác định họ có phải ma sói không.",
+            "nightAction": "Điều tra phe phái của một người chơi",
+            "icon": "🔮",
+            "color": "bg-purple-400"
+        },
+        {
+            "role": "Dân Làng",
+            "team": "Dân Làng",
+            "description": "Không có khả năng đặc biệt. Dùng thảo luận và bỏ phiếu để tìm ma sói.",
+            "nightAction": "Không hành động",
+            "icon": "👨‍🌾",
+            "color": "bg-green-400"
+        },
+        {
+            "role": "Bảo Vệ",
+            "team": "Dân Làng",
+            "description": "Có thể bảo vệ một người chơi mỗi đêm khỏi tấn công của ma sói.",
+            "nightAction": "Bảo vệ một người chơi",
+            "icon": "🛡️",
+            "color": "bg-blue-400"
+        }
+    ],
+    "tipsTitle": "Lưu ý Quan Trọng",
+    "tips": [
+        "Thực hiện hành động CHẬM và TỪNG NGƯỜI MỘT",
+        "Chờ xác nhận từ bot trước khi người chơi tiếp theo hành động",
+        "Tránh spam lệnh để ngăn lỗi game",
+        "Làm theo hướng dẫn của bot cẩn thận trong mỗi giai đoạn",
+        "Nếu xảy ra lỗi, dùng Wnew để tạo game mới",
+        "Kiên nhẫn trong quá trình phân vai và chuyển giai đoạn",
+        "Chú ý tin nhắn riêng từ bot để biết hướng dẫn vai trò của bạn"
+    ],
+    "criticalWarning": {
+        "title": "QUAN TRỌNG: Tránh Lỗi Game",
+        "items": [
+            "🚫 KHÔNG spam lệnh - chờ phản hồi từ bot",
+            "🚫 KHÔNG thực hiện hành động đồng thời - làm từng người một",
+            "🚫 KHÔNG bỏ qua hướng dẫn của bot - làm theo trình tự",
+            "✅ CÓ chờ đến lượt của bạn trong giai đoạn đêm",
+            "✅ CÓ dùng Wnew để reset nếu game bị treo",
+            "✅ CÓ kiên nhẫn trong quá trình phân vai"
+        ]
+    },
+    "important": "QUAN TRỌNG",
+    "usage": "Cách dùng:",
+    "example": "Ví dụ:",
+    "nightAction": "Hành Động Đêm",
+    "werewolves": "Ma Sói",
+    "villagers": "Dân Làng"
+}

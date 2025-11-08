@@ -1,0 +1,44 @@
+{
+  "heroBadge": "Policy & Privacy",
+  "heroTitle": "Keldo Bot",
+  "heroHighlight": "Policy & Privacy",
+  "heroDescription": "Learn how we protect your data and ensure a safe, fun experience for all players.",
+  "addToDiscord": "Add to Discord",
+  "ourPolicies": "Our Policies",
+  "ourPoliciesDesc": "We're committed to transparency and your privacy. Below you'll find everything you need to know about how we handle your data and our community expectations.",
+  "policies": [
+    {
+      "title": "Privacy Policy",
+      "icon": "🔒",
+      "content": "We collect minimal data necessary to provide our services. This includes user IDs, server information, and game state data. We never sell your data to third parties and only use it to enhance your gaming experience."
+    },
+    {
+      "title": "Data Collection",
+      "icon": "📊",
+      "content": "We store essential game data like user balances, game progress, and server settings. All data is encrypted and stored securely. You can request data deletion at any time by contacting us."
+    },
+    {
+      "title": "User Rights",
+      "icon": "👤",
+      "content": "You have the right to access, modify, or delete your personal data. Contact us for any data-related requests. We're committed to being transparent about how your information is used."
+    },
+    {
+      "title": "Security Measures",
+      "icon": "🛡️",
+      "content": "We implement industry-standard security practices including encryption, secure servers, and regular security audits. Your data's safety is our top priority."
+    },
+    {
+      "title": "Third-Party Services",
+      "icon": "🔗",
+      "content": "We use trusted third-party services like Discord for authentication and hosting. These services have their own privacy policies that we ensure align with our commitment to your privacy."
+    }
+  ],
+  "extraCards": [
+    { "title": "Secure", "description": "Enterprise-grade security for your data" },
+    { "title": "Encrypted", "description": "All data is encrypted in transit and at rest" },
+    { "title": "Transparent", "description": "Clear policies you can understand" }
+  ],
+  "contactTitle": "Questions About Privacy?",
+  "contactDesc": "We're here to help! Contact us if you have any questions about our policies.",
+  "contactButton": "Contact Support"
+}

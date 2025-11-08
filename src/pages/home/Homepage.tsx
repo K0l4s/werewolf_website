@@ -13,7 +13,8 @@ import { axiosNoAuth } from "../../utils/axiosIntance";
 import CustomSlideShow from "../../components/custom/CustomSlideShow";
 import ScrollDownButton from "../../components/custom/ScrollDownButton";
 import { ArrowRight, Users, Zap, GamepadIcon, Bot } from "lucide-react";
-// import EmbedBuilder from "../../components/custom/EmbedBuilder";
+import { useLanguage } from "../../context/LanguageContext";
+
 
 const Homepage = () => {
     const [health, setHealth] = useState<{
@@ -26,6 +27,8 @@ const Homepage = () => {
             guildIcon: string;
         }[];
     } | null>(null);
+    const {language} = useLanguage()
+    const t = language.homepage;
 
     useEffect(() => {
         const getDetails = async () => {
@@ -43,12 +46,12 @@ const Homepage = () => {
     const slides = [
         {
             image: 'https://www.innerdrive.co.uk/wp-content/uploads/2024/01/Why-its-good-to-ask-for-help.jpg',
-            title: 'Ticket System',
-            description: 'Useful ticket system for your server.”',
-            label: 'New Feature',
+            title: t.slides.ticketSystem.title,
+            description: t.slides.ticketSystem.description,
+            label: t.slides.ticketSystem.label,
             labelColor: 'bg-yellow-500',
             actionButton: {
-                text: 'Learn More',
+                text: t.slides.ticketSystem.actionText,
                 onClick: () => {
                     window.open('/guide/giveaway', '_blank');
                 },
@@ -57,12 +60,12 @@ const Homepage = () => {
         },
         {
             image: 'https://img.freepik.com/premium-vector/giveaway-logo-template-social-media-post-website-banner_123447-3076.jpg',
-            title: 'Giveaway System',
-            description: 'A user creates a giveaway, the admin approves it, and then it goes live.”',
-            label: 'New Feature',
+            title: t.slides.giveawaySystem.title,
+            description: t.slides.giveawaySystem.description,
+            label: t.slides.giveawaySystem.label,
             labelColor: 'bg-blue-500',
             actionButton: {
-                text: 'Learn More',
+                text: t.slides.giveawaySystem.actionText,
                 onClick: () => {
                     window.open('/guide/giveaway', '_blank');
                 },
@@ -71,12 +74,12 @@ const Homepage = () => {
         },
         {
             image: 'https://cdn2.tuoitre.vn/thumb_w/730/471584752817336320/2024/1/17/build-a-learning-habit-17054833388601968706382.png',
-            title: 'Server Streaks',
-            description: 'Encourage daily activity with voice channel streaks and keep your community engaged.',
-            label: 'New Feature',
+            title: t.slides.serverStreaks.title,
+            description: t.slides.serverStreaks.description,
+            label: t.slides.serverStreaks.label,
             labelColor: 'bg-orange-500',
             actionButton: {
-                text: 'Learn More',
+                text: t.slides.serverStreaks.actionText,
                 onClick: () => {
                     window.open('/guide/server', '_blank');
                 },
@@ -85,12 +88,12 @@ const Homepage = () => {
         },
         {
             image: 'https://rare-gallery.com/mocahbig/420072-Zsolt-Kosa-werewolves-digital-art-open-mouth-creature.jpg',
-            title: 'Werewolf Game Integration',
-            description: 'Host exciting Werewolf games directly in your Discord server with automated management.',
-            label: 'Popular',
+            title: t.slides.werewolfGame.title,
+            description: t.slides.werewolfGame.description,
+            label: t.slides.werewolfGame.label,
             labelColor: 'bg-blue-500',
             actionButton: {
-                text: 'Explore Now',
+                text: t.slides.werewolfGame.actionText,
                 onClick: () => {
                     window.open('/guide/werewolf', '_blank');
                 },
@@ -99,12 +102,12 @@ const Homepage = () => {
         },
         {
             image: 'https://images.squarespace-cdn.com/content/v1/5c355789a2772c751fadfdd1/1547028490366-4QJEWJSLI379A13CTO4B/hello+goodbye+banner.png?format=2500w',
-            title: 'Welcome/ Farewell Messages',
-            description: 'Automate welcome and farewell messages for your Discord server members.',
-            label: 'Popular',
+            title: t.slides.welcomeMessages.title,
+            description: t.slides.welcomeMessages.description,
+            label: t.slides.welcomeMessages.label,
             labelColor: 'bg-blue-500',
             actionButton: {
-                text: 'Explore Now',
+                text: t.slides.welcomeMessages.actionText,
                 onClick: () => {
                     window.open('/guide/server', '_blank');
                 },
@@ -113,12 +116,12 @@ const Homepage = () => {
         },
         {
             image: 'https://www.vip-polymers.com/wp-content/uploads/2015/04/Global-Banner.jpg',
-            title: 'Join/ Leave Voice Channel Notifications',
-            description: 'Automate join and leave voice channel notifications for your Discord server members.',
-            label: 'Popular',
+            title: t.slides.voiceNotifications.title,
+            description: t.slides.voiceNotifications.description,
+            label: t.slides.voiceNotifications.label,
             labelColor: 'bg-blue-500',
             actionButton: {
-                text: 'Explore Now',
+                text: t.slides.voiceNotifications.actionText,
                 onClick: () => {
                     window.open('/guide/server', '_blank');
                 },
@@ -127,12 +130,12 @@ const Homepage = () => {
         },
         {
             image: 'https://t4.ftcdn.net/jpg/05/13/87/33/360_F_513873331_RKPiIG9gVUmVGzyeWj0nn9bHLvJHQNUf.jpg',
-            title: 'Minigames & Soul Land',
-            label: 'Fun',
+            title: t.slides.minigames.title,
+            label: t.slides.minigames.label,
             labelColor: 'bg-purple-500',
-            description: 'Engage your community with fun minigames and immerse them in the world of Soul Land.',
+            description: t.slides.minigames.description,
             actionButton: {
-                text: 'Explore Now',
+                text: t.slides.minigames.actionText,
                 onClick: () => {
                     // Add minigames navigation
                 },
@@ -141,12 +144,12 @@ const Homepage = () => {
         },
         {
             image: 'https://dbppl.com/wp-content/uploads/2020/09/banner-web-content-management-system.jpg',
-            title: 'Server Management Tools',
-            label: 'Admin',
+            title: t.slides.serverManagement.title,
+            label: t.slides.serverManagement.label,
             labelColor: 'bg-green-500',
-            description: 'Powerful tools to help you manage and grow your Discord community effectively.',
+            description: t.slides.serverManagement.description,
             actionButton: {
-                text: 'Learn More',
+                text: t.slides.serverManagement.actionText,
                 onClick: () => {
                     window.open('/guide/server', '_blank');
                 }
@@ -162,7 +165,6 @@ const Homepage = () => {
 
     return (
         <div className="min-h-screen overflow-hidden">
-            {/* <EmbedBuilder  /> */}
             {/* HERO SECTION */}
             <section className="max-w-7xl mx-auto px-6 py-12">
                 <div className="mb-12">
@@ -183,22 +185,20 @@ const Homepage = () => {
                         {/* Online Status Badge - Neo Brutalism */}
                         <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-cyan-100 border-2 border-black rounded-full shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                             <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse border border-black"></div>
-                            <span className="font-black text-black text-sm">Bot Online</span>
-                            <span className="text-gray-700 text-sm">• {health?.guildsCount?.toLocaleString() || "9,000+"} Servers</span>
+                            <span className="font-black text-black text-sm">{t.hero.botOnline}</span>
+                            <span className="text-gray-700 text-sm">• {health?.guildsCount?.toLocaleString() || "9,000+"} {t.hero.servers}</span>
                         </div>
 
                         {/* Main Title */}
                         <h1 className="text-5xl md:text-6xl font-black tracking-tight mb-6 leading-tight text-black">
-                            Elevate Your <br />
+                            {t.hero.mainTitle} <br />
                             <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-                                Discord Experience
+                                {t.hero.mainTitleHighlight}
                             </span>
                         </h1>
 
                         <p className="text-gray-700 text-lg max-w-2xl mb-8 leading-relaxed font-medium">
-                            Keldo is the ultimate multi-purpose Discord bot that transforms ordinary servers
-                            into vibrant communities. With powerful features and seamless integrations,
-                            we're redefining what a Discord bot can do.
+                            {t.hero.description}
                         </p>
 
                         {/* Stats Highlight - Neo Brutalism */}
@@ -207,22 +207,22 @@ const Homepage = () => {
                                 {
                                     icon: <Bot className="w-6 h-6" />,
                                     value: health?.guildsCount ? health.guildsCount > 1000 ? Math.floor(health.guildsCount / 1000) + "k+" : health.guildsCount : "9k+",
-                                    label: "Servers"
+                                    label: t.hero.stats.servers
                                 },
                                 {
                                     icon: <Zap className="w-6 h-6" />,
                                     value: "24/7",
-                                    label: "Uptime"
+                                    label: t.hero.stats.uptime
                                 },
                                 {
                                     icon: <GamepadIcon className="w-6 h-6" />,
                                     value: "20+",
-                                    label: "Features"
+                                    label: t.hero.stats.features
                                 },
                                 {
                                     icon: <Users className="w-6 h-6" />,
                                     value: health?.usersCount ? health.usersCount > 1000000 ? Math.floor(health.usersCount / 1000000) + "M+" : health.usersCount : "2M+",
-                                    label: "Users"
+                                    label: t.hero.stats.users
                                 },
                             ].map((stat, index) => (
                                 <div key={index} className="bg-white border-2 border-black rounded-xl p-4 text-center shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
@@ -248,14 +248,14 @@ const Homepage = () => {
                                     )
                                 }
                             >
-                                <span>Add To Discord</span>
+                                <span>{t.hero.ctaButtons.addToDiscord}</span>
                                 <ArrowRight className="w-5 h-5 transform transition-transform group-hover:translate-x-1" />
                                 {/* Button decoration */}
                                 <div className="absolute -top-1 -right-1 w-2 h-2 bg-yellow-400 border border-black rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             </button>
                             <Link to="mailto:trungkienhuynh.contact@gmail.com?subject=Custom%20Discord%20Bot%20Inquiry">
                                 <button className="bg-white border-2 border-black rounded-xl px-8 py-4 font-black text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-100 cursor-pointer">
-                                    Custom Bot Request
+                                    {t.hero.ctaButtons.customBotRequest}
                                 </button>
                             </Link>
                         </div>
@@ -263,7 +263,7 @@ const Homepage = () => {
                         {/* Trusted Communities */}
                         <div className="border-t-2 border-black pt-10">
                             <div className="text-sm uppercase mb-6 font-black text-gray-800 tracking-wider">
-                                Trusted by Top Communities
+                                {t.hero.trustedBy}
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                                 {(health?.topGuilds ?? Array.from({ length: 6 })).map((guild, i) => (
@@ -281,13 +281,13 @@ const Homepage = () => {
                                         </div>
                                         <div className="flex-1 min-w-0">
                                             <div className="text-black font-black truncate">
-                                                {guild?.name ?? `Community ${i + 1}`}
+                                                {guild?.name ?? `${t.community} ${i + 1}`}
                                             </div>
                                             <div className="text-gray-600 text-xs flex items-center gap-1 font-bold">
                                                 <Users className="w-3 h-3" />
                                                 {guild?.memberCount
-                                                    ? `${guild.memberCount.toLocaleString()} Members`
-                                                    : `${(i + 1) * 50}k Members`}
+                                                    ? `${guild.memberCount.toLocaleString()} ${t.members}`
+                                                    : `${(i + 1) * 50}k ${t.members}`}
                                             </div>
                                         </div>
                                     </div>
@@ -315,10 +315,10 @@ const Homepage = () => {
                                     <div className="absolute bottom-4 left-4 bg-white border-2 border-black px-3 py-2 rounded-lg shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] z-20">
                                         <div className="flex items-center gap-2">
                                             <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse border border-black"></div>
-                                            <span className="text-xs font-black text-black">Live Activity</span>
+                                            <span className="text-xs font-black text-black">{t.liveActivity}</span>
                                         </div>
                                         <div className="text-xs text-gray-600 mt-1 font-bold">
-                                            Active in {health?.guildsCount?.toLocaleString() || "9,000+"} servers
+                                            {t.activeIn} {health?.guildsCount?.toLocaleString() || "9,000+"} {t.servers}
                                         </div>
                                     </div>
 
@@ -335,45 +335,43 @@ const Homepage = () => {
             {/* FEATURES SECTION */}
             <main className="max-w-6xl mx-auto px-6 py-12">
                 <FeatureCard
-                    title="Giveaway System"
-                    text="Create your giveaway, wait for admin approval, and boom — your event is live for everyone to join!"
+                    title={t.features.giveaway.title}
+                    text={t.features.giveaway.text}
                     imgSrc={giveaway}
                     linkTo="/guide/giveaway"
                 />
                 <FeatureCard
                     align="right"
-                    title="Voice Channel & Activity System"
-                    text="Keldo notifies when members join or leave voice channels, and keeps daily activity streaks alive across your server."
+                    title={t.features.voiceSystem.title}
+                    text={t.features.voiceSystem.text}
                     imgSrc={voice}
                     linkTo="/guide/server"
                 />
 
                 <FeatureCard
-
-                    title="Play Werewolf Right in Discord"
-                    text="Enjoy the classic Werewolf (Mafia) game with automated logic and smooth UI — no moderator needed!"
+                    title={t.features.werewolf.title}
+                    text={t.features.werewolf.text}
                     imgSrc={werewolf}
                     linkTo="/guide/werewolf"
                 />
 
                 <FeatureCard
                     align="right"
-                    title="Minigames & Soul Land Integration"
-                    text="Challenge friends in fun mini-games or awaken your spirit to become a Spirit Master in the Soul Land world."
+                    title={t.features.minigames.title}
+                    text={t.features.minigames.text}
                     imgSrc={minigame}
                 />
 
                 <FeatureCard
-
-                    title="Raise Pets Together"
-                    text="Let your community raise adorable pets together, feed them, and compete on global and server leaderboards."
+                    title={t.features.pets.title}
+                    text={t.features.pets.text}
                     imgSrc={pet}
                 />
 
                 <FeatureCard
                     align="right"
-                    title="Item Shop & Profile System"
-                    text="Buy food, boosters, and unique items in the store. Customize your profile and show off your achievements."
+                    title={t.features.shop.title}
+                    text={t.features.shop.text}
                     imgSrc={shop}
                 />
             </main>
@@ -381,29 +379,17 @@ const Homepage = () => {
             {/* EXTRA FEATURES SECTION */}
             <section className="max-w-6xl mx-auto px-6 py-16  border-t-2 border-b-2 border-black">
                 <h2 className="text-4xl font-black text-center mb-12 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-                    🌟 Explore All Keldo Features
+                    {t.extraFeatures.title}
                 </h2>
 
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {[
-                        { icon: "🔔", text: "Real-time notifications for members joining or leaving voice channels." },
-                        { icon: "👋", text: "Welcome and farewell messages for new or departing server members." },
-                        { icon: "🔥", text: "Streak system – track user activity and maintain daily voice channel chains." },
-                        { icon: "🐺", text: "Integrated Werewolf game mode for community fun." },
-                        { icon: "🎮", text: "A variety of minigames to entertain users." },
-                        { icon: "⚔️", text: "Soul Land (Đấu La Đại Lục) game integration." },
-                        { icon: "🐾", text: "Server-wide Pet system – raise and feed pets together." },
-                        { icon: "🏆", text: "Cross-server and in-server leaderboards for ranking users and pets." },
-                        { icon: "🛒", text: "Item shop with foods, boosters, and utility items." },
-                        { icon: "🧑‍💼", text: "Profile management commands and additional administrative tools." },
-                        { icon: "💡", text: "And many other features designed to make servers more engaging and lively." },
-                    ].map((feature, i) => (
+                    {t.extraFeatures.features.map((feature:any, i:any) => (
                         <div
                             key={i}
                             className="bg-white border-2 border-black rounded-xl p-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 flex items-start gap-3"
                         >
-                            <div className="text-2xl flex-shrink-0">{feature.icon}</div>
-                            <p className="text-sm text-gray-700 leading-relaxed font-medium">{feature.text}</p>
+                            <div className="text-2xl flex-shrink-0">{feature.split(' ')[0]}</div>
+                            <p className="text-sm text-gray-700 leading-relaxed font-medium">{feature}</p>
                         </div>
                     ))}
                 </div>
