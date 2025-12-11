@@ -12,6 +12,7 @@ interface ModalProps {
     onOpen?: () => void;
     closeOnOutsideClick?: boolean;
     closeOnEsc?: boolean;
+    bottomComponent?: React.ReactNode;
 }
 
 const CustomModal: React.FC<ModalProps> = ({
@@ -26,6 +27,7 @@ const CustomModal: React.FC<ModalProps> = ({
     onOpen,
     closeOnOutsideClick = true,
     closeOnEsc = true,
+    bottomComponent,
 }) => {
     const [isVisible, setIsVisible] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
@@ -33,7 +35,7 @@ const CustomModal: React.FC<ModalProps> = ({
     useEffect(() => {
         if (isOpen) {
             setIsVisible(true);
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden';
             setTimeout(() => setIsAnimating(true), 10);
             onOpen?.();
         } else {
@@ -71,7 +73,7 @@ const CustomModal: React.FC<ModalProps> = ({
         md: 'max-w-lg w-11/12',
         lg: 'max-w-2xl w-11/12',
         xl: 'max-w-4xl w-11/12',
-        full: 'w-full min-h-screen',
+        full: 'w-full h-full m-0 rounded-none', // UPDATE: Full screen cần h-full
         auto: 'w-auto',
     };
 
@@ -94,12 +96,19 @@ const CustomModal: React.FC<ModalProps> = ({
             aria-modal="true"
             aria-labelledby="modal-title"
         >
+            {/* UPDATE: 
+               1. Thêm 'flex flex-col': Để chia layout Header-Body-Footer
+               2. Thêm 'max-h-[90vh]': Giới hạn chiều cao modal (trừ trường hợp full)
+            */}
             <div
-                className={`bg-white dark:bg-gray-800 rounded-xl shadow-xl ${sizeClasses[size]} 
-          ${animationClasses[animation]} overflow-hidden`}
+                className={`bg-white dark:bg-gray-800 rounded-xl shadow-xl 
+                flex flex-col max-h-[90vh] 
+                ${sizeClasses[size]} 
+                ${animationClasses[animation]} overflow-hidden`}
                 role="document"
             >
-                <div className="flex justify-between items-center px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                {/* HEADER: Flex-none để không bị co lại */}
+                <div className="flex-none flex justify-between items-center px-6 py-4 border-b border-gray-200 dark:border-gray-700">
                     <h3 id="modal-title" className="text-xl font-semibold text-gray-900 dark:text-gray-100">
                         {title}
                     </h3>
@@ -114,9 +123,22 @@ const CustomModal: React.FC<ModalProps> = ({
                         </svg>
                     </button>
                 </div>
-                <div className="px-6 py-4 max-h-[calc(100vh-5rem)] overflow-auto text-gray-700 dark:text-gray-300">
+
+                {/* BODY: 
+                    1. 'flex-1': Chiếm toàn bộ không gian còn lại
+                    2. 'overflow-y-auto': Chỉ cuộn nội dung bên trong vùng này
+                    3. Bỏ 'max-h-...' cũ đi
+                */}
+                <div className="flex-1 overflow-y-auto px-6 py-4 text-gray-700 dark:text-gray-300">
                     {children}
                 </div>
+
+                {/* FOOTER: Flex-none để luôn nằm dưới cùng */}
+                {bottomComponent && (
+                    <div className="flex-none px-6 py-4 border-t border-gray-200 dark:border-gray-700">
+                        {bottomComponent}
+                    </div>
+                )}
             </div>
         </div>
     );

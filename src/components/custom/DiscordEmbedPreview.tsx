@@ -1,23 +1,24 @@
 import React from "react";
+import type { EmbedData, Field } from "../../models/Embed";
 
-interface Field {
-    name: string;
-    value: string;
-    inline: boolean;
-}
+// interface Field {
+//     name: string;
+//     value: string;
+//     inline: boolean;
+// }
 
-interface EmbedData {
-    // author?: string;
-    title?: string;
-    description?: string;
-    color?: string;
-    footer?: string;
-    footerIcon?: string;
-    timestamp?: boolean;
-    image?: string;
-    thumbnail?: string;
-    fields?: Field[];
-}
+// interface EmbedData {
+//     // author?: string;
+//     title?: string;
+//     description?: string;
+//     color?: string;
+//     footer?: string;
+//     footerIcon?: string;
+//     timestamp?: boolean;
+//     image?: string;
+//     thumbnail?: string;
+//     fields?: Field[];
+// }
 
 interface Props {
     embed: EmbedData;

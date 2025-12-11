@@ -1,41 +1,16 @@
 import { useState, useRef } from "react";
 import DiscordEmbedPreview from "./DiscordEmbedPreview";
-interface Field {
-    name: string;
-    value: string;
-    inline: boolean;
+import type { EmbedData, Field } from "../../models/Embed";
+interface Props {
+    embed: EmbedData,
+    setEmbed: (embed: EmbedData) => void
 }
-
-interface EmbedData {
-    // author?: string;
-    title?: string;
-    description?: string;
-    color?: string;
-    footer?: string;
-    footerIcon?: string;
-    timestamp?: boolean;
-    image?: string;
-    thumbnail?: string;
-    fields?: Field[];
-}
-export default function EmbedBuilder() {
-    const [embed, setEmbed] = useState<Required<Omit<EmbedData, 'fields'>> & { fields: Field[] }>({
-        // author: "Keldo",
-        title: "🎉 Chào mừng đến với Embed Builder!",
-        description: "Xin chào **mọi người**! Đây là *demo*.",
-        color: "#5865F2",
-        image: "",
-        thumbnail: "",
-        footer: "",
-        footerIcon: "",
-        timestamp: false,
-        fields: [],
-    });
+export default function EmbedBuilder({ embed, setEmbed }: Props) {
 
     // const [botIcon] = useState("https://cdn.discordapp.com/embed/avatars/1.png");
     const descRef = useRef<HTMLTextAreaElement>(null);
 
-    const [newField, setNewField] = useState({
+    const [newField, setNewField] = useState<Field>({
         name: "",
         value: "",
         inline: false,
@@ -82,14 +57,14 @@ export default function EmbedBuilder() {
         if (newField.name.trim() && newField.value.trim()) {
             setEmbed({
                 ...embed,
-                fields: [...embed.fields, { ...newField }],
+                fields: [...embed.fields || [], { ...newField }],
             });
             setNewField({ name: "", value: "", inline: false });
         }
     };
 
     const removeField = (index: number) => {
-        const updatedFields = embed.fields.filter((_, i) => i !== index);
+        const updatedFields = embed.fields?.filter((_: Field, i: number) => i !== index);
         setEmbed({ ...embed, fields: updatedFields });
     };
 
@@ -278,9 +253,10 @@ export default function EmbedBuilder() {
                     </div>
 
                     {/* Existing Fields */}
-                    {embed.fields.length > 0 && (
+                    {embed.fields &&
+                    embed.fields.length>0 && (
                         <div className="space-y-2 max-h-40 overflow-y-auto">
-                            {embed.fields.map((field, index) => (
+                            {embed.fields.map((field: Field, index: number) => (
                                 <div key={index} className="bg-gray-750 rounded-lg p-3">
                                     <div className="flex justify-between items-start mb-2">
                                         <span className="font-medium text-sm">{field.name}</span>
