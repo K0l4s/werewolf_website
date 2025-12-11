@@ -57,14 +57,25 @@ const Navbar: React.FC<NavbarProps> = ({
             return (
                 <Link to="/dashboard" className="flex items-center space-x-3 group">
                     <div className="flex items-center space-x-3">
-                        <div className="relative bg-white border-2 border-black rounded-xl p-1 shadow-brutal-sm transition-all duration-300 group-hover:scale-105">
+                        <div className="relative bg-white rounded-full p-1 transition-all duration-300 group-hover:scale-105">
+
+                            {/* 1. Avatar (Nằm dưới) */}
                             <img
                                 src={user.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` : 'https://cdn.discordapp.com/embed/avatars/0.png'}
                                 alt="User Avatar"
-                                className="w-10 h-10 rounded-full object-cover"
+                                className="relative w-10 h-10 rounded-full object-cover z-0"
                             />
+
+                            {user.avatar_decoration_data && user.avatar_decoration_data.asset && (
+                                <img
+                                    src={`https://cdn.discordapp.com/avatar-decoration-presets/${user.avatar_decoration_data.asset}.png`}
+                                    alt="Avatar Decoration"
+                                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[137%] h-[137%] max-w-none pointer-events-none z-10"
+                                />
+                            )}
+
                             {/* Online indicator */}
-                            <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></div>
+                            <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 border-2 border-white rounded-full z-20"></div>
                         </div>
                         {/* User info for desktop */}
                         <div className="hidden lg:block">

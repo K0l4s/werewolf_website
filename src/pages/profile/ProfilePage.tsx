@@ -19,12 +19,12 @@ const ProfilePage: React.FC = () => {
         );
     }
 
-    const getAvatarUrl = (userId: string, avatar: string | null, discriminator: string) => {
-        if (avatar) {
-            return `https://cdn.discordapp.com/avatars/${userId}/${avatar}.png?size=256`;
-        }
-        return `https://cdn.discordapp.com/embed/avatars/${parseInt(discriminator) % 5}.png`;
-    };
+    // const getAvatarUrl = (userId: string, avatar: string | null, discriminator: string) => {
+    //     if (avatar) {
+    //         return `https://cdn.discordapp.com/avatars/${userId}/${avatar}.png?size=256`;
+    //     }
+    //     return `https://cdn.discordapp.com/embed/avatars/${parseInt(discriminator) % 5}.png`;
+    // };
 
     const getBannerUrl = (userId: string, banner: string | null) => {
         if (banner) {
@@ -34,7 +34,7 @@ const ProfilePage: React.FC = () => {
     };
 
     const bannerUrl = getBannerUrl(user.id, user.banner);
-    const avatarUrl = getAvatarUrl(user.id, user.avatar, user.discriminator);
+    // const avatarUrl = getAvatarUrl(user.id, user.avatar, user.discriminator);
 
     return (
         <div className="min-h-screen p-4">
@@ -53,12 +53,27 @@ const ProfilePage: React.FC = () => {
                     <div className="flex flex-col sm:flex-row items-start sm:items-end gap-4">
                         {/* Avatar */}
                         <div className="relative">
-                            <div className="w-32 h-32 border-2 border-black rounded-lg overflow-hidden bg-white  shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-                                <img
-                                    src={avatarUrl}
-                                    alt={`${user.username}'s avatar`}
-                                    className="w-full h-full object-cover"
-                                />
+                            <div className="flex items-center space-x-3">
+                                <div className="relative bg-white rounded-full p-1 transition-all duration-300 group-hover:scale-105">
+
+                                    {/* 1. Avatar (Nằm dưới) */}
+                                    <img
+                                        src={user.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` : 'https://cdn.discordapp.com/embed/avatars/0.png'}
+                                        alt="User Avatar"
+                                        className="relative w-10 h-10 rounded-full object-cover z-0"
+                                    />
+
+                                    {user.avatar_decoration_data && user.avatar_decoration_data.asset && (
+                                        <img
+                                            src={`https://cdn.discordapp.com/avatar-decoration-presets/${user.avatar_decoration_data.asset}.png`}
+                                            alt="Avatar Decoration"
+                                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[137%] h-[137%] max-w-none pointer-events-none z-10"
+                                        />
+                                    )}
+
+                                    {/* Online indicator */}
+                                    <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 border-2 border-white rounded-full z-20"></div>
+                                </div>
                             </div>
                             {user.premium && (
                                 <div className="absolute -top-2 -right-2 bg-gradient-to-r  shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] from-yellow-400 to-orange-500 text-black text-xs font-bold px-2 py-1 border border-black rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">

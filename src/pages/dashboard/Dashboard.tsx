@@ -63,12 +63,12 @@ const Dashboard = () => {
     };
 
     // Get user avatar URL
-    const getUserAvatarUrl = (user: User) => {
-        if (user.avatar) {
-            return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=256`;
-        }
-        return null;
-    };
+    // const getUserAvatarUrl = (user: User) => {
+    //     if (user.avatar) {
+    //         return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=256`;
+    //     }
+    //     return null;
+    // };
 
     const getRoleBadge = (guild: Guild) => {
         if (guild.owner) return { label: "Owner", icon: <Crown size={12} />, color: "bg-yellow-400" };
@@ -93,23 +93,28 @@ const Dashboard = () => {
                     {user && (
                         <div className="bg-white border-2 border-black rounded-xl p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-0.5 hover:-translate-y-0.5">
                             <div className="flex items-center space-x-4">
-                                <div className="relative">
-                                    {getUserAvatarUrl(user) ? (
-                                        <img
-                                            src={getUserAvatarUrl(user) || 'https://cdn.discordapp.com/embed/avatars/0.png'}
-                                            alt={user.username}
-                                            className="w-12 h-12 rounded-full object-cover border-2 border-black"
-                                        />
-                                    ) : (
-                                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-400 to-purple-500 flex items-center justify-center border-2 border-black">
-                                            <span className="text-lg font-black text-white">
-                                                {user.username.charAt(0).toUpperCase()}
-                                            </span>
-                                        </div>
-                                    )}
-                                    {/* Online indicator */}
-                                    <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></div>
-                                </div>
+                                 <div className="flex items-center space-x-3">
+                        <div className="relative bg-white rounded-full p-1 transition-all duration-300 group-hover:scale-105">
+
+                            {/* 1. Avatar (Nằm dưới) */}
+                            <img
+                                src={user.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` : 'https://cdn.discordapp.com/embed/avatars/0.png'}
+                                alt="User Avatar"
+                                className="relative w-10 h-10 rounded-full object-cover z-0"
+                            />
+
+                            {user.avatar_decoration_data && user.avatar_decoration_data.asset && (
+                                <img
+                                    src={`https://cdn.discordapp.com/avatar-decoration-presets/${user.avatar_decoration_data.asset}.png`}
+                                    alt="Avatar Decoration"
+                                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[137%] h-[137%] max-w-none pointer-events-none z-10"
+                                />
+                            )}
+
+                            {/* Online indicator */}
+                            <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 border-2 border-white rounded-full z-20"></div>
+                        </div>
+                        </div>
                                 <div>
                                     <h3 className="font-black text-black text-lg">
                                         {user.global_name || user.username}
