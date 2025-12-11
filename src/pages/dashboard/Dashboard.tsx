@@ -218,7 +218,7 @@ const Dashboard = () => {
                                             {(guild.owner || guild.admin || guild.manager) && (
                                                 <Tooltip text="Settings" delay={0}>
                                                     <Link
-                                                        to={"/guild/setting/" + guild.id}
+                                                        to={"/guild/setting/" + guild.id+"/alert"}
                                                         className="w-10 h-10 bg-yellow-400 border-2 border-black rounded-lg flex items-center justify-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-yellow-300"
                                                     >
                                                         <Settings size={18} color="black"/>
