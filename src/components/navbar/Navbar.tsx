@@ -70,7 +70,7 @@ const Navbar: React.FC<NavbarProps> = ({
                                 <img
                                     src={`https://cdn.discordapp.com/avatar-decoration-presets/${user.avatar_decoration_data.asset}.png`}
                                     alt="Avatar Decoration"
-                                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[137%] h-[137%] max-w-none pointer-events-none z-10"
+                                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] max-w-none pointer-events-none z-10"
                                 />
                             )}
 
