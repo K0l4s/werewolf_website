@@ -1,5 +1,4 @@
-// src/pages/TicketView.jsx
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 const TicketView = () => {
@@ -8,9 +7,13 @@ const TicketView = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string>('');
 
-    // Lấy link file từ URL (ví dụ: localhost:3000/ticket?transcript=https://cdn.discord...)
+    // Link gốc từ Discord (lấy từ URL parameter)
     const transcriptUrl = searchParams.get('transcript');
 
+    // Cấu hình URL backend của bạn (Bot đang chạy ở port nào?)
+    // Ví dụ bot chạy port 3001, React chạy 3000
+    // const API_BASE_URL = "http://localhost:3001"; 
+    const baseURL: string = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api/v1/";
     useEffect(() => {
         if (!transcriptUrl) {
             setError("Không tìm thấy đường dẫn file ticket.");
@@ -20,16 +23,21 @@ const TicketView = () => {
 
         const fetchHtml = async () => {
             try {
-                // Fetch nội dung file HTML từ Discord CDN
-                const response = await fetch(transcriptUrl);
+                // GỌI QUA PROXY BACKEND thay vì gọi trực tiếp
+                // Encode URL để truyền an toàn qua query string
+                const proxyUrl = `${baseURL}view/transcript?url=${encodeURIComponent(transcriptUrl)}`;
                 
-                if (!response.ok) throw new Error("Không thể tải file ticket");
+                const response = await fetch(proxyUrl);
+                
+                if (!response.ok) {
+                    throw new Error(`Lỗi Server: ${response.statusText}`);
+                }
                 
                 const text = await response.text();
                 setHtmlContent(text);
             } catch (err) {
                 console.error(err);
-                setError("Có lỗi khi tải file log. Link có thể đã hết hạn hoặc bị chặn CORS.");
+                setError("Không thể tải nội dung. Hãy đảm bảo Bot/Backend đang chạy.");
             } finally {
                 setLoading(false);
             }
@@ -38,17 +46,16 @@ const TicketView = () => {
         fetchHtml();
     }, [transcriptUrl]);
 
-    if (loading) return <div className="p-10 text-center">Đang tải ticket...</div>;
-    if (error) return <div className="p-10 text-center text-red-500">{error}</div>;
+    if (loading) return <div className="text-center p-4">Đang tải dữ liệu từ Discord...</div>;
+    if (error) return <div className="text-center p-4 text-red-500 font-bold">{error}</div>;
 
     return (
         <div style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
-            {/* Sử dụng iframe để render HTML nguyên bản mà không bị vỡ style */}
             <iframe
                 title="Ticket Transcript"
                 srcDoc={htmlContent}
                 style={{ width: '100%', height: '100%', border: 'none' }}
-                sandbox="allow-scripts allow-same-origin" // Cho phép script cơ bản của discord-transcripts chạy
+                // sandbox="allow-scripts" // Bỏ bớt allow-same-origin để an toàn hơn nếu muốn
             />
         </div>
     );
