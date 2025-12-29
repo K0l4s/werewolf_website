@@ -23,6 +23,7 @@ import PaymentPage from '../pages/payment/PaymentPage'
 import GuidePage from '../pages/guide/GuidePage'
 import GiveawayGuide from '../pages/guide/giveaway/GiveawayGuild'
 import AlertPage from '../pages/dashboard/alert/AlertPage'
+import TicketView from '../pages/ticket/TicketView'
 
 
 // import type { RootState } from '../redux/store'
@@ -72,13 +73,14 @@ const Router = () => {
                     <Route path="success" element={<PaymentSuccess />} />
                     <Route path="fail" element={<PaymentFailed />} />
                 </Route>
+                <Route path='ticket' element={<TicketView/>}/>
             </Route>
             <Route element={<DashboardLayout />}>
                 <Route path='dashboard' element={<Dashboard />} />
                 <Route path='guild'>
                     <Route path='pet/:id' element={<ServerPet />} />
                     <Route path="setting/:guildId" element={<GuildSettingsPage />} />
-                    <Route path='setting/:guildId/alert' element={<AlertPage/>}/>
+                    <Route path='setting/:guildId/alert' element={<AlertPage />} />
                 </Route>
                 <Route path="profile" element={<ProfilePage />} />
             </Route>
